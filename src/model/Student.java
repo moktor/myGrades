@@ -34,11 +34,26 @@ public class Student implements Serializable {
 	
 	
 	public Student(){}
-	public Student(String firstname, String lastname, String adresse){
+
+	
+	
+	
+	public Student(String gender, String firstname, String lastname,
+			String adresse, String email, String phone, String mobil,
+			String keyword) {
+		this.gender = gender;
 		this.firstname = firstname;
+		this.lastname = lastname;
+		this.adresse = adresse;
+		this.email = email;
+		this.phone = phone;
+		this.mobil = mobil;
+		this.keyword = keyword;
 	}
-	
-	
+
+
+
+
 	/**
 	 * @return the nds
 	 */

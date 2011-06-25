@@ -3,10 +3,8 @@ import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import model.Student;
-
 import javax.ejb.EJB;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import business.*;
 
@@ -20,23 +18,31 @@ public class studentCtrl implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 5184733444596178113L;
+	private int nds;
+	private String gender;
 	private String firstname;
 	private String lastname;
 	private String adresse;
+	private String email;
+	private String phone;
+	private String mobil;
+	private String keyword;
 	
 
 	@EJB
-	DbPerson a;
+	DbPerson dbP;
 	
 
 	
 	
 	public String createStudent(){
-	Logger.getLogger(studentCtrl.class.getName())
+	/*Logger.getLogger(studentCtrl.class.getName())
     .log(Level.INFO, 
     "studentctrl"+firstname+" "+lastname+" "+adresse, firstname);
-
-		a.createStudent(firstname, lastname, adresse);
+	 */
+		dbP.createStudent( gender, firstname, lastname, adresse, email, phone, mobil, keyword);
+		
+		
 		return "addStudent";
 	}
 	
@@ -81,7 +87,92 @@ public class studentCtrl implements Serializable {
 	public String getAdresse() {
 		return adresse;
 	}
+
+
+
+
+	public void setNds(int nds) {
+		this.nds = nds;
+	}
+
+
+
+
+	public int getNds() {
+		return nds;
+	}
+
+
+
+
+	public String getGender() {
+		return gender;
+	}
+
+
+
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+
+
+	public String getPhone() {
+		return phone;
+	}
+
+
+
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+
+
+
+	public String getMobil() {
+		return mobil;
+	}
+
+
+
+
+	public void setMobil(String mobil) {
+		this.mobil = mobil;
+	}
+
+
+
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+
+
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 	
+
 	
 	
 	

@@ -2,12 +2,13 @@ package controller;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import business.*;
-
+import model.Student;
 
 
 @Named
@@ -36,15 +37,29 @@ public class studentCtrl implements Serializable {
 	
 	
 	public String createStudent(){
-	/*Logger.getLogger(studentCtrl.class.getName())
+	Logger.getLogger(studentCtrl.class.getName())
     .log(Level.INFO, 
     "studentctrl"+firstname+" "+lastname+" "+adresse, firstname);
-	 */
-		dbP.createStudent( gender, firstname, lastname, adresse, email, phone, mobil, keyword);
-		
-		
+	 
+		dbP.createStudent( gender, firstname, lastname, adresse, email, phone, mobil, keyword);		
 		return "addStudent";
 	}
+	
+	
+	
+	public List<Student>getAllStudents(){
+		
+		Logger.getLogger(studentCtrl.class.getName())
+	    .log(Level.INFO, 
+	    dbP.getAllStudents().toString()+" dinge", firstname);
+		
+		
+		return dbP.getAllStudents();	
+	}
+	
+	
+	
+	
 	
 	
 	

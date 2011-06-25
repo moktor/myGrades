@@ -8,17 +8,22 @@ import javax.persistence.*;
  *
  */
 @Entity
-
+@NamedQueries({
+    @NamedQuery(name = Student.FIND_ALL, query = "select s from Student s"),
+})
 public class Student implements Serializable {
 
 	
 	/**
 	 * 
 	 */
+// ------------ Generated UID --------------
 	private static final long serialVersionUID = 7975789295438545937L;
 	
+	public static final String FIND_ALL = "Student.findAll";
 	
 	
+// ------------------ attributes of the Entity ----------------	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int nds;
@@ -33,10 +38,10 @@ public class Student implements Serializable {
 	private String salt;
 	
 	
+	
+// ------------------------ ctors -----------------------------------
 	public Student(){}
 
-	
-	
 	
 	public Student(String gender, String firstname, String lastname,
 			String adresse, String email, String phone, String mobil,
@@ -52,7 +57,7 @@ public class Student implements Serializable {
 	}
 
 
-
+// --------------------- getter / setter ----------------------------
 
 	/**
 	 * @return the nds
@@ -174,8 +179,92 @@ public class Student implements Serializable {
 	public void setSalt(String salt) {
 		this.salt = salt;
 	}
-	
 
+
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((adresse == null) ? 0 : adresse.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result
+				+ ((firstname == null) ? 0 : firstname.hashCode());
+		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
+		result = prime * result + ((keyword == null) ? 0 : keyword.hashCode());
+		result = prime * result
+				+ ((lastname == null) ? 0 : lastname.hashCode());
+		result = prime * result + ((mobil == null) ? 0 : mobil.hashCode());
+		result = prime * result + nds;
+		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
+		result = prime * result + ((salt == null) ? 0 : salt.hashCode());
+		return result;
+	}
+
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		if (adresse == null) {
+			if (other.adresse != null)
+				return false;
+		} else if (!adresse.equals(other.adresse))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (firstname == null) {
+			if (other.firstname != null)
+				return false;
+		} else if (!firstname.equals(other.firstname))
+			return false;
+		if (gender == null) {
+			if (other.gender != null)
+				return false;
+		} else if (!gender.equals(other.gender))
+			return false;
+		if (keyword == null) {
+			if (other.keyword != null)
+				return false;
+		} else if (!keyword.equals(other.keyword))
+			return false;
+		if (lastname == null) {
+			if (other.lastname != null)
+				return false;
+		} else if (!lastname.equals(other.lastname))
+			return false;
+		if (mobil == null) {
+			if (other.mobil != null)
+				return false;
+		} else if (!mobil.equals(other.mobil))
+			return false;
+		if (nds != other.nds)
+			return false;
+		if (phone == null) {
+			if (other.phone != null)
+				return false;
+		} else if (!phone.equals(other.phone))
+			return false;
+		if (salt == null) {
+			if (other.salt != null)
+				return false;
+		} else if (!salt.equals(other.salt))
+			return false;
+		return true;
+	}
+	
+	
 	
 	
 	

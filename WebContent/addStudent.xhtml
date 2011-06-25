@@ -9,7 +9,9 @@
 <ui:composition template="template.xhtml">
 
 	<ui:define name="content">
-	   add
+	  <h:form>
+	  <h:commandButton value="anlegen" action="#{studentCtrl.createStudent()}"/>
+	  </h:form>
 	</ui:define>
 
 </ui:composition>

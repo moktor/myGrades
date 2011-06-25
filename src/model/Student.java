@@ -20,6 +20,7 @@ public class Student implements Serializable {
 	
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int nds;
 	private String gender;
 	private String firstname;
@@ -33,7 +34,7 @@ public class Student implements Serializable {
 	
 	
 	public Student(){}
-	public Student(String firstname){
+	public Student(String firstname, String lastname, String adresse){
 		this.firstname = firstname;
 	}
 	

@@ -10,7 +10,12 @@
 
 	<ui:define name="content">
 	  <h:form>
-	  <h:commandButton value="anlegen" action="#{studentCtrl.createStudent()}"/>
+	  
+	  <h:inputText value="#{studentCtrl.firstname}" id="firstname" />
+	  <h:inputText value="#{studentCtrl.lastname}" id="lastname" />
+	  <h:inputText value="#{studentCtrl.adresse}" id="adresse" />
+	  
+	  <h:commandButton value="anlegen" action="#{studentCtrl.createStudent}"/>
 	  </h:form>
 	</ui:define>
 

@@ -12,7 +12,11 @@
 
 <div id="header">
     <ui:insert name="header">
-    	Kopfbereich
+    <h:form>
+    	<h:commandLink value="Student hinzu" action="addStudent" immediate="true"/><br></br>
+    	<h:commandLink value="Student löschen" action="delStudent" immediate="true"/><br></br>
+    	<h:commandLink value="Studentenübersicht" action="viewStudent" immediate="true"/><br></br>
+    	</h:form>
     </ui:insert>
 </div>
 

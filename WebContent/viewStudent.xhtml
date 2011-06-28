@@ -9,12 +9,8 @@
 <ui:composition template="template.xhtml">
 
 	<ui:define name="content">
-	   		<h:form>
-		<h:commandLink value="Student hinzu" action="addStudent" immediate="true"/>
-		
-		</h:form>
+	   <h:commandButton value="testen" action="#{studentCtrl.getAllStudents}"/>
 	</ui:define>
 
 </ui:composition>
 </html>
-

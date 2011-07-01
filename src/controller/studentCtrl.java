@@ -41,7 +41,7 @@ public class studentCtrl implements Serializable {
     .log(Level.INFO, 
     "studentctrl"+firstname+" "+lastname+" "+adresse, firstname);
 	 
-		dbP.createStudent( gender, firstname, lastname, adresse, email, phone, mobil, keyword);		
+		dbP.createPerson( gender, firstname, lastname, adresse, email, phone, mobil, keyword);		
 		return "addStudent";
 	}
 	

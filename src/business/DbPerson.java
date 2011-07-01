@@ -21,7 +21,7 @@ public class DbPerson {
 	}
     
     
-    public void createStudent(
+    public void createPerson(
     String gender, String firstname, String lastname, String adresse,
     String email, String phone, String mobil, String keyword){
     	

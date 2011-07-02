@@ -2,6 +2,11 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 
 /**
  * Entity implementation class for Entity: Student
@@ -10,6 +15,7 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
     @NamedQuery(name = Student.FIND_ALL, query = "select s from Student s"),
+    @NamedQuery(name = Student.Delete, query = "Delete FROM Student WHERE nds= :ndsquery")
 })
 public class Student implements Serializable {
 
@@ -21,6 +27,7 @@ public class Student implements Serializable {
 	private static final long serialVersionUID = 7975789295438545937L;
 	
 	public static final String FIND_ALL = "Student.findAll";
+	public static final String Delete = "Student.Delete";
 	
 	
 // ------------------ attributes of the Entity ----------------	

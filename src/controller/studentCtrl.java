@@ -70,6 +70,22 @@ public class studentCtrl implements Serializable {
 		return "delStudent";
 	}
 	
+	//-------------------------------------JL-----------------------------------------------------
+	public String deleteStudent(){
+		Logger.getLogger(studentCtrl.class.getName())
+	    .log(Level.INFO, 
+	    "studentctrl----------------------------------------------------------------------------------------------------------------------"+nds);
+		if(dbP.deletePerson(this.nds) == true){
+			Logger.getLogger(studentCtrl.class.getName())
+		    .log(Level.INFO, 
+		    "studentctrl-------------------------------------------!!!!!!!!!!!!!!!!!!!--------------------------------------------"+nds);
+		return "delSuccess";
+		}
+		else
+		return "delError";
+		
+	}
+	
 	
 	//----------------- Getter / Setter ------------------------------------
 
@@ -103,7 +119,14 @@ public class studentCtrl implements Serializable {
 		return adresse;
 	}
 
-
+//------------------ Delete Setter for empty input text field by JL -------------------------------
+	public int ndsSetEmpty(int nds){
+		
+		//this.nds = nds;
+		
+		return nds;
+		
+	}
 
 
 	public void setNds(int nds) {

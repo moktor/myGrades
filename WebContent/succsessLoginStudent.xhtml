@@ -8,16 +8,13 @@
 
 <ui:composition template="template.xhtml">
 	<ui:define name="header">
-	
-	 Welchen Studenten wollen sie denn löschen ?<br/>
+	    Add your header here or delete to use the default
 	</ui:define>
-	
 	<ui:define name="content">
-	<h:form>
-	  NDS Kürzel : <h:inputText value="#{studentCtrl.nds}" id="nds" required="true" /><br/><br/><br/><br/>
-	 			   <h:commandButton value="Löschen ?" id="deleteButton" action="#{studentCtrl.deleteStudent}"/>
-	</h:form>
+Login Passt!
 	</ui:define>
-
+	<ui:define name="footer">
+	    Add your footer here or delete to use the default
+	</ui:define>
 </ui:composition>
 </html>

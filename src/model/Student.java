@@ -12,11 +12,16 @@ import javax.persistence.Id;
  * Entity implementation class for Entity: Student
  *
  */
+@NamedQueries({
+    @NamedQuery(name = Student.FIND_ALL, query = "select s from Student s"),
+    @NamedQuery(name = Student.Delete, query = "Delete FROM Student WHERE nds= :ndsquery")
+})
 @Entity
 public class Student implements Serializable {
 
 	
-	public static final String FIND_ALL = "Student.findALL";
+	public static final String FIND_ALL = "Student.findAll";
+	public static final String Delete = "Student.Delete";
 	
 	
 	/**
@@ -277,3 +282,7 @@ public class Student implements Serializable {
 	
 	
 }
+
+
+	
+	

@@ -77,6 +77,21 @@ public class studentCtrl implements Serializable {
 		}
 		
 	}
+	//-------------------------------------JL-----------------------------------------------------
+	public String deleteStudent(){
+		Logger.getLogger(studentCtrl.class.getName())
+	    .log(Level.INFO, 
+	    "studentctrl----------------------------------------------------------------------------------------------------------------------"+nds);
+		if(dbP.deletePerson(this.nds) == true){
+			Logger.getLogger(studentCtrl.class.getName())
+		    .log(Level.INFO, 
+		    "studentctrl-------------------------------------------!!!!!!!!!!!!!!!!!!!--------------------------------------------"+nds);
+		return "delSuccess";
+		}
+		else
+		return "delError";
+		
+	}
 
 	
 
@@ -202,4 +217,9 @@ public class studentCtrl implements Serializable {
 	
 	
 	
+
+
+
+
 }
+	

@@ -1,6 +1,9 @@
+
 package business;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -44,9 +47,19 @@ public class DbPerson {
         TypedQuery<Student> query = em.createQuery("select c from Student c", Student.class);
         return query.getResultList();
     }
-    
-    
-    
-    
+
+    //--------------------------------------------JL---------------------------------------------------------------------
+    public boolean deletePerson(int nds){
+    	Logger.getLogger(DbPerson.class.getName())
+	    .log(Level.INFO, 
+	    "DbPersonbefore----------------------------------------------------------------------------------------------------------------------"+nds);
+    	Query query = em.createQuery("Delete FROM Student WHERE nds= :ndsquery");
+    		query.setParameter("ndsquery", nds );
+    		
+    	Logger.getLogger(DbPerson.class.getName())
+	    .log(Level.INFO, 
+	    "DbPersonafter----------------------------------------------------------------------------------------------------------------------"+nds);
+    	return true;
+    }
     
 }

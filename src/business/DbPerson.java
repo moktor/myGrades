@@ -53,7 +53,7 @@ public class DbPerson {
     	Logger.getLogger(DbPerson.class.getName())
 	    .log(Level.INFO, 
 	    "DbPersonbefore----------------------------------------------------------------------------------------------------------------------"+nds);
-    	Query query = em.createQuery("Delete FROM Student WHERE nds= :ndsquery");
+    	Query query = em.createQuery("Delete * FROM Student WHERE nds= :ndsquery");
     		query.setParameter("ndsquery", nds );
     		
     	Logger.getLogger(DbPerson.class.getName())
@@ -61,5 +61,14 @@ public class DbPerson {
 	    "DbPersonafter----------------------------------------------------------------------------------------------------------------------"+nds);
     	return true;
     }
+    
+    public boolean deleteStudentByNds(int nds){
+        Query query = em.createQuery("select c from Student c where c.nds = :ndsquery");
+        query.setParameter("ndsquery", nds);
+        Student student = (Student)query.getSingleResult();
+        em.remove(student);
+        return true;
+    }
+    
     
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="myGrades">
+		<jta-data-source>jdbc/myGrades</jta-data-source>
+		<class>model.Student</class>
+		<class>model.Academic</class>
+		<class>model.AcceptTest</class>
+		<class>model.Rules</class>
+		<class>model.Accomplishment</class>
+		<class>model.Tan</class>
+		<class>model.Company</class>
+		<class>model.Admin</class>
+		<class>model.Location</class>
+		<class>model.Enrollment</class>
+		<class>model.ExamAuth</class>
+		<class>model.Course</class>
+		<class>model.Faculty</class>
+		<class>model.Professorship</class>
+		<class>model.FieldOfStudy</class>
+		<class>model.Modul</class>
+		
+		
+	</persistence-unit>
+</persistence>

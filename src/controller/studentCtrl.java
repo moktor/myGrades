@@ -2,6 +2,7 @@ package controller;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -46,30 +47,39 @@ public class studentCtrl implements Serializable {
 	}
 	
 	
+	public void getStudents(){
+		
+		Student a = dbP.findStudentByName("asdas");
+		String firstname = a.getFirstname();
+		
+		
 	
-	public List<Student>getAllStudents(){
+	Logger.getLogger(studentCtrl.class.getName())
+    .log(Level.INFO, 
+    "studentctrl     "+firstname, firstname);
+	 
 		
-		Logger.getLogger(studentCtrl.class.getName())
-	    .log(Level.INFO, 
-	    dbP.getAllStudents().toString()+" dinge", firstname);
-		
-		
-		return dbP.getAllStudents();	
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	public String test(){
+	public void getAllStudents(){
 		
+		List<Student> list = dbP.getAllStudents();
 		
-		return "delStudent";
+		for (Iterator<Student> iter = list.iterator(); iter.hasNext();) {
+				
+			Logger.getLogger(studentCtrl.class.getName())
+		    .log(Level.INFO, 
+		    "studentctrl Liste:   "+iter.next().getFirstname(), firstname);
+			
+			
+			
+		}
+		
 	}
+
 	
+
 	
 	//----------------- Getter / Setter ------------------------------------
 

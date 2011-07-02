@@ -2,25 +2,28 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 
 /**
  * Entity implementation class for Entity: Student
  *
  */
 @Entity
-@NamedQueries({
-    @NamedQuery(name = Student.FIND_ALL, query = "select s from Student s"),
-})
 public class Student implements Serializable {
 
+	
+	public static final String FIND_ALL = "Student.findALL";
+	
 	
 	/**
 	 * 
 	 */
 // ------------ Generated UID --------------
 	private static final long serialVersionUID = 7975789295438545937L;
-	
-	public static final String FIND_ALL = "Student.findAll";
 	
 	
 // ------------------ attributes of the Entity ----------------	
@@ -29,7 +32,7 @@ public class Student implements Serializable {
 	private int nds;
 	private String gender;
 	private String firstname;
-	private String lastname;
+	private String name;
 	private String adresse;
 	private String email;
 	private String phone;
@@ -43,12 +46,12 @@ public class Student implements Serializable {
 	public Student(){}
 
 	
-	public Student(String gender, String firstname, String lastname,
+	public Student(String gender, String firstname, String name,
 			String adresse, String email, String phone, String mobil,
 			String keyword) {
 		this.gender = gender;
 		this.firstname = firstname;
-		this.lastname = lastname;
+		this.name = name;
 		this.adresse = adresse;
 		this.email = email;
 		this.phone = phone;
@@ -98,15 +101,6 @@ public class Student implements Serializable {
 	/**
 	 * @return the lastname
 	 */
-	public String getLastname() {
-		return lastname;
-	}
-	/**
-	 * @param lastname the lastname to set
-	 */
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
 	/**
 	 * @return the adresse
 	 */
@@ -194,7 +188,7 @@ public class Student implements Serializable {
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + ((keyword == null) ? 0 : keyword.hashCode());
 		result = prime * result
-				+ ((lastname == null) ? 0 : lastname.hashCode());
+				+ ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((mobil == null) ? 0 : mobil.hashCode());
 		result = prime * result + nds;
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
@@ -239,10 +233,10 @@ public class Student implements Serializable {
 				return false;
 		} else if (!keyword.equals(other.keyword))
 			return false;
-		if (lastname == null) {
-			if (other.lastname != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!lastname.equals(other.lastname))
+		} else if (!name.equals(other.name))
 			return false;
 		if (mobil == null) {
 			if (other.mobil != null)
@@ -262,6 +256,16 @@ public class Student implements Serializable {
 		} else if (!salt.equals(other.salt))
 			return false;
 		return true;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public String getName() {
+		return name;
 	}
 	
 	

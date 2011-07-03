@@ -33,10 +33,11 @@
 						<h1>Navigation</h1>
 						<div class="line"></div>
 						<h:form>
-						<h:commandLink value="Studentendaten" class="grey_button" action="auth_studentdata" />
-						<h:commandLink value="Übersicht über Prüfer" class="grey_button" action="auth_authdata" />
-						<h:commandLink value="Prüfungen anlegen/löschen" class="grey_button" action="auth_examdata" />
-						<h:commandLink value="Prüfungen benoten" class="grey_button" action="auth_grade" />
+						<h:link value="Studentendaten" class="grey_button" outcome="auth_studentdata" />
+						<h:link value="Übersicht über Prüfer" class="grey_button" outcome="auth_authdata" />
+						<h:link value="Prüfungen anlegen/löschen" class="grey_button" outcome="auth_examdata" />
+						<h:link value="Prüfungen benoten" class="grey_button" outcome="auth_grade" />
+						<h:link value="Student hinzu" class="grey_button" outcome="auth_addStudent" />
 						</h:form>
 					</div>
 				</div>

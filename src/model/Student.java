@@ -2,27 +2,17 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 
 /**
  * Entity implementation class for Entity: Student
  *
  */
-@NamedQueries({
-    @NamedQuery(name = Student.FIND_ALL, query = "select s from Student s"),
-    @NamedQuery(name = Student.Delete, query = "Delete FROM Student WHERE nds= :ndsquery")
-})
+
 @Entity
 public class Student implements Serializable {
 
-	
-	public static final String FIND_ALL = "Student.findAll";
-	public static final String Delete = "Student.Delete";
-	
+		
 	
 	/**
 	 * 
@@ -34,7 +24,8 @@ public class Student implements Serializable {
 // ------------------ attributes of the Entity ----------------	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int nds;
+	private int id;
+	private String nds;
 	private String gender;
 	private String firstname;
 	private String name;
@@ -51,9 +42,10 @@ public class Student implements Serializable {
 	public Student(){}
 
 	
-	public Student(String gender, String firstname, String name,
+	public Student(String nds, String gender, String firstname, String name,
 			String adresse, String email, String phone, String mobil,
 			String keyword) {
+		this.nds = nds;
 		this.gender = gender;
 		this.firstname = firstname;
 		this.name = name;
@@ -67,18 +59,8 @@ public class Student implements Serializable {
 
 // --------------------- getter / setter ----------------------------
 
-	/**
-	 * @return the nds
-	 */
-	public int getNds() {
-		return nds;
-	}
-	/**
-	 * @param nds the nds to set
-	 */
-	public void setNds(int nds) {
-		this.nds = nds;
-	}
+
+
 	/**
 	 * @return the gender
 	 */
@@ -180,6 +162,14 @@ public class Student implements Serializable {
 	}
 
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public String getName() {
+		return name;
+	}
 
 
 	@Override
@@ -191,17 +181,15 @@ public class Student implements Serializable {
 		result = prime * result
 				+ ((firstname == null) ? 0 : firstname.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
+		result = prime * result + id;
 		result = prime * result + ((keyword == null) ? 0 : keyword.hashCode());
-		result = prime * result
-				+ ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((mobil == null) ? 0 : mobil.hashCode());
-		result = prime * result + nds;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((nds == null) ? 0 : nds.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
 		result = prime * result + ((salt == null) ? 0 : salt.hashCode());
 		return result;
 	}
-
-
 
 
 	@Override
@@ -233,22 +221,27 @@ public class Student implements Serializable {
 				return false;
 		} else if (!gender.equals(other.gender))
 			return false;
+		if (id != other.id)
+			return false;
 		if (keyword == null) {
 			if (other.keyword != null)
 				return false;
 		} else if (!keyword.equals(other.keyword))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
 			return false;
 		if (mobil == null) {
 			if (other.mobil != null)
 				return false;
 		} else if (!mobil.equals(other.mobil))
 			return false;
-		if (nds != other.nds)
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (nds == null) {
+			if (other.nds != null)
+				return false;
+		} else if (!nds.equals(other.nds))
 			return false;
 		if (phone == null) {
 			if (other.phone != null)
@@ -264,13 +257,13 @@ public class Student implements Serializable {
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
+	public String getNds() {
+		return nds;
 	}
 
 
-	public String getName() {
-		return name;
+	public void setNds(String nds) {
+		this.nds = nds;
 	}
 	
 	

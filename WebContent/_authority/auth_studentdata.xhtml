@@ -34,15 +34,17 @@
                     </h:column>
                  
                     <h:column>
-        			<f:facet name="header">Editieren</f:facet>
+        				<f:facet name="header">Editieren</f:facet>
                         <h:commandLink value="Edit" action="editStudent" immediate="true"/>
                     </h:column>
                     <h:column>
-                    <f:facet name="header">Löschen</f:facet>
+                    	<f:facet name="header">Löschen</f:facet>
                        <h:selectBooleanCheckbox value="löschen" title="test" />
                     
                     </h:column>
                 </h:dataTable>
+                
+                <h:commandButton class="blue_button" value="löschen" action="#{studentCtrl.deleteSelected}"/>
                 </h:form>
            
 	</ui:define>

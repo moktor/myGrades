@@ -22,7 +22,7 @@ public class studentCtrl implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 5184733444596178113L;
-	private int nds;
+	private String nds;
 	private String gender;
 	private String firstname;
 	private String lastname;
@@ -33,6 +33,7 @@ public class studentCtrl implements Serializable {
 	private String keyword;
 	
 	private Student student;
+	private List<Student> studentList;
 
 	@EJB
 	DbPerson dbP;
@@ -42,7 +43,7 @@ public class studentCtrl implements Serializable {
 	// ------------------------- FM -------------------------createStudent---------------------
 	// Creates a new student using all db col params
 	public String createStudent(){
-		dbP.createStudent( gender, firstname, lastname, adresse, email, phone, mobil, keyword);		
+		dbP.createStudent( nds, gender, firstname, lastname, adresse, email, phone, mobil, keyword);		
 		return "addStudent";
 	}
 	
@@ -52,7 +53,7 @@ public class studentCtrl implements Serializable {
 	public void getStudent(){
 		
 		Student a = dbP.findStudentByName("lastname");
-		Student b = dbP.findStudentByNds(24);
+		Student b = dbP.findStudentByNds("24");
 			
 		if(b !=null){
 			String nds = b.getFirstname();			
@@ -71,11 +72,13 @@ public class studentCtrl implements Serializable {
 		
 		List<Student> list = dbP.getAllStudents();
 		
-		for (Iterator<Student> iter = list.iterator(); iter.hasNext();) {		
+		studentList = list;
+		/*for (Iterator<Student> iter = list.iterator(); iter.hasNext();) {		
 			Logger.getLogger(studentCtrl.class.getName())
 		    .log(Level.INFO, 
 		    "studentctrl Liste:   "+iter.next().getFirstname(), firstname);
-		}
+		
+		}*/
 		return list;
 	}
 	
@@ -90,6 +93,25 @@ public class studentCtrl implements Serializable {
 		return "delError";
 		
 	}
+	// ----------------------- FM ---------------------deleteSelected----------------
+    // deletes selected Students
+	
+	public String deleteSelected(){
+		
+		
+		
+			for (Iterator<Student> iter = studentList.iterator(); iter.hasNext();) {		
+			Logger.getLogger(studentCtrl.class.getName())
+			.log(Level.INFO, 
+			"studentctrl Liste:   "+iter.next().getFirstname(), firstname);
+
+}
+		
+		
+		
+		return "auth_authdata";
+	}
+	
 	
 	
     // ----------------------- FM ---------------------editStudent----------------
@@ -103,7 +125,7 @@ public class studentCtrl implements Serializable {
     	*/
     	
     	//Student testobjekt
-    	student = dbP.findStudentByNds(2);
+    	student = dbP.findStudentByNds("2");
     	
     	student.setPhone("sonshice"); 
     	
@@ -146,11 +168,11 @@ public class studentCtrl implements Serializable {
 		return adresse;
 	}
 	
-	public void setNds(int nds) {
+	public void setNds(String nds) {
 		this.nds = nds;
 	}
 
-	public int getNds() {
+	public String getNds() {
 		return nds;
 	}
 

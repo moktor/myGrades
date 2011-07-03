@@ -38,18 +38,18 @@ public class DbPerson {
     // ------------------------------------------ FM -----------------------------createStudent-------------
     // Adds a new Student to db, with all parameters
     
-    public void createStudent(
+    public void createStudent( String nds, 
     String gender, String firstname, String lastname, String adresse,
     String email, String phone, String mobil, String keyword){
     		
-    	Student s = new Student( gender, firstname, lastname, adresse, email, phone, mobil, keyword);
+    	Student s = new Student(nds,  gender, firstname, lastname, adresse, email, phone, mobil, keyword);
     	em.persist(s);
     }
     
     
     // ------------------------------------------ FM -------------------------findStudentByNds---------------
     // find a student by nds
-    public Student findStudentByNds(int nds){
+    public Student findStudentByNds(String nds){
         
     	Query query = em.createQuery("select c from Student c where c.nds = :nds");
         query.setParameter("nds", nds);
@@ -82,8 +82,8 @@ public class DbPerson {
     }
     
     //--------------------------------------------JL----------------------deleteStudentByNds--------------------
-    // deletes student from db using nds (prim key)
-    public boolean deleteStudentByNds(int nds){
+    // deletes student from db using nds
+    public boolean deleteStudentByNds(String nds){
         Query query = em.createQuery("select c from Student c where c.nds = :ndsquery");
         query.setParameter("ndsquery", nds);
         try {

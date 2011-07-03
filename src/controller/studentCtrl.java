@@ -67,7 +67,7 @@ public class studentCtrl implements Serializable {
 	// --------------------- FM ------------------------getAllStudents----------------------
 	// Returns a list of all Students
 	//additional test logger for view of all students
-	public void getAllStudents(){
+	public List getAllStudents(){
 		
 		List<Student> list = dbP.getAllStudents();
 		
@@ -76,6 +76,7 @@ public class studentCtrl implements Serializable {
 		    .log(Level.INFO, 
 		    "studentctrl Liste:   "+iter.next().getFirstname(), firstname);
 		}
+		return list;
 	}
 	
 	//-------------------------JL----------------deleteStudent-----------------
@@ -112,7 +113,10 @@ public class studentCtrl implements Serializable {
     }
 	
 
-	
+	 
+    
+    
+    
 
 	
 	//----------------- Getter / Setter ------------------------------------

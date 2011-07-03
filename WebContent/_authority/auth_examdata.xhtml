@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="auth_template.xhtml">
+	
+	<ui:define name="content">
+	   <!--This is where the magic happens!!!-->
+          <h1>Prüfungen anlegen/löschen</h1>
+           <div class="line"></div>
+           <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Prüfungen. Klcken sie auf Edit, um die Prüfung zu bearbeiten oder einen Termin festzulegen.</p>
+           <h:dataTable>
+           <table cols="6" cellpadding="0" cellspacing="0">
+               	<tr>
+                    	<th width="50px">PrüfungsID</th>
+                         <th>Bezeichnung</th>
+                         <th width="100px">Studienfach</th>
+                         <th width="50px">Datum</th>
+                         <th width="30px"></th>
+                         <th width="40px">Löschen</th>
+                    </tr>
+                    <tr>
+                    	<td colspan="6"><div class="line"></div></td>	
+                 	</tr>
+                    <tr>
+                    	<td colspan="6">Hier stehen die Datensätze</td>	
+                 	</tr>
+                    <tr>
+                    	<td colspan="6"><div class="line"></div></td>	
+                 	</tr>
+               </table>
+           tzfdEA></h:dataTable>   
+	</ui:define>
+	
+</ui:composition>
+</html>

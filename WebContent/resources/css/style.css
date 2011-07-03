@@ -1,0 +1,263 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body {
+	background:url(../images/bg.png) repeat-x !important;
+	background-color:#f0f0f0;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:12px;
+	text-shadow:#fcfcfc 1px 1px;
+	color:#a6a6a6;
+	
+}
+
+h1 {
+	font-size:18px;
+	color:#28bad4;
+	text-shadow:#fcfcfc 1px 1px;
+	margin:0px;
+}
+
+h2 {
+	font-size:16px;
+	color:#b2b2b2;
+	text-shadow:none;
+	margin:0px;
+}
+
+h3 {
+	/* Für den NAVI-Button */
+	font-sisze:14px;
+	color:#767676;
+	text-shadow:#f9f9f9 1px 1px;
+}
+
+h4 {
+	/* Anmeldestatus-Box */
+	font-size:16px;
+	color:#28bad4;
+	text-shadow:#fcfcfc 1px 1px;
+}
+
+p { 
+	/* margin:0px; */
+}
+
+a {
+	color:#5fcbde;
+	font-weight:bold;
+}
+
+a:hover {
+	color:#86e2f2;
+}
+
+.line {
+	width:auto;
+	height:2px;
+	background:url(../images/line.png);
+	float:none;
+	margin:13px 0 10px 0;
+}
+
+.logo {
+	background:url(../images/logo.png) no-repeat;
+	float:left;
+	width:361px;
+	height:92px;
+}
+
+.header {
+	width:100%;
+	height:35px;
+	background:url(../images/bg_header.png) repeat-x;
+	float:none;
+}
+
+.footer {
+	width:100%;
+	height:107px;
+	background:url(../images/bg_footer.png) repeat-x;
+	float:none;
+	clear:both;
+}
+
+.content {
+	width:842px;
+	height:auto;
+	overflow:auto;
+	margin:auto;
+	float:none;
+	clear:both;
+	margin-top:40px;
+}
+
+.content_header {
+	height:auto;
+	overflow:auto;
+	margin-bottom:0px;
+}
+
+.content_main {
+	height:auto;
+	overflow:auto;
+	margin-bottom:100px;
+}
+
+.navi_button {
+}
+
+.navi_button:hover {
+}
+
+.blue_button {
+	background:url(../images/blue_button.png) no-repeat;
+	float:none;
+	width:85px;
+	height:37px;
+	border:none;
+	display:block;
+	font-size:14px;
+	color:#e6f8fb;
+	text-shadow:#0086a0 1px 1px;
+	float:right;
+}
+
+.blue_button:hover {
+	background:url(../images/blue_button_hover.png) no-repeat;
+	display:block;
+}
+
+.blue_button_font {
+	font-family:Tahoma, Geneva, sans-serif;
+	color:#e6f8fb;
+	font-size:14px;
+}
+
+.grey_button {
+	background:url(../images/grey_button.png) no-repeat;
+	float:none;
+	width:220px;
+	height:32px;
+	border:none;
+	display:block;
+	font-size:14px;
+	color:#767676;
+	text-shadow:#f9f9f9 1px 1px;
+	float:none;
+	text-decoration:none;
+	font-weight:normal;
+	padding:8px 10px;
+}
+
+.grey_button:hover {
+}
+
+.box {
+	float:left;
+	width:auto;
+	height:auto;
+	overflow:auto;
+}
+
+.box_content {
+	width:auto;
+	height:auto;
+	overflow:auto;
+	padding:10px 27px 10px 20px;
+}
+
+.login_status_box {
+	background:url(../images/login_status_box.png) no-repeat;
+	float:right;
+	width:273px;
+	height:101px;
+	
+}
+
+.small_box_top {
+	background:url(../images/small_box_top.png) no-repeat;
+	float:none;
+	width:275px;
+	height:8px;
+}
+
+.small_box_center {
+	background:url(../images/small_box_center.png) repeat-y;
+	float:none;
+	width:275px;
+	height:auto;
+	overflow:auto;
+}
+
+.small_box_bottom {
+	background:url(../images/small_box_bottom.png) no-repeat;
+	float:none;
+	width:275px;
+	height:15px;
+}
+
+.big_box_top {
+	background:url(../images/big_box_top.png) no-repeat;
+	float:none;
+	width:567px;
+	height:8px;
+}
+
+.big_box_center {
+	background:url(../images/big_box_center.png) repeat-y;
+	float:none;
+	width:567px;
+	height:auto;
+	overflow:auto;
+}
+
+.big_box_bottom {
+	background:url(../images/big_box_bottom.png) no-repeat;
+	float:none;
+	width:567px;
+	height:15px;
+}
+
+.formfield {
+	width:auto;
+	height:30px;
+	float:none;
+	overflow:auto;
+	margin-top:5px;
+	margin-bottom:10px;
+}
+
+.formfield_left {
+	background:url(../images/formfield_left.png) no-repeat;
+	float:left;
+	width:6px;
+	height:30px;
+}
+
+.formfield_center {
+	background:url(../images/formfield_center.png) repeat-x;
+	float:left;
+	width:210px;
+	height:28px;
+	border:none;
+	display:block;
+	font-size:13px;
+	font-style:italic;
+	color:#bfbfbf;
+	overflow:none;
+}
+
+.formfield_right {
+	background:url(../images/formfield_right.png) no-repeat;
+	float:left;
+	width:5px;
+	height:30px;
+}
+
+.social_media {
+	background:url(../images/social.png) no-repeat;
+	float:none;
+	width:237px;
+	height:111px;
+}

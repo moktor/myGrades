@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<head>
+  <title><ui:insert name="title">myGrades</ui:insert></title>
+  <h:outputStylesheet library="css" name="default.css" />
+  <h:outputStylesheet library="css" name="style.css" />
+  <link rel="stylesheet" type="text/css" href="../resources/css/default.css"/>
+  <link rel="stylesheet" type="text/css" href="../resources/css/style.css"/>
+</head>
+
+<body>
+<div class="header"></div>
+    <div class="content">
+<ui:insert name="header">
+	
+    <!--Content ist the main wrapper class! -->
+	<div class="content_header">
+     	<div class="logo"><!-- <h:graphicImage value="/resources/images/logo.png"  /> -->
+     	</div>
+          <div class="login_status_box"></div><!-- Hide ... or not! -->
+    </div>
+    
+</ui:insert>
+	<div class="content_main">
+	<div class="box">
+          	<div class="small_box_top"></div>
+               <div class="small_box_center">
+					<div class="box_content">
+						<h1>Navigation</h1>
+						<div class="line"></div>
+						<h:form>
+						<h:commandLink value="Studentendaten" class="grey_button" action="auth_studentdata" />
+						<h:commandLink value="Übersicht über Prüfer" class="grey_button" action="auth_authdata" />
+						<h:commandLink value="Prüfungen anlegen/löschen" class="grey_button" action="auth_examdata" />
+						<h:commandLink value="Prüfungen benoten" class="grey_button" action="auth_grade" />
+						</h:form>
+					</div>
+				</div>
+               <div class="small_box_bottom"></div>
+          </div>
+          
+          <div class="box">
+          	<div class="big_box_top"></div>
+               <div class="big_box_center">
+               <div class="box_content">
+
+<ui:insert name="content">
+    	Default content area - should be hidden!
+</ui:insert>
+			</div></div>
+            <div class="big_box_bottom"></div>
+          </div>
+	</div>
+</div>
+
+<ui:insert name="footer">
+   
+<div class="footer"></div>
+</ui:insert>
+
+</body>
+
+</html>

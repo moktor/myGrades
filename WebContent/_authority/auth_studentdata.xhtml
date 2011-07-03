@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="auth_template.xhtml">
+	
+	<ui:define name="content">
+	   <!--This is where the magic happens!!!-->
+          <h1>Studentendaten</h1>
+           <div class="line"></div>
+           <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Studenten.</p>
+                
+                <h:form>
+                <h:dataTable value="#{studentCtrl.allStudents}" var="student"  styleClass="" headerClass="" rowClasses="">
+                    <h:column>
+                        <f:facet name="header">Matr-Nr</f:facet>
+                        ${student.nds}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        #{student.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Vorname</f:facet>
+                        #{student.firstname}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Studienfach</f:facet>
+                        #{student.firstname}
+                    </h:column>
+                 
+                    <h:column>
+        			<f:facet name="header">Editieren</f:facet>
+                        <h:commandLink value="Edit" action="editStudent" immediate="true"/>
+                    </h:column>
+                    <h:column>
+                    <f:facet name="header">Löschen</f:facet>
+                       <h:selectBooleanCheckbox value="löschen" title="test" />
+                    
+                    </h:column>
+                </h:dataTable>
+                </h:form>
+           
+	</ui:define>
+	
+</ui:composition>
+</html>

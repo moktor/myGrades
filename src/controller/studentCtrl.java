@@ -30,68 +30,84 @@ public class studentCtrl implements Serializable {
 	private String mobil;
 	private String keyword;
 	
+	private Student student;
 
 	@EJB
 	DbPerson dbP;
 	
 
 	
-	
+	// ------------------------- FM -------------------------createStudent---------------------
+	// Creates a new student using all db col params
 	public String createStudent(){
-	Logger.getLogger(studentCtrl.class.getName())
-    .log(Level.INFO, 
-    "studentctrl"+firstname+" "+lastname+" "+adresse, firstname);
-	 
 		dbP.createStudent( gender, firstname, lastname, adresse, email, phone, mobil, keyword);		
 		return "addStudent";
 	}
 	
-	
-	public void getStudents(){
+	// ------------------------------ FM --------------------getStudent--------------------------
+	// Finds a single Student from db, searchparam: lastname
+	//additional test logger and student object / TODO
+	public void getStudent(){
 		
-		Student a = dbP.findStudentByName("asdas");
-		String firstname = a.getFirstname();
+		Student a = dbP.findStudentByName("lastname");
+		String lastname = a.getFirstname();
 		
+		Student b = dbP.findStudentByNds(152);
+		String nds = b.getFirstname();
 		
-	
 	Logger.getLogger(studentCtrl.class.getName())
     .log(Level.INFO, 
-    "studentctrl     "+firstname, firstname);
+    "studentctrl  nds: "+nds+"  lastname: "+lastname, firstname);
 	 
-		
 	}
 	
-	
+	// --------------------- FM ------------------------getAllStudents----------------------
+	// Returns a list of all Students
+	//additional test logger for view of all students
 	public void getAllStudents(){
 		
 		List<Student> list = dbP.getAllStudents();
 		
-		for (Iterator<Student> iter = list.iterator(); iter.hasNext();) {
-				
+		for (Iterator<Student> iter = list.iterator(); iter.hasNext();) {		
 			Logger.getLogger(studentCtrl.class.getName())
 		    .log(Level.INFO, 
 		    "studentctrl Liste:   "+iter.next().getFirstname(), firstname);
-			
-			
-			
 		}
-		
 	}
-	//-------------------------------------JL-----------------------------------------------------
+	
+	//-------------------------JL----------------deleteStudent-----------------
+	//deletes a student from db, using nds (primary key)
 	public String deleteStudent(){
-		Logger.getLogger(studentCtrl.class.getName())
-	    .log(Level.INFO, 
-	    "studentctrl----------------------------------------------------------------------------------------------------------------------"+nds);
+
 		if(dbP.deleteStudentByNds(this.nds) == true){
-			Logger.getLogger(studentCtrl.class.getName())
-		    .log(Level.INFO, 
-		    "studentctrl-------------------------------------------!!!!!!!!!!!!!!!!!!!--------------------------------------------"+nds);
 		return "delSuccess";
 		}
 		else
 		return "delError";
 		
 	}
+	
+	
+    // ----------------------- FM ---------------------editStudent----------------
+    // edits some parameter of given student
+    
+    public Student editStudent(){
+    	
+		/*Logger.getLogger(studentCtrl.class.getName())
+	    .log(Level.INFO, 
+	    "studentCtrl Liste:   "+student.getNds());
+    	*/
+    	
+    	//Student testobjekt
+    	student = dbP.findStudentByNds(2);
+    	
+    	student.setPhone("sonshice");
+    	
+    	dbP.editStudent(null);
+    	
+    	return student;
+    }
+	
 
 	
 
@@ -103,110 +119,70 @@ public class studentCtrl implements Serializable {
 		this.firstname = firstname;
 	}
 
-
 	public String getFirstname() {
 		return firstname;
 	}
-
 
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
 
-
 	public String getLastname() {
 		return lastname;
 	}
-
 
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
 
-
 	public String getAdresse() {
 		return adresse;
 	}
-
-
-
-
+	
 	public void setNds(int nds) {
 		this.nds = nds;
 	}
-
-
-
 
 	public int getNds() {
 		return nds;
 	}
 
-
-
-
 	public String getGender() {
 		return gender;
 	}
-
-
-
 
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
-
-
-
 	public String getEmail() {
 		return email;
 	}
-
-
-
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
 
-
-
 	public String getPhone() {
 		return phone;
 	}
-
-
-
 
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-
-
-
 	public String getMobil() {
 		return mobil;
 	}
-
-
-
 
 	public void setMobil(String mobil) {
 		this.mobil = mobil;
 	}
 
-
-
-
 	public String getKeyword() {
 		return keyword;
 	}
-
-
-
 
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;

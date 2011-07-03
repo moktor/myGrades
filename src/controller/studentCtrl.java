@@ -101,9 +101,9 @@ public class studentCtrl implements Serializable {
     	//Student testobjekt
     	student = dbP.findStudentByNds(2);
     	
-    	student.setPhone("sonshice");
+    	student.setPhone("sonshice"); 
     	
-    	dbP.editStudent(null);
+    	dbP.editStudent(student);
     	
     	return student;
     }

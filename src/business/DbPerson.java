@@ -81,15 +81,11 @@ public class DbPerson {
     // edits some parameter of given student
     
     public boolean editStudent(Student student){
-    	
-    	
-    	if (student.equals(null)){
-    		return false;
-    	}else{
+	
     	em.merge(student);
     	return true;
     	}
-    }
+    
     
     
 }

@@ -9,9 +9,11 @@
 <ui:composition template="template.xhtml">
 	
 	<ui:define name="content">
-	
-	   Student mit NDS Kürzel : "<h:outputText value="#{studentCtrl.getNds()}"/>" wurde erfolgreich gelöscht !
-	    <br/>
+	    Student mit NDS Kürzel : "<h:outputText value="#{studentCtrl.getNds()}"/>" gibt es nicht !<br/>
+	    <h:form>
+	    <h:commandButton value="zurück !" action="delStudent" />
+	    
+	    </h:form>
 	</ui:define>
 	
 </ui:composition>

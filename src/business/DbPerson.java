@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -72,9 +73,16 @@ public class DbPerson {
     public boolean deleteStudentByNds(int nds){
         Query query = em.createQuery("select c from Student c where c.nds = :ndsquery");
         query.setParameter("ndsquery", nds);
-        Student student = (Student)query.getSingleResult();
-        em.remove(student);
-        return true;
+        try {
+            
+        	Student student = (Student)query.getSingleResult();
+        	em.remove(student);
+        	return true;
+        } catch (NoResultException e) {
+          return false;  
+        }
+  
+        
     }
     
     // ------------------------------------------ FM ---------------------editStudent-------------------------

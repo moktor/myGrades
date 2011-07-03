@@ -9,6 +9,18 @@
 <ui:composition template="template.xhtml">
 
 	<ui:define name="content">
+	              <h:dataTable value="#{studentCtrl.allStudents}" var="student">
+                    <h:column>
+                        <h:outputText value="#{student.name}" /><br></br>
+                        
+                        <h:outputText value="#{student.firstname}"/>
+                        
+                        <br></br><br></br>
+                    </h:column>
+                </h:dataTable>
+	
+	
+	
 	<h:form>
 	   <h:commandButton value="testen" action="#{studentCtrl.getAllStudents}"/>
 	</h:form>

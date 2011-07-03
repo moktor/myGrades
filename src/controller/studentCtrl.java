@@ -8,6 +8,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+
+
 import business.*;
 import model.Student;
 
@@ -50,15 +52,16 @@ public class studentCtrl implements Serializable {
 	public void getStudent(){
 		
 		Student a = dbP.findStudentByName("lastname");
+		Student b = dbP.findStudentByNds(24);
+			
+		if(b !=null){
+			String nds = b.getFirstname();			
+		}else{
+			//no object
+		}
 		String lastname = a.getFirstname();
 		
-		Student b = dbP.findStudentByNds(152);
-		String nds = b.getFirstname();
-		
-	Logger.getLogger(studentCtrl.class.getName())
-    .log(Level.INFO, 
-    "studentctrl  nds: "+nds+"  lastname: "+lastname, firstname);
-	 
+
 	}
 	
 	// --------------------- FM ------------------------getAllStudents----------------------
@@ -101,9 +104,9 @@ public class studentCtrl implements Serializable {
     	//Student testobjekt
     	student = dbP.findStudentByNds(2);
     	
-    	student.setPhone("sonshice");
+    	student.setPhone("sonshice"); 
     	
-    	dbP.editStudent(null);
+    	dbP.editStudent(student);
     	
     	return student;
     }

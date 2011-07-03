@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -15,11 +16,14 @@ import controller.studentCtrl;
 
 
 import model.*;
-
+import exceptions.PersonNotFoundException;
 
 @Stateless
 public class DbPerson {
 
+	
+	Student student = null;	// student help pointer
+	
 	
     @PersistenceContext
     private EntityManager em;
@@ -29,6 +33,7 @@ public class DbPerson {
 		// TODO Auto-generated constructor stub
 	}
     
+    // ====================================== Student ======================================================
     
     // ------------------------------------------ FM -----------------------------createStudent-------------
     // Adds a new Student to db, with all parameters
@@ -45,10 +50,15 @@ public class DbPerson {
     // ------------------------------------------ FM -------------------------findStudentByNds---------------
     // find a student by nds
     public Student findStudentByNds(int nds){
-        Query query = em.createQuery("select c from Student c where c.nds = :nds");
+        
+    	Query query = em.createQuery("select c from Student c where c.nds = :nds");
         query.setParameter("nds", nds);
-        Student student = (Student)query.getSingleResult();
+        try{
+        student = (Student)query.getSingleResult();
         return student;
+        }catch(NoResultException e){
+        	return student;        	
+        }
     }
        
     // ------------------------------------------ FM ------------------------findStudentByName---------------
@@ -56,8 +66,12 @@ public class DbPerson {
     public Student findStudentByName(String name){
         Query query = em.createQuery("select c from Student c where c.name = :name");
         query.setParameter("name", name);
-        Student student = (Student)query.getSingleResult();
+        try{
+        student = (Student)query.getSingleResult();
         return student;
+        }catch(NoResultException e){
+        return student;	
+        }   
     }
         
     // ------------------------------------------ FM ---------------------getAllStudents----------------------
@@ -81,11 +95,19 @@ public class DbPerson {
     // edits some parameter of given student
     
     public boolean editStudent(Student student){
-	
-    	em.merge(student);
+    	
+    	if(student != null){
+    	em.merge(student);	
     	return true;
+    	}else{
+    	return false;	
     	}
+   	}
     
+    // =====END==Student=====
+    
+    
+    //===========================================
     
     
 }

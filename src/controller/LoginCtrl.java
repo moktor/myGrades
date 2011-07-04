@@ -81,9 +81,10 @@ public void setLoggedIn(){
  loggedIn = true;
 }
 
-public void logout() {
+public String logout() {
     loggedIn = false;
     loggedinstudent = null;
+    return "/index.xhtml?faces-redirect=true";
 
 }
 public boolean isLoggedIn() {

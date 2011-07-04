@@ -11,7 +11,13 @@
   <link rel="stylesheet" type="text/css" href="../resources/css/default.css"/>
   <link rel="stylesheet" type="text/css" href="../resources/css/style.css"/>
 </head>
-
+<h:body rendered="#{!loginCtrl.isLoggedIn()}">
+<h1>Bitte Loggen sie sich ein um folgende Seite(n) zu sehen!</h1>
+<br/>
+<h:form>
+<h:link value="zur Login Seite !" outcome="/index"/>
+</h:form>
+</h:body>
 <h:body rendered="#{loginCtrl.isLoggedIn()}">
 <div class="header"></div>
     <div class="content">
@@ -38,6 +44,9 @@
 						<h:link value="Prüfungen anlegen/löschen" class="grey_button" outcome="auth_examdata" />
 						<h:link value="Prüfungen benoten" class="grey_button" outcome="auth_grade" />
 						<h:link value="Student hinzu" class="grey_button" outcome="auth_addStudent" />
+						</h:form>
+						<h:form>
+						<h:commandLink value="LogOut" action="#{loginCtrl.logout()}"/>
 						</h:form>
 					</div>
 				</div>

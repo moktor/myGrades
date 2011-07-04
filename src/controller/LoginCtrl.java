@@ -3,15 +3,18 @@ package controller;
 
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Produces;
 import javax.inject.Named;
 
-import business.*;
+import model.Student;
 
+import business.*;
 @Named
 @SessionScoped
 public class LoginCtrl implements Serializable {
@@ -20,22 +23,30 @@ public class LoginCtrl implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 5186306447159703311L;
-	private String userName = "abc12345";
-	private String password = "12345678";
+	private String nds;
+	private String password;
+	private int loggedIn;
 	
+	
+	private Student loggedinstudent;
 	@EJB
 	DbAccount dba;
 	
 	
+		
+		
+		
+
 	
-	public String getUserName() {
-		return userName;
+	
+	public String getnds() {
+		return nds;
 	}
 
 
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setnds(String nds) {
+		this.nds = nds;
 	}
 
 
@@ -51,20 +62,38 @@ public class LoginCtrl implements Serializable {
 	}
 
 	//TODO JL Exam. Auth. dba.validate() == 2
-	public String login(){
-		
-		
-	if(dba.validate(userName, password) == 1){
-		Logger.getLogger(LoginCtrl.class.getName())
-	    .log(Level.INFO, 
-	    "loginCtrl"+userName+" "+password);
+public String login() {
+        List<Student> results = dba.loginQuery(nds, password);
+        if ( !results.isEmpty() ) {
+        	loggedinstudent = results.get(0);
+        	LoginCtrl ctrl = new LoginCtrl();
+        	ctrl.setLoggedIn();
+        	return "_authority/auth_welcome";
+        }
+        else
+        	return "index";
+
+    }
+public void setLoggedIn(){
 	
-	return "succsessLoginStudent";
-	}
-	else
-	return "errorLogin";
-		
-	}
+	loggedIn = 1;
+}
+
+public void logout() {
+    loggedIn = 0;
+    loggedinstudent = null;
+
+}
+public boolean isLoggedIn() {
+
+    return loggedinstudent!=null;
+
+ }
+	@Produces @LoggedIn Student getCurrentUser() {
+
+        return loggedinstudent;
+
+    }
 	
 
 }

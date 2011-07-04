@@ -25,7 +25,7 @@ public class LoginCtrl implements Serializable {
  private static final long serialVersionUID = 5186306447159703311L;
  private String nds;
  private String password;
- private int loggedIn;
+ private boolean loggedIn = false;
  
  
  private Student loggedinstudent;
@@ -59,10 +59,15 @@ public class LoginCtrl implements Serializable {
  //TODO JL Exam. Auth. dba.validate() == 2
 public String login() {
         List<Student> results = dba.loginQuery(nds, password);
+        Logger.getLogger(LoginCtrl.class.getName())
+        .log(Level.INFO, 
+        "studentctrl Liste:");
         if ( !results.isEmpty() ) {
          loggedinstudent = results.get(0);
-         LoginCtrl ctrl = new LoginCtrl();
-         ctrl.setLoggedIn();
+         Logger.getLogger(LoginCtrl.class.getName())
+         .log(Level.INFO, 
+         "studentctrl Liste:");
+         setLoggedIn();
          return "_authority/auth_welcome";
         }
         else
@@ -70,25 +75,29 @@ public String login() {
 
     }
 public void setLoggedIn(){
- 
- loggedIn = 1;
+	Logger.getLogger(LoginCtrl.class.getName())
+    .log(Level.INFO, 
+    "studentctrl Liste:");
+ loggedIn = true;
 }
 
-public void logout() {
-    loggedIn = 0;
+public String logout() {
+    loggedIn = false;
     loggedinstudent = null;
+    return "/index.xhtml?faces-redirect=true";
 
 }
 public boolean isLoggedIn() {
-
-    return loggedinstudent!=null;
+	if(loggedIn == true)
+		return true;
+	else
+		return false;
 
  }
- @Produces @LoggedIn Student getCurrentUser() {
+@Produces @LoggedIn Student getCurrentUser() {
 
         return loggedinstudent;
 
     }
  
-
 }

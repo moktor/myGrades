@@ -15,7 +15,9 @@
            <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Studenten.</p>
                 
                 <h:form>
-                <h:dataTable value="#{studentCtrl.allStudents}" var="student"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0" >
+
+                <h:dataTable value="#{studentCtrl.allStudents}" var="student"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
+
                     <h:column>
                         <f:facet name="header">Matr-Nr</f:facet>
                         #{student.nds}

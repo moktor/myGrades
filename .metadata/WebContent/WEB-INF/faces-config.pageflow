@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <pageflow:Pageflow xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13097564284280" configfile="/myGrades/WebContent/WEB-INF/faces-config.xml"/>
+=======
+<pageflow:Pageflow xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13097525618720" configfile="/myGrades/WebContent/WEB-INF/faces-config.xml"/>
+>>>>>>> 3c47fa951b4a64e55563f3f6e0d2dd0b13873303

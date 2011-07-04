@@ -50,19 +50,26 @@
                <h2>Login</h2>
                <div class="formfield">
                		<div class="formfield_left"></div>
-                    <h:inputText value="#{login.nds}" id="nds" required="false" class="formfield_center"/><!-- Anmeldename -->
+
+
+                    <h:inputText value="#{loginCtrl.nds}" id="nds" required="true" class="formfield_center"/><!-- Anmeldename -->
+
                     <div class="formfield_right"></div>
                </div>
                
                <h2>Passwort</h2>
                <div class="formfield">
                		<div class="formfield_left"></div>
-                    <h:inputSecret value="#{login.keyword}" id="keyword" required="false" class="formfield_center"/><!-- Benutzerpasswort -->
+
+                    <h:inputSecret value="#{loginCtrl.password}" id="password" required="true" class="formfield_center"/><!-- Benutzerpasswort -->
+
                     <div class="formfield_right"></div>
                </div>
                <!-- <input name="stay_logged" type="image" src="images/check.png" width="13" height="13" border="0" />Ich möchte angemeldet bleiben. -->
                
-               <h:commandButton action="#{login.login}" value="Anmelden" style="margin: 10px 0px 0px 0px;" class="blue_button" />
+
+               <h:commandButton value="Anmelden" action="#{loginCtrl.login}" class="blue_button" style="margin-top:10px;"/>
+
               
               </h:form>
               

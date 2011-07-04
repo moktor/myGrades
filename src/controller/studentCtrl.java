@@ -254,4 +254,3 @@ public class studentCtrl implements Serializable {
 
 
 }
-	

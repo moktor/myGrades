@@ -42,5 +42,4 @@ public class DbAccount {
           return query.getResultList();
 
    
-  }
-}
+  }}

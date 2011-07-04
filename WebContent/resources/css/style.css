@@ -90,8 +90,11 @@ a:hover {
 	clear:both;
 	text-shadow:none;
 	color:#979797;
+<<<<<<< HEAD
 	position: absolute;
 	bottom: 0px;
+=======
+>>>>>>> 3c47fa951b4a64e55563f3f6e0d2dd0b13873303
 }
 
 .content {

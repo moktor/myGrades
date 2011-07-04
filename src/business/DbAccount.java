@@ -16,31 +16,31 @@ import model.Student;
 
 @Stateless
 public class DbAccount {
- @LoggedIn Student student;	
+ @LoggedIn Student student; 
  @PersistenceContext
  private EntityManager em;
-	
-	
-	
-	 public int validate(String userName, String password){
-		 Logger.getLogger(DbAccount.class.getName())
-		    .log(Level.INFO, 
-		    "validate 2 "+userName+" "+password);
-		 
-		 return 1;
-		 
-		 
-	 }
-	 
-	 public List<Student> loginQuery(String nds, String password){
-		
-		        TypedQuery<Student> query = em.createQuery("select u from Student u where u.nds=:nds and u.keyword=:password", Student.class)
+ 
+ 
+ 
+  public int validate(String userName, String password){
+   Logger.getLogger(DbAccount.class.getName())
+      .log(Level.INFO, 
+      "validate 2 "+userName+" "+password);
+   
+   return 1;
+   
+   
+  }
+  
+  public List<Student> loginQuery(String nds, String password){
+  
+          TypedQuery<Student> query = em.createQuery("select u from Student u where u.nds=:nds and u.keyword=:password", Student.class)
 
-		         .setParameter("nds", nds)
+           .setParameter("nds", nds)
 
-		         .setParameter("password", password);
-		        return query.getResultList();
+           .setParameter("password", password);
+          return query.getResultList();
 
-		 
-	 }
+   
+  }
 }

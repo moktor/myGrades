@@ -10,26 +10,26 @@
 	
 	<ui:define name="content">
 	   <!--This is where the magic happens!!!-->
-          <h1>Prüfungen anlegen/löschen</h1>
+          <h1>Übersicht über Prüfer</h1>
            <div class="line"></div>
-           <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Prüfungen. Klicken sie auf Edit, um die Prüfung zu bearbeiten oder einen Termin festzulegen.</p>
+           <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Prüfer.</p>
                 
                 <h:form>
                 <h:dataTable value="#{studentCtrl.allStudents}" var="student"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
                     <h:column>
-                        <f:facet name="header">Bezeichnung</f:facet>
-                        <h:link value="#{student.name}" outcome="#{studentCtrl.edit(student)}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">ID</f:facet>
+                        <f:facet name="header">Matr-Nr</f:facet>
                         ${student.nds}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Studienfach</f:facet>
+                        <f:facet name="header">Name</f:facet>
+                        #{student.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Vorname</f:facet>
                         #{student.firstname}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Termin</f:facet>
+                        <f:facet name="header">Studienfach</f:facet>
                         #{student.firstname}
                     </h:column>
                  	<h:column>

@@ -19,27 +19,27 @@
                <h2>Matr-Nr</h2>
                <div class="formfield">
                		<div class="formfield_left"></div>
-                    <h:inputText value="#{studentCtrl.nds}" id="userNDS" required="true" class="formfield_center"/>
+                    <h:inputText value="#{studentCtrl.currentStudent.nds}" id="userNDS" required="true" class="formfield_center"/>
                     <div class="formfield_right"></div>
                </div>
                
                <h2>Name</h2>
                <div class="formfield">
                		<div class="formfield_left"></div>
-                    <h:inputText value="#{studentCtrl.lastname}" id="userName" required="true" class="formfield_center"/><!-- Benutzerpasswort -->
+                    <h:inputText value="#{studentCtrl.currentStudent.name}" id="userName" required="true" class="formfield_center"/><!-- Benutzerpasswort -->
                     <div class="formfield_right"></div>
                </div>
                
                <h2>Vorname</h2>
                <div class="formfield">
                		<div class="formfield_left"></div>
-                    <h:inputText value="#{studentCtrl.firstname}" id="userFirstname" required="true" class="formfield_center"/><!-- Benutzerpasswort -->
+                    <h:inputText value="#{studentCtrl.currentStudent.firstname}" id="userFirstname" required="true" class="formfield_center"/><!-- Benutzerpasswort -->
                     <div class="formfield_right"></div>
                </div>
                <h2>Studienfach</h2>
                <div class="formfield">
                		<div class="formfield_left"></div>
-                    <h:inputText value="#{studentCtrl.lastname}" id="userLastname" required="true" class="formfield_center"/><!-- Benutzerpasswort -->
+                    <h:inputText value="#{studentCtrl.currentStudent.adresse}" id="userAddress" required="false" class="formfield_center"/><!-- Benutzerpasswort -->
                     <div class="formfield_right"></div>
                </div>
                

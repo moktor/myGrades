@@ -12,7 +12,7 @@
   <link rel="stylesheet" type="text/css" href="../resources/css/style.css"/>
 </head>
 
-
+<h:body rendered="#{loginCtrl.isLoggedIn()}">
 <div class="header"></div>
     <div class="content">
 <ui:insert name="header">
@@ -63,6 +63,7 @@
 <div class="footer"></div>
 </ui:insert>
 
-</body>
+
+</h:body>
 
 </html>

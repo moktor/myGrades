@@ -41,23 +41,23 @@
                <p>Tragen sie in das unten stehende Formular Ihren Login und Ihr Passwort ein. Sollten Sie ihre Zugangsdaten vergessen haben, klicken sie bitte <a href="/">hier</a>.</p>
                
                <h:form>
-  		      
-               <h2>Benutzer:</h2>
+               
+               <h2>Login</h2>
                <div class="formfield">
                		<div class="formfield_left"></div>
                     <h:inputText value="#{loginCtrl.nds}" id="nds" required="true" class="formfield_center"/><!-- Anmeldename -->
                     <div class="formfield_right"></div>
                </div>
                
-               <h2>Passwort:</h2>
+               <h2>Passwort</h2>
                <div class="formfield">
                		<div class="formfield_left"></div>
-                    <h:inputText value="#{loginCtrl.password}" id="password" required="true" class="formfield_center"/><!-- Benutzerpasswort -->
+                    <h:inputSecret value="#{loginCtrl.password}" id="password" required="true" class="formfield_center"/><!-- Benutzerpasswort -->
                     <div class="formfield_right"></div>
                </div>
                <!-- <input name="stay_logged" type="image" src="images/check.png" width="13" height="13" border="0" />Ich möchte angemeldet bleiben. -->
                
-               <h:commandButton value="Anmelden" action="#{loginCtrl.login}" rendered="#{!login.LoggedIn}" class="blue_button" style="margin-top:10px;"/>
+               <h:commandButton value="Anmelden" action="#{loginCtrl.login}" class="blue_button" style="margin-top:10px;"/>
               
               </h:form>
               

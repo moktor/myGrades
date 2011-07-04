@@ -1,6 +1,9 @@
 package model;
 
 import java.io.Serializable;
+
+
+import javax.annotation.ManagedBean;
 import javax.persistence.*;
 
 
@@ -10,6 +13,7 @@ import javax.persistence.*;
  */
 
 @Entity
+@ManagedBean
 public class Student implements Serializable {
 
 		
@@ -19,7 +23,8 @@ public class Student implements Serializable {
 	 */
 // ------------ Generated UID --------------
 	private static final long serialVersionUID = 7975789295438545937L;
-	
+	@Transient
+	private boolean deleteInc;
 	
 // ------------------ attributes of the Entity ----------------	
 	@Id
@@ -35,6 +40,8 @@ public class Student implements Serializable {
 	private String mobil;
 	private String keyword;
 	private String salt;
+	private int fachsemester;
+	
 	
 	
 	
@@ -44,7 +51,8 @@ public class Student implements Serializable {
 	
 	public Student(String nds, String gender, String firstname, String name,
 			String adresse, String email, String phone, String mobil,
-			String keyword) {
+			String keyword, int fachsemester) {
+		this.fachsemester = fachsemester;
 		this.nds = nds;
 		this.gender = gender;
 		this.firstname = firstname;
@@ -264,6 +272,26 @@ public class Student implements Serializable {
 
 	public void setNds(String nds) {
 		this.nds = nds;
+	}
+
+
+	public void setDeleteInc(boolean deleteInc) {
+		this.deleteInc = deleteInc;
+	}
+
+
+	public boolean isDeleteInc() {
+		return deleteInc;
+	}
+
+
+	public void setFachsemester(int fachsemester) {
+		this.fachsemester = fachsemester;
+	}
+
+
+	public int getFachsemester() {
+		return fachsemester;
 	}
 	
 	

@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="auth_template.xhtml">
+	
+	<ui:define name="content">
+
+          <h1>Studentendaten</h1>
+               <div class="line"></div>
+               <p>Tragen sie die entsprechenden Daten in das unten stehende Formular ein und bestätigen sie mit 'Anlegen'.</p>
+               
+                <h:form>
+                <table class="addStudent_table">
+               
+				<tr>               
+                <td><h2 class="formlabel">Geschlecht</h2></td>
+                <td><div class="formfield">
+                <h:selectOneMenu value="#{studentCtrl.gender}">
+					<f:selectItem itemValue="m" itemLabel="männlich"/>
+					<f:selectItem itemValue="w" itemLabel="weiblich"/>
+				</h:selectOneMenu>
+				</div></td>
+				</tr>
+				
+				<tr> 
+               	<td><h2 class="formlabel">Matr-Nr</h2></td>
+               	<td><div class="formfield">
+               		<div class="formfield_left"></div>
+                    <h:inputText value="#{studentCtrl.nds}" required="true" class="formfield_center"/>
+                    <div class="formfield_right"></div>
+                </div></td>
+               	</tr>
+               	
+               	<tr> 
+               	<td><h2 class="formlabel">Name</h2></td>
+               	<td><div class="formfield">
+               		<div class="formfield_left"></div>
+                    <h:inputText value="#{studentCtrl.lastname}" required="true" class="formfield_center"/>
+                    <div class="formfield_right"></div>
+               	</div></td>
+               	</tr>
+               	
+               	<tr> 
+               	<td><h2 class="formlabel">Vorname</h2></td>
+               	<td><div class="formfield">
+               		<div class="formfield_left"></div>
+                    <h:inputText value="#{studentCtrl.firstname}" required="true" class="formfield_center"/>
+                    <div class="formfield_right"></div>
+               	</div></td>
+               	</tr>
+               	
+               	<tr> 
+               	<td><h2 class="formlabel">Passwort</h2></td>
+               	<td><div class="formfield">
+               		<div class="formfield_left"></div>
+                    <h:inputText value="#{studentCtrl.keyword}" required="true" class="formfield_center"/>
+                    <div class="formfield_right"></div>
+               	</div></td>
+               	</tr>
+               	
+               	<tr> 
+               	<td><h2 class="formlabel">Fachsemester</h2></td>
+               	<td><div class="formfield">
+               		<div class="formfield_left"></div>
+                    <h:inputText value="#{studentCtrl.fachsemester}" required="true" class="formfield_center"/>
+                    <div class="formfield_right"></div>
+               	</div></td>
+               	</tr>
+               	
+               	<!-- 
+               	<tr> 
+               	<td><h2 class="formlabel">Studienfach</h2></td>
+               	<td><div class="formfield">
+               		<div class="formfield_left"></div>
+                    <h:inputText value="#{studentCtrl.lastname}" required="false" class="formfield_center"/>
+                    <div class="formfield_right"></div>
+               	</div></td>
+               	</tr>
+               	 -->
+               	 
+               	<tr> 
+               	<td><h2 class="formlabel">Adresse</h2></td>
+               	<td><div class="formfield">
+               		<div class="formfield_left"></div>
+                    <h:inputText value="#{studentCtrl.adresse}" required="false" class="formfield_center"/>
+                    <div class="formfield_right"></div>
+               	</div></td>
+               	</tr>
+               	
+               	<tr> 
+               	<td><h2 class="formlabel">Email</h2></td>
+               	<td><div class="formfield">
+               		<div class="formfield_left"></div>
+                    <h:inputText value="#{studentCtrl.email}" required="false" class="formfield_center"/>
+                    <div class="formfield_right"></div>
+               	</div></td>
+               	</tr>
+               	
+               	<tr> 
+               	<td><h2 class="formlabel">Telefonnr</h2></td>
+               	<td><div class="formfield">
+               		<div class="formfield_left"></div>
+                    <h:inputText value="#{studentCtrl.phone}" required="false" class="formfield_center"/>
+                    <div class="formfield_right"></div>
+               	</div></td>
+              	</tr>
+              	
+              	<tr><td colspan="2"><h:commandButton value="Anlegen" action="#{studentCtrl.createStudent}" class="blue_button" style="float:right;"/></td></tr>
+              	</table>
+              	
+              	
+	   			
+	  
+	  			
+	  			</h:form>
+	</ui:define>
+</ui:composition>
+</html>

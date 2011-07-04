@@ -31,9 +31,17 @@ public class studentCtrl implements Serializable {
 	private String phone;
 	private String mobil;
 	private String keyword;
+	private int fachsemester;
 	
-	private Student student;
+	private Student currentStudent;
+	
+	private Student student; // temp student
 	private List<Student> studentList;
+	
+
+	
+
+	
 
 	@EJB
 	DbPerson dbP;
@@ -43,9 +51,23 @@ public class studentCtrl implements Serializable {
 	// ------------------------- FM -------------------------createStudent---------------------
 	// Creates a new student using all db col params
 	public String createStudent(){
-		dbP.createStudent( nds, gender, firstname, lastname, adresse, email, phone, mobil, keyword);		
+		dbP.createStudent( nds, gender, firstname, lastname, adresse, email, phone, mobil, keyword, fachsemester);		
 		return "addStudent";
 	}
+	public String addStudentHelper(){
+		  nds = "";
+		  gender= "";
+		  firstname= "";
+		  lastname= "";
+		  adresse= "";
+		  email= "";
+		  phone= "";
+		  mobil= "";
+		  keyword= "";
+		  fachsemester= 0;
+		return "addStudent";
+	}
+	
 	
 	// ------------------------------ FM --------------------getStudent--------------------------
 	// Finds a single Student from db, searchparam: lastname
@@ -97,48 +119,40 @@ public class studentCtrl implements Serializable {
     // deletes selected Students
 	
 	public String deleteSelected(){
-		
-		
-		
-			for (Iterator<Student> iter = studentList.iterator(); iter.hasNext();) {		
-			Logger.getLogger(studentCtrl.class.getName())
-			.log(Level.INFO, 
-			"studentctrl Liste:   "+iter.next().getFirstname(), firstname);
-
-}
-		
-		
-		
-		return "auth_authdata";
-	}
 	
+		dbP.deleteMultipleStudents(studentList);
+		
+		return "auth_delSuccess";
+	}
 	
 	
     // ----------------------- FM ---------------------editStudent----------------
     // edits some parameter of given student
-    
-    public Student editStudent(){
+        
+    public String edit(Student s){
     	
-		/*Logger.getLogger(studentCtrl.class.getName())
+    	setCurrentStudent(s);
+    	
+    	Logger.getLogger(studentCtrl.class.getName())
 	    .log(Level.INFO, 
-	    "studentCtrl Liste:   "+student.getNds());
-    	*/
+	    "studentCtrl Liste  "+s.getFirstname());
     	
-    	//Student testobjekt
-    	student = dbP.findStudentByNds("2");
+    	return "editStudent";
+    }
+    
+ // ----------------------- FM ---------------------updateStudent----------------  
+    public String updateStudent(){
     	
-    	student.setPhone("sonshice"); 
     	
-    	dbP.editStudent(student);
+    if( dbP.editStudent(currentStudent)){
+    	return "auth_studentdata";
+    }else
+    {
+    	return "auth_editError";
+    }
     	
-    	return student;
     }
 	
-
-	 
-    
-    
-    
 
 	
 	//----------------- Getter / Setter ------------------------------------
@@ -216,9 +230,22 @@ public class studentCtrl implements Serializable {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
+
+	public void setCurrentStudent(Student currentStudent) {
+		this.currentStudent = currentStudent;
+	}
+
+	public Student getCurrentStudent() {
+		return currentStudent;
+	}
 	
 
-	
+	public int getFachsemester() {
+		return fachsemester;
+	}
+	public void setFachsemester(int fachsemester) {
+		this.fachsemester = fachsemester;
+	}
 	
 	
 	

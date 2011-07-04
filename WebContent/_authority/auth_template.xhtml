@@ -11,17 +11,35 @@
   <link rel="stylesheet" type="text/css" href="../resources/css/default.css"/>
   <link rel="stylesheet" type="text/css" href="../resources/css/style.css"/>
 </head>
+  
+<h:body >
+<f:subview id="test" rendered="#{login.loggedin}">
 
-<body>
-<div class="header"></div>
-    <div class="content">
+
+    <div class="content"  >
+    <div class="admin_login"><a href="admin">Admin Login</a></div>
 <ui:insert name="header">
-	
     <!--Content ist the main wrapper class! -->
 	<div class="content_header">
      	<div class="logo"><!-- <h:graphicImage value="/resources/images/logo.png"  /> -->
      	</div>
-          <div class="login_status_box"></div><!-- Hide ... or not! -->
+          <div class="login_status_box">
+          	<div class="login_status_header">
+          		<h4 style="float:left;">Anmeldestatus</h4>
+          		<div class="login_icon"></div>
+          	</div>
+          	<div class="line" style="margin:5px 0 5px 0;"></div>
+          	<div class="loginstatus">
+          	Angemeldet als <a href="auth_profile.xhtml">#{studentCtrl.nds}</a>,<br />
+          	Jetzt 
+          	<h:form >
+          	<h:link value="Abmelden" class="logout" outcome="#{login.logout()}"/>
+          	</h:form>
+          	</div>
+          	<h:form>
+           	<h:commandButton value="Profil" action="auth_profile" class="small_button" style="float:right; margin-top:5px;"/>
+           	</h:form>
+          </div>
     </div>
     
 </ui:insert>
@@ -32,13 +50,11 @@
 					<div class="box_content">
 						<h1>Navigation</h1>
 						<div class="line"></div>
-						<h:form>
 						<h:link value="Studentendaten" class="grey_button" outcome="auth_studentdata" />
-						<h:link value="Übersicht über Prüfer" class="grey_button" outcome="auth_authdata" />
+						<h:link value="Übersicht über Prüfer" class="grey_button" outcome="auth_examinerdata" />
 						<h:link value="Prüfungen anlegen/löschen" class="grey_button" outcome="auth_examdata" />
-						<h:link value="Prüfungen benoten" class="grey_button" outcome="auth_grade" />
-						<h:link value="Student hinzu" class="grey_button" outcome="auth_addStudent" />
-						</h:form>
+						<h:link value="Prüfungen benoten" class="grey_button" outcome="/index" />
+						<h:link value="dummyCreate" class="grey_button" outcome="addCourse" />
 					</div>
 				</div>
                <div class="small_box_bottom"></div>
@@ -63,6 +79,13 @@
 <div class="footer"></div>
 </ui:insert>
 
-</body>
+
+
+</f:subview>
+</h:body>
 
 </html>
+
+
+
+

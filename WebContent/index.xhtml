@@ -29,7 +29,12 @@
                		<td>Sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea</td>
                		<td><div class="social_media"></div></td>
                	</tr>
-               </table>               </div></div>
+               </table>    
+               <h:form>
+               <h:commandButton value="dummy" class="blue_button" action="#{dummy.generateStudents()}"/>
+               </h:form>
+               
+                          </div></div>
                <div class="big_box_bottom"></div>
           </div>
           <div class="box">
@@ -45,19 +50,19 @@
                <h2>Login</h2>
                <div class="formfield">
                		<div class="formfield_left"></div>
-                    <h:inputText value="#{loginCtrl.userName}" id="userName" required="true" class="formfield_center"/><!-- Anmeldename -->
+                    <h:inputText value="#{login.nds}" id="nds" required="false" class="formfield_center"/><!-- Anmeldename -->
                     <div class="formfield_right"></div>
                </div>
                
                <h2>Passwort</h2>
                <div class="formfield">
                		<div class="formfield_left"></div>
-                    <h:inputText value="#{loginCtrl.password}" id="password" required="true" class="formfield_center"/><!-- Benutzerpasswort -->
+                    <h:inputSecret value="#{login.keyword}" id="keyword" required="false" class="formfield_center"/><!-- Benutzerpasswort -->
                     <div class="formfield_right"></div>
                </div>
                <!-- <input name="stay_logged" type="image" src="images/check.png" width="13" height="13" border="0" />Ich möchte angemeldet bleiben. -->
                
-               <h:commandButton value="Anmelden" action="_authority/auth_welcome" class="blue_button" style="margin-top:10px;"/>
+               <h:commandButton action="#{login.login}" value="Anmelden" style="margin: 10px 0px 0px 0px;" class="blue_button" />
               
               </h:form>
               

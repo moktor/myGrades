@@ -40,9 +40,9 @@ public class DbPerson {
     
     public void createStudent( String nds, 
     String gender, String firstname, String lastname, String adresse,
-    String email, String phone, String mobil, String keyword){
+    String email, String phone, String mobil, String keyword, int fachsemester){
     		
-    	Student s = new Student(nds,  gender, firstname, lastname, adresse, email, phone, mobil, keyword);
+    	Student s = new Student(nds,  gender, firstname, lastname, adresse, email, phone, mobil, keyword, fachsemester);
     	em.persist(s);
     }
     
@@ -110,6 +110,25 @@ public class DbPerson {
     	return false;	
     	}
    	}
+    
+ // ------------------------------------------ FM ---------------------deleteMultipleStudents-------------------------
+    // deletes selected objects of a list
+    
+    public boolean deleteMultipleStudents(List<Student> list){
+    	
+    	for(Student student: list){
+    		if(student.isDeleteInc()){
+    			student = (Student)em.merge(student);
+    			em.remove(student);
+    		}
+    	}
+    	
+    	
+    	return true;
+    }
+    
+    
+    
     
     // =====END==Student=====
     

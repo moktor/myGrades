@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!--  ================== AS =================  //-->
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="auth_template.xhtml">
+
+	<ui:define name="content">
+	<h:form>
+		Default Kurse und Studenten generieren <br/><br/>
+	    <h:commandButton  value="  Go Courses!  " action="#{dummy.genarateCourses}"/><br/><br/>
+	    <h:commandButton  value="  Go Students!  " action="#{dummy.generateStudents}"/><br/>
+	    <br/>
+	    Auflistung aller Kurse.<br/><br/>
+	    </h:form>
+	    <h:dataTable value="#{studentCtrl.allStudents}" var="student"  styleClass="" headerClass="" rowClasses="">
+                    <h:column>
+                        <f:facet name="header">NDS-Kürzel</f:facet>
+                        ${student.nds}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Nachname</f:facet>
+                        #{student.name}
+                    </h:column>
+                </h:dataTable>
+	</ui:define>
+
+</ui:composition>
+</html>

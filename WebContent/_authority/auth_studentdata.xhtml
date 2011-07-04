@@ -8,17 +8,17 @@
 
 <ui:composition template="auth_template.xhtml">
 	
-	<ui:define name="content">
+	<ui:define name="content" >
 	   <!--This is where the magic happens!!!-->
           <h1>Studentendaten</h1>
            <div class="line"></div>
            <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Studenten.</p>
                 
                 <h:form>
-                <h:dataTable value="#{studentCtrl.allStudents}" var="student"  styleClass="" headerClass="" rowClasses="">
+                <h:dataTable value="#{studentCtrl.allStudents}" var="student"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0" >
                     <h:column>
                         <f:facet name="header">Matr-Nr</f:facet>
-                        ${student.nds}
+                        #{student.nds}
                     </h:column>
                     <h:column>
                         <f:facet name="header">Name</f:facet>
@@ -32,19 +32,19 @@
                         <f:facet name="header">Studienfach</f:facet>
                         #{student.firstname}
                     </h:column>
-                 
-                    <h:column>
-        				<f:facet name="header">Editieren</f:facet>
-                        <h:commandLink value="Edit" action="editStudent" immediate="true"/>
+                 	<h:column>
+        			<f:facet name="header">Ändern</f:facet>
+                        <h:commandLink value="" action="#{studentCtrl.edit(student)}" class="edit_button" immediate="true"/>
                     </h:column>
                     <h:column>
-                    	<f:facet name="header">Löschen</f:facet>
-                       <h:selectBooleanCheckbox value="löschen" title="test" />
-                    
+                    <f:facet name="header">Löschen</f:facet>
+                       <h:selectBooleanCheckbox value="#{student.deleteInc}"/>
                     </h:column>
                 </h:dataTable>
+                <div class="line"></div>
+                <h:commandButton value="Löschen" action="#{studentCtrl.deleteSelected}" class="blue_button"  style="float:right;"/>
+                <h:commandButton value="Erstellen" action="#{studentCtrl.addStudentHelper}" class="blue_button" style="float:left;"/>
                 
-                <h:commandButton class="blue_button" value="löschen" action="#{studentCtrl.deleteSelected}"/>
                 </h:form>
            
 	</ui:define>

@@ -63,6 +63,7 @@ public class studentCtrl implements Serializable {
 		dbP.createStudent( nds, gender, firstname, lastname, adresse, email, phone, mobil, keyword, fachsemester);		
 		return "addStudent";
 	}
+	
 	public String addStudentHelper(){
 		  nds = "";
 		  gender= "";

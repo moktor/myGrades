@@ -1,5 +1,8 @@
 package business;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +18,7 @@ import controller.studentCtrl;
 
 
 import model.*;
-
+import comparators.*;
 
 @Stateless
 public class DbPerson {
@@ -80,6 +83,8 @@ public class DbPerson {
         return query.getResultList();
     }
     
+
+    
     //--------------------------------------------JL----------------------deleteStudentByNds--------------------
     // deletes student from db using nds
     public boolean deleteStudentByNds(String nds){
@@ -125,6 +130,45 @@ public class DbPerson {
     	
     	return true;
     }
+
+    
+ // ----------------- FM ---------------------- sorting Methods -------------------
+    
+    public List<Student> sortById(List<Student> list){
+    	//StudentName n = new StudentName();
+    	Collections.sort(list, new StudentId());
+    	return list;
+      } 
+    
+    public List<Student> sortByNds(List<Student> list){
+    	Collections.sort(list, new StudentNds());
+    	return list;
+      } 
+    
+    
+    public List<Student> sortByName(List<Student> list){
+    	Collections.sort(list, new StudentName());
+    	return list;
+    	
+      } 
+    public List<Student> sortByFirst(List<Student> list){
+    	Collections.sort(list, new StudentFirst());
+    	return list;
+      } 
+    public List<Student> sortByAdress(List<Student> list){
+    	Collections.sort(list, new StudentAdress());
+    	return list;
+      } 
+    public List<Student> sortByFieldOfStudy(List<Student> list){
+    	//Collection<Student> coList = list;
+    	//Collections.sort(list, new StudentFieldOfStudy()); TODO
+    	return list;
+    	
+      } 
+
+
+    	
+    
     
     
     

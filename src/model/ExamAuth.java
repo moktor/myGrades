@@ -27,6 +27,7 @@ public class ExamAuth implements Serializable {
 
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String nds;
 	private String gender;
@@ -42,7 +43,7 @@ public class ExamAuth implements Serializable {
 	
 	
 	// ------------------------ ctors -----------------------------------
-	public  ExamAuth(){}
+	public ExamAuth(){}
 
 	
 	public  ExamAuth(String nds,String titel, String gender, String firstname, String name,

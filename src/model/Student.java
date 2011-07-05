@@ -67,7 +67,14 @@ public class Student implements Serializable {
 
 // --------------------- getter / setter ----------------------------
 
+	public int getId() {
+		return id;
+	}
 
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	/**
 	 * @return the gender

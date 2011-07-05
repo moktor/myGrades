@@ -13,26 +13,30 @@
           <h1>Studentendaten</h1>
            <div class="line"></div>
            <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Studenten.</p>
-                
+                	
                 <h:form>
-
+                
                 <h:dataTable value="#{studentCtrl.allStudents}" var="student"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
 
                     <h:column>
-                        <f:facet name="header">Matr-Nr</f:facet>
+                        <f:facet name="header"><h:commandLink value="Nds" action="#{studentCtrl.sortStudentsByNds}"/></f:facet>
                         #{student.nds}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Name</f:facet>
+              			<f:facet name="header">
+              			
+              	<f:facet name="header"><h:commandLink value="Name" action="#{studentCtrl.sortStudentsByName}"/></f:facet>
+              			
+              			</f:facet>
                         #{student.name}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Vorname</f:facet>
+                        <f:facet name="header"><h:commandLink value="Vorname" action="#{studentCtrl.sortStudentsByFirst}"/></f:facet>
                         #{student.firstname}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Studienfach</f:facet>
-                        #{student.firstname}
+                        <f:facet name="header"><h:commandLink value="Adresse" action="#{studentCtrl.sortStudentsByAdress}"/></f:facet>
+                        #{student.adresse}
                     </h:column>
                  	<h:column>
         			<f:facet name="header">Ändern</f:facet>

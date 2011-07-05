@@ -2,6 +2,8 @@ package controller;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -32,6 +34,14 @@ public class studentCtrl implements Serializable {
 	private String mobil;
 	private String keyword;
 	private int fachsemester;
+
+	//---------------- FM ------------- sorting variables ---------------------------
+	private boolean sortId;
+	private boolean sortNds;
+	private boolean sortName;
+	private boolean sortFirst;
+	private boolean sortAdress;
+	private boolean sortFieldOfStudy;
 	
 	private Student currentStudent;
 	
@@ -39,14 +49,13 @@ public class studentCtrl implements Serializable {
 	private List<Student> studentList;
 	
 
-	
-
-	
-
 	@EJB
 	DbPerson dbP;
 	
 
+	
+
+	
 	
 	// ------------------------- FM -------------------------createStudent---------------------
 	// Creates a new student using all db col params
@@ -90,19 +99,90 @@ public class studentCtrl implements Serializable {
 	// --------------------- FM ------------------------getAllStudents----------------------
 	// Returns a list of all Students
 	//additional test logger for view of all students
-	public List getAllStudents(){
-		
+	public List<Student> getAllStudents(){
 		List<Student> list = dbP.getAllStudents();
 		
-		studentList = list;
-		/*for (Iterator<Student> iter = list.iterator(); iter.hasNext();) {		
-			Logger.getLogger(studentCtrl.class.getName())
-		    .log(Level.INFO, 
-		    "studentctrl Liste:   "+iter.next().getFirstname(), firstname);
 		
-		}*/
+		
+		if(sortId){
+			list = dbP.sortById(list);
+		}
+		if(sortNds){
+			list = dbP.sortByNds(list);
+		}
+		if (sortName){
+		list = dbP.sortByName(list);
+		}
+		if(sortFirst){
+		list = dbP.sortByFirst(list);
+		}
+		if(sortAdress){
+		list = dbP.sortByAdress(list);
+		}
+
+		studentList = list;
 		return list;
 	}
+	// --------------------- FM ------------------------sortStudents----------------------
+	
+	
+	public void sortStudentsById(){
+		sortId = true;
+		sortNds = false;
+		sortName = false;
+		sortFirst = false;
+		sortAdress = false;
+		sortFieldOfStudy = false;
+	}
+	
+	public void sortStudentsByNds(){
+		sortId = false;
+		sortNds = true;
+		sortName = false;
+		sortFirst = false;
+		sortAdress = false;
+		sortFieldOfStudy = false;
+	}
+	
+	public void sortStudentsByName(){
+		sortId = false;
+		sortNds = false;
+		sortName = true;
+		sortFirst = false;
+		sortAdress = false;
+		sortFieldOfStudy = false;
+	}
+	
+	public void sortStudentsByFirst(){
+		sortId = false;
+		sortNds = false;
+		sortName = false;
+		sortFirst = true;
+		sortAdress = false;
+		sortFieldOfStudy = false;
+	}
+	
+	public void sortStudentsByFieldOfStudy(){
+		sortId = false;
+		sortNds = false;
+		sortName = false;
+		sortFirst = false;
+		sortAdress = false;
+		sortFieldOfStudy = true;
+	}
+	
+	public void sortStudentsByAdress(){
+		sortId = false;
+		sortNds = false;
+		sortName = false;
+		sortFirst = false;
+		sortAdress = true;
+		sortFieldOfStudy = false;
+	}
+
+	
+	
+	
 	
 	//-------------------------JL----------------deleteStudent-----------------
 	//deletes a student from db, using nds (primary key)

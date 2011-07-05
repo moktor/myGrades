@@ -17,6 +17,8 @@
 	    <h:commandButton  value="  Go Courses!  " action="#{dummy.genarateCourses}"/><br/><br/>
 	    <h:commandButton  value="  Go Students!  " action="#{dummy.generateStudents}"/><br/>
 	    <br/>
+	    
+	    <h:commandButton value="test" action="#{studentCtrl.sortStudents}"/>
 	    Auflistung aller Kurse.<br/><br/>
 	    </h:form>
 	    <h:dataTable value="#{studentCtrl.allStudents}" var="student"  styleClass="" headerClass="" rowClasses="">

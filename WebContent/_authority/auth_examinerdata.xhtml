@@ -15,26 +15,26 @@
            <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Prüfer.</p>
                 
                 <h:form>
-                <h:dataTable value="#{studentCtrl.allStudents}" var="student"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
+                <h:dataTable value="#{examAuthCtrl.allExamAuths}" var="examAuth"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
                     <h:column>
-                        <f:facet name="header">Matr-Nr</f:facet>
-                        ${student.nds}
+                        <f:facet name="header">Prüfer ID</f:facet>
+                        ${examAuth.nds}
                     </h:column>
                     <h:column>
                         <f:facet name="header">Name</f:facet>
-                        #{student.name}
+                        #{examAuth.name}
                     </h:column>
                     <h:column>
                         <f:facet name="header">Vorname</f:facet>
-                        #{student.firstname}
+                        #{examAuth.firstname}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Studienfach</f:facet>
-                        #{student.firstname}
+                        <f:facet name="header">Fachrichtung</f:facet>
+                        #{examAuth.firstname}
                     </h:column>
                  	<h:column>
         			<f:facet name="header">Ändern</f:facet>
-                        <h:commandLink value="" action="#{studentCtrl.edit(student)}" class="edit_button" immediate="true"/>
+                        <h:commandLink value="" action="#{examAuthCtrl.edit(examAuth)}" class="edit_button" immediate="true"/>
                     </h:column>
                     <h:column>
                     <f:facet name="header">Löschen</f:facet>
@@ -42,8 +42,8 @@
                     </h:column>
                 </h:dataTable>
                 <div class="line"></div>
-                <h:commandButton value="Löschen" action="auth_authData" class="blue_button"  style="float:right;"/>
-                <h:commandButton value="Erstellen" action="addStudent" class="blue_button" style="float:left;"/>
+                <h:commandButton value="Löschen" action="#{examAuthCtrl.deleteSelected}" class="blue_button"  style="float:right;"/>
+                <h:commandButton value="Erstellen" action="#{examAuthCtrl.addExamAuthHelper}" class="blue_button" style="float:left;"/>
                 
                 </h:form>
            

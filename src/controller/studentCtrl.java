@@ -102,9 +102,13 @@ public class studentCtrl implements Serializable {
 	//additional test logger for view of all students
 	public List<Student> getAllStudents(){
 		List<Student> list = dbP.getAllStudents();
-		
-		
-		
+		studentList = sortList(list);
+		return list;
+	}
+	
+	// --------------------- FM ------------------------sortStudents----------------------
+	
+	public List<Student> sortList(List<Student> list){
 		if(sortId){
 			list = dbP.sortById(list);
 		}
@@ -120,11 +124,8 @@ public class studentCtrl implements Serializable {
 		if(sortAdress){
 		list = dbP.sortByAdress(list);
 		}
-
-		studentList = list;
 		return list;
 	}
-	// --------------------- FM ------------------------sortStudents----------------------
 	
 	
 	public void sortStudentsById(){

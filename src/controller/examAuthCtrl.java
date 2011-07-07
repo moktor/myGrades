@@ -119,7 +119,8 @@ public class examAuthCtrl implements Serializable {
     // deletes selected ExamAuths
 	
 	public String deleteSelected(){
-	
+
+		
 		dbP.deleteMultipleExamAuths(examAuthList);
 		
 		return "auth_delSuccess";

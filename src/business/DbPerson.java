@@ -14,6 +14,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import controller.examAuthCtrl;
 import controller.studentCtrl;
 
 
@@ -258,15 +259,13 @@ public class DbPerson {
     // deletes selected objects of a list
     
     public boolean deleteMultipleExamAuths(List<ExamAuth> list){
-    	
+
     	for(ExamAuth examAuth: list){
     		if(examAuth.isDeleteInc()){
     			examAuth = (ExamAuth)em.merge(examAuth);
     			em.remove(examAuth);
     		}
-    	}
-    	
-    	
+    	}	
     	return true;
     }
     

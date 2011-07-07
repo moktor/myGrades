@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<head>
+  <title><ui:insert name="title">myGrades</ui:insert></title>
+  <h:outputStylesheet library="css" name="default.css" />
+  <h:outputStylesheet library="css" name="style.css" />
+  <link rel="stylesheet" type="text/css" href="resources/css/default.css"/>
+  <link rel="stylesheet" type="text/css" href="resources/css/style.css"/>
+  <meta http-equiv="refresh" content="3; URL=index.xhtml"/>
+</head>
+
+<body>
+
+    <div class="content">
+    <div class="admin_login"><a href="admin">Admin Login</a></div>
+<ui:insert name="header">
+	
+    <!--Content ist the main wrapper class! -->
+	<div class="content_header">
+     	<div class="logo"><!-- <h:graphicImage value="/resources/images/logo.png"  /> -->
+     	</div>
+          
+    </div>
+    
+</ui:insert>
+	<div class="content_main">
+
+
+<ui:insert name="content">
+    	Default content area - should be hidden!
+</ui:insert>
+	</div>
+</div>
+
+<ui:insert name="footer">
+   
+<div class="footer"></div>
+</ui:insert>
+
+</body>
+
+</html>

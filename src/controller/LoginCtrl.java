@@ -106,7 +106,7 @@ public void setLoggedIn(){
 public String logout() {
     loggedIn = false;
     loggedinstudent = null;
-    return "/index.xhtml?faces-redirect=true";
+    return "/succ_logout.xhtml?faces-redirect=true";
 
 }
 public boolean isLoggedIn() {

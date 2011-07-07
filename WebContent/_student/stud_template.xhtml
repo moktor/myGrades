@@ -39,10 +39,10 @@
           	</div>
           	<div class="line" style="margin:5px 0 5px 0;"></div>
           	<div class="loginstatus">
-          	Angemeldet als <a href="auth_profile.xhtml">#{loginCtrl.nds}</a>,<br />
+          	<h:form>Angemeldet als <a href="auth_profile.xhtml">#{loginCtrl.nds}</a>,<br />
           	Jetzt 
-						<h:form>
-						<h:commandLink value="LogOut" class="logout" action="#{loginCtrl.logout()}"/>
+						
+						<h:commandLink value="Abmelden!" class="logout" action="#{loginCtrl.logout()}"/>
 						</h:form>
           	</div>
           	<h:form>

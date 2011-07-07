@@ -51,9 +51,9 @@
                <div class="formfield">
                		<div class="formfield_left"></div>
 	
-
+					<h:message for="nds" style="color:red" />
                     <h:inputText value="#{loginCtrl.nds}" id="nds" required="true" class="formfield_center"/><!-- Anmeldename -->
-
+					<f:validateLength minimum="5" maximum="10" />
                     <div class="formfield_right"></div>
                </div>
                

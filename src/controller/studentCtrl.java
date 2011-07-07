@@ -42,6 +42,7 @@ public class studentCtrl implements Serializable {
 	private boolean sortFirst;
 	private boolean sortAdress;
 	private boolean sortFieldOfStudy;
+	private boolean loginvalue;
 	
 	private Student currentStudent;
 	
@@ -60,7 +61,7 @@ public class studentCtrl implements Serializable {
 	// ------------------------- FM -------------------------createStudent---------------------
 	// Creates a new student using all db col params
 	public String createStudent(){
-		dbP.createStudent( nds, gender, firstname, lastname, adresse, email, phone, mobil, keyword, fachsemester);		
+		dbP.createStudent( nds, gender, firstname, lastname, adresse, email, phone, mobil,loginvalue, keyword, fachsemester);		
 		return "addStudent";
 	}
 	

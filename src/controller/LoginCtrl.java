@@ -78,12 +78,20 @@ public String login() {
         "studentctrl Liste:");
         if ( !results.isEmpty() ) {
          loggedinstudent = results.get(0);
+        if (loggedinstudent.getLoginvalue() == true){
          Logger.getLogger(LoginCtrl.class.getName())
          .log(Level.INFO, 
-         "studentctrl Liste:");
+         "studentctrl Liste:--------------------------------------------");
          setLoggedIn();
          return "_authority/auth_welcome";
         }
+         else{
+        	 Logger.getLogger(LoginCtrl.class.getName())
+             .log(Level.INFO, 
+             "studentctrl Liste:-----------------asdasdasdasdas---------------------------");
+             setLoggedIn();
+        	 return "_student/stud_welcome";
+        }}
         else
          return "index";
 

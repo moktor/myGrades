@@ -17,20 +17,25 @@
                 <h:form>
                 <h:dataTable value="#{examAuthCtrl.allExamAuths}" var="examAuth"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
                     <h:column>
-                        <f:facet name="header">Prüfer ID</f:facet>
+                         
+                         <f:facet name="header"><h:commandLink value="Prüfer ID" action="#{examAuthCtrl.sortExamAuthsByNds}"/></f:facet>
+                        
                         ${examAuth.nds}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Name</f:facet>
+                    
+         				<f:facet name="header"><h:commandLink value="Name" action="#{examAuthCtrl.sortExamAuthsByName}"/></f:facet>
+                    
+                
                         #{examAuth.name}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Vorname</f:facet>
+                        <f:facet name="header"><h:commandLink value="Vorname" action="#{examAuthCtrl.sortExamAuthsByFirst}"/></f:facet>
                         #{examAuth.firstname}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Fachrichtung</f:facet>
-                        #{examAuth.firstname}
+                        <f:facet name="header"><h:commandLink value="Fachrichtung" action="#{examAuthCtrl.sortExamAuthsByFieldOfStudy}"/></f:facet>
+                        #{examAuth.fieldOfStudy}
                     </h:column>
                  	<h:column>
         			<f:facet name="header">Ändern</f:facet>

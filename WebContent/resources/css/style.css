@@ -8,7 +8,6 @@ body {
 	font-size:12px;
 	text-shadow:#fcfcfc 1px 1px;
 	color:#a6a6a6;
-	
 }
 
 h1 {
@@ -48,7 +47,7 @@ h5 {
 }
 
 p { 
-	/* margin:0px; */
+    /* margin:0px; */
 }
 
 a {
@@ -71,28 +70,108 @@ a:hover {
 .logo {
 	background:url(../images/logo.png) no-repeat;
 	float:left;
-	width:361px;
-	height:92px;
+	width:286px;
+	height:87px;
+	display:block;
+}
+
+.logo:hover {
+	background:url(../images/logo_hover.png) no-repeat;
+	float:left;
+	width:286px;
+	height:87px;
+	display:block;
+}
+
+.logo01 {
+	background:url(../images/logo_01.png) no-repeat;
+	float:left;
+	width:16px;
+	height:87px;
+}
+
+.logo01:hover {
+	background:url(../images/logo_01_hover.png) no-repeat;
+	float:left;
+	width:16px;
+	height:87px;
+}
+
+.logo02 {
+	background:url(../images/logo_02.png) no-repeat;
+	float:left;
+	width:10px;
+	height:87px;
+}
+
+.logo02:hover {
+	background:url(../images/logo_02_hover.png) no-repeat;
+	float:left;
+	width:10px;
+	height:87px;
+}
+
+.logo03 {
+	background:url(../images/logo_03.png) no-repeat;
+	float:left;
+	width:11px;
+	height:87px;
+}
+
+.logo03:hover {
+	background:url(../images/logo_03_hover.png) no-repeat;
+	float:left;
+	width:11px;
+	height:87px;
+}
+
+.logo04 {
+	background:url(../images/logo_04.png) no-repeat;
+	float:left;
+	width:14px;
+	height:87px;
+}
+
+.logo04:hover {
+	background:url(../images/logo_04_hover.png) no-repeat;
+	float:left;
+	width:14px;
+	height:87px;
+}
+
+.logo05 {
+	background:url(../images/logo_05.png) no-repeat;
+	float:left;
+	width:16px;
+	height:87px;
+}
+
+.logo05:hover {
+	background:url(../images/logo_05_hover.png) no-repeat;
+	float:left;
+	width:16px;
+	height:87px;
 }
 
 .header {
 	width:100%;
 	height:35px;
-	background:url(../images/bg_header.png) repeat-x;
+	/* background:url(../images/bg_header.png) repeat-x; */
+	background-color:#444544;
 	float:none;
 }
 
 .footer {
 	width:100%;
-	height:107px;
-	background:url(../images/bg_footer.png) repeat-x;
+	height:100px;
+	/* background:url(../images/bg_footer.png) repeat-x; */
+	background-color:#444544;
 	float:none;
 	clear:both;
 	text-shadow:none;
 	color:#979797;
 	position: absolute;
-	bottom: 0px;
-
+	margin-top:20px;
 }
 
 .content {
@@ -108,18 +187,14 @@ a:hover {
 	height:auto;
 	overflow:auto;
 	margin-bottom:0px;
+	display:block;
+	margin-top:20px;
 }
 
 .content_main {
 	height:auto;
 	overflow:auto;
 	margin-bottom:100px;
-}
-
-.navi_button {
-}
-
-.navi_button:hover {
 }
 
 .blue_button {
@@ -216,18 +291,21 @@ a:hover {
 	height:auto;
 	overflow:auto;	
 	margin:7px 10px 32px 0;
-	color:#e4e4e4;
+	color:#ececec;
+	font-size:13px;
+	text-shadow:#141414 1px 1px;
 }
 
 .admin_login a {
-	font-weight:normal;
+	font-weight:bold;
 	text-decoration:underline;
-	color:#e4e4e4;
-	text-shadow:#1d1d1d 1px 1px;
+	color:#ececec;
+	text-shadow:#141414 1px 1px;
 }
 
 .admin_login a:hover {
-	font-weight:normal;
+	font-weight:bold;
+	font-style:italic;
 	text-decoration:none;
 	color:#ffffff;
 	text-shadow:#1d1d1d 1px 1px;
@@ -243,7 +321,7 @@ a:hover {
 	background:url(../images/login_status_box.png) no-repeat;
 	float:right;
 	width:235px;
-	height:90px;
+	height:74px;
 	padding:12px 15px 15px 15px;
 	overflow:none;
 	margin-right:7px;
@@ -271,12 +349,27 @@ a:hover {
 	color:#808080;
 }
 
-.login_icon {
+.login_icon_admin {
+	background:url(../images/login_icon_admin.png) no-repeat;
+	float:right;
+	width:60px;
+	height:20px;
+}
+
+.login_icon_auth {
 	background:url(../images/login_icon_auth.png) no-repeat;
 	float:right;
 	width:60px;
 	height:20px;
 }
+
+.login_icon {
+	background:url(../images/login_icon.png) no-repeat;
+	float:right;
+	width:60px;
+	height:20px;
+}
+
 .small_box_top {
 	background:url(../images/small_box_top.png) no-repeat;
 	float:none;
@@ -290,6 +383,7 @@ a:hover {
 	width:275px;
 	height:auto;
 	overflow:auto;
+	line-height: 180%;
 }
 
 .small_box_bottom {
@@ -312,6 +406,7 @@ a:hover {
 	width:567px;
 	height:auto;
 	overflow:auto;
+	line-height: 180%;
 }
 
 .big_box_bottom {

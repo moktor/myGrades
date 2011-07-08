@@ -9,7 +9,9 @@
 <ui:composition template="stud_template.xhtml">
 
 	<ui:define name="content">
-	    Add your content here or delete to use the default
+          <h1>Willkommen, <h:outputText value="#{loginCtrl.firstname}"/>!</h1>
+               <div class="line"></div>
+               <p>Sie wurden erfolgreich eingeloggt. Nutzen sie die Navigation links, um sich zu Prüfungen anzumelden, eine Übersicht über alle Prüfungen zu erhalten, zu denen sie sich bereits angemeldet haben, und um Einsicht in ihre Prüfungsleistungen zu erhalten.<br/><br/><br/></p>   
 	</ui:define>
 
 </ui:composition>

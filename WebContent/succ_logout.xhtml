@@ -7,11 +7,14 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="logout_template.xhtml">
-	
-	<ui:define name="content" style="overflow:auto;">
-	 <br/><br/><br/><h1>Der User  <strong><h:outputText value="#{loginCtrl.getnds()}"/></strong> wurde erfolgreich ausgeloggt ! </h1><br/> <br/>
-	 				<h2>Vielen Danke f&uuml;r Ihren Besuch auf myGrades.de </h2>
-	</ui:define>
+
+<ui:define name="content">
+			<h1 style="margin-top:3px;">Sie wurden erfolgreich ausgeloggt!</h1>
+     		<div class="line"></div>
+     		<p>Der Benutzer mit der Kennung <strong><h:outputText value="#{loginCtrl.getnds()}"/></strong> wurde erfolgreich ausgeloggt!</p>
+	 		<p>Vielen Danke f&uuml;r Ihren Besuch auf myGrades.de, Sie werden in wenigen Momenten auf die <h:link value="Startseite" outcome="index"/> weitergeleitet.</p>
+			
+</ui:define>
 	
 </ui:composition>
 </html>

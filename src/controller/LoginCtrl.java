@@ -29,7 +29,7 @@ public class LoginCtrl implements Serializable {
   * 
   */
  private static final long serialVersionUID = 5186306447159703311L;
- private String nds, password, nameError;
+ private String nds, password, nameError, firstname, lastname;
 
  private boolean loggedIn = false;
  
@@ -78,17 +78,26 @@ public String login() {
         "studentctrl Liste:");
         if ( !results.isEmpty() ) {
          loggedinstudent = results.get(0);
-        if (loggedinstudent.getLoginvalue() == true){
+         firstname = loggedinstudent.getFirstname();
+         lastname = loggedinstudent.getName();
+         if (loggedinstudent.getLoginvalue() == 0){
+             Logger.getLogger(LoginCtrl.class.getName())
+             .log(Level.INFO, 
+             "admin Liste:--------------------------------------------");
+             setLoggedIn();
+             return "_admin/admin_welcome";
+            }
+        if (loggedinstudent.getLoginvalue() == 1){
          Logger.getLogger(LoginCtrl.class.getName())
          .log(Level.INFO, 
-         "studentctrl Liste:--------------------------------------------");
+         "auth Liste:--------------------------------------------");
          setLoggedIn();
          return "_authority/auth_welcome";
         }
          else{
         	 Logger.getLogger(LoginCtrl.class.getName())
              .log(Level.INFO, 
-             "studentctrl Liste:-----------------asdasdasdasdas---------------------------");
+             "stud Liste:-----------------asdasdasdasdas---------------------------");
              setLoggedIn();
         	 return "_student/stud_welcome";
         }}
@@ -121,5 +130,29 @@ public boolean isLoggedIn() {
         return loggedinstudent;
 
     }
+
+
+
+public String getFirstname() {
+	return firstname;
+}
+
+
+
+public void setFirstname(String firstname) {
+	this.firstname = firstname;
+}
+
+
+
+public String getLastname() {
+	return lastname;
+}
+
+
+
+public void setLastname(String lastname) {
+	this.lastname = lastname;
+}
  
 }

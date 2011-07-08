@@ -1,22 +1,13 @@
 package business;
 
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-
-import controller.examAuthCtrl;
-import controller.studentCtrl;
-
 
 import model.*;
 import comparators.*;
@@ -43,7 +34,7 @@ public class DbPerson {
     
     public void createStudent( String nds, 
     String gender, String firstname, String lastname, String adresse,
-    String email, String phone, String mobil,boolean loginvalue, String keyword, int fachsemester){
+    String email, String phone, String mobil,int loginvalue, String keyword, int fachsemester){
     		
     	Student s = new Student(nds,  gender, firstname, lastname, adresse, email, phone,loginvalue , mobil, keyword, fachsemester);
     	em.persist(s);
@@ -79,8 +70,9 @@ public class DbPerson {
         
     // ------------------------------------------ FM ---------------------getAllStudents----------------------
     // Returns a List of all Students in the db
-    public List<Student> getAllStudents() {
-        TypedQuery<Student> query = em.createQuery("select c from Student c", Student.class);
+    public List<Student> getAllStudents(int loginvalue) {
+        TypedQuery<Student> query = em.createQuery("select c from Student c where c.loginvalue = :loginvalue", Student.class);
+        query.setParameter("loginvalue", loginvalue);
         return query.getResultList();
     }
     

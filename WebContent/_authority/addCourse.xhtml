@@ -1,37 +1,62 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<!--  ================== AS =================  //-->
-
-
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="auth_template.xhtml">
-
+	
 	<ui:define name="content">
-	<h:form>
-		Default Kurse und Studenten generieren <br/><br/>
-	    <h:commandButton  value="  Go Courses!  " action="#{dummy.genarateCourses}"/><br/><br/>
-	    <h:commandButton  value="  Go Students!  " action="#{dummy.generateStudents}"/><br/>
-	    <br/>
-	    
-	    <h:commandButton value="test" action="#{studentCtrl.sortStudents}"/>
-	    Auflistung aller Kurse.<br/><br/>
-	    </h:form>
-	    <h:dataTable value="#{studentCtrl.allStudents}" var="student"  styleClass="" headerClass="" rowClasses="">
-                    <h:column>
-                        <f:facet name="header">NDS-Kürzel</f:facet>
-                        ${student.nds}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Nachname</f:facet>
-                        #{student.name}
-                    </h:column>
-                </h:dataTable>
-	</ui:define>
 
+          <h1>Neue Prüfung anlegen</h1>
+               <div class="line"></div>
+               <p>Tragen sie die entsprechenden Daten in das unten stehende Formular ein und bestätigen sie mit 'Anlegen'. Die PrüfungsID wird automatisch vergeben! Der Termin muss, wenn unbekannt, noch nicht jetzt gesetzt werden.Anmerkung: Terminformat muss gegenwärtig noch yyyy-mm-dd sein! (Mit Bindestrichten!!!)</p>
+               
+                <h:form>
+                <table class="addStudent_table">
+               
+				<!--<tr>               
+                <td><h2 class="formlabel">Geschlecht</h2></td>
+                <td><div class="formfield">
+                <h:selectOneMenu value="#{studentCtrl.gender}">
+					<f:selectItem itemValue="m" itemLabel="männlich"/>
+					<f:selectItem itemValue="w" itemLabel="weiblich"/>
+				</h:selectOneMenu>
+				</div></td>
+				</tr>-->
+				
+				<tr> 
+               	<td><h2 class="formlabel">Name</h2></td>
+               	<td><div class="formfield">
+               		<div class="formfield_left"></div>
+                    <h:inputText value="#{courseCtrl.name}" required="true" class="formfield_center"/>
+                    <div class="formfield_right"></div>
+                </div></td>
+               	</tr>
+               	
+               	<tr> 
+               	<td><h2 class="formlabel">Fach</h2></td>
+               	<td><div class="formfield">
+               		<div class="formfield_left"></div>
+                    <h:inputText value="#{courseCtrl.fieldofstudy}" required="false" class="formfield_center"/>
+                    <div class="formfield_right"></div>
+               	</div></td>
+               	</tr>
+               	
+               	
+       
+              	
+              	<tr><td colspan="2"><h:commandButton value="Anlegen" action="#{courseCtrl.createCourse}" class="blue_button" style="float:right;"/></td></tr>
+              	</table>
+              	
+              	
+	   			
+	  
+	  			
+	  			</h:form>
+	</ui:define>
 </ui:composition>
+
 </html>

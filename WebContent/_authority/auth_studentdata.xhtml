@@ -16,18 +16,14 @@
                 	
                 <h:form>
                 
-                <h:dataTable value="#{studentCtrl.allStudents}" var="student"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
+                <h:dataTable value="#{studentCtrl.getAllStudents(2)}" var="student"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
 
                     <h:column>
                         <f:facet name="header"><h:commandLink value="Nds" action="#{studentCtrl.sortStudentsByNds}"/></f:facet>
                         #{student.nds}
                     </h:column>
                     <h:column>
-              			<f:facet name="header">
-              			
-              	<f:facet name="header"><h:commandLink value="Name" action="#{studentCtrl.sortStudentsByName}"/></f:facet>
-              			
-              			</f:facet>
+              			<f:facet name="header"><h:commandLink value="Name" action="#{studentCtrl.sortStudentsByName}"/></f:facet>
                         #{student.name}
                     </h:column>
                     <h:column>
@@ -44,7 +40,7 @@
                     </h:column>
                     <h:column>
                     <f:facet name="header">Löschen</f:facet>
-                       <h:selectBooleanCheckbox value="#{student.deleteInc}"/>
+                       <h:selectBooleanCheckbox value="#{student.deleteInc}" style="margin-left:17px;"/>
                     </h:column>
                 </h:dataTable>
                 <div class="line"></div>

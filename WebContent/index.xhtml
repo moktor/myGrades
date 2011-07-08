@@ -18,21 +18,18 @@
                <div class="line"></div>
                <table>
                	<tr>
-               		<td>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea</td>
-               		<td>akimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.</td>
+               		<td width="50%">MyGrades ist ein innovatives Prüfungs- verwaltungssystem, in dem die Prüfungsleistungen aller Studenten im Laufe ihres Studiums gesammelt werden. Von den </td>
+               		<td width="50%">zuständigen Prüfern dokumentiert und in einer zentralen Datenbank verwaltet, liegen aktuelle Prüfungsleistungen, sowie ein Archiv vergangener Prüfungsergebnisse vor. </td>
                	</tr>
                </table>
                <h1>Behalten Sie die Übersicht!</h1>
                <div class="line"></div>
 				<table>
                	<tr>
-               		<td>Sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea</td>
+               		<td>Diese Seiten sind nur für Mitglieder der Universität Regensburg sichtbar. Für den Zugang benötigen Sie eine Benutzerkennung und ein Passwort, dass initial von der zentralen Verwaltungsstelle vergeben wird.</td>
                		<td><div class="social_media"></div></td>
                	</tr>
-               </table>    
-               <h:form>
-               <h:commandButton value="dummy" class="blue_button" action="#{dummy.generateStudents()}"/>
-               </h:form>
+               </table>  
                
                           </div></div>
                <div class="big_box_bottom"></div>
@@ -46,31 +43,31 @@
                <p>Tragen sie in das unten stehende Formular Ihren Login und Ihr Passwort ein. Sollten Sie ihre Zugangsdaten vergessen haben, klicken sie bitte <h:link outcome="pw_new" value="hier"/>.</p>
                
                <h:form>
-               
-               <h2>Login</h2>
-               <div class="formfield">
-               		<div class="formfield_left"></div>
-	
+               		<h2>Login</h2>
+					<div class="formfield">
+					<div class="formfield_left"></div>
+					<h:inputText value="#{loginCtrl.nds}" id="nds" required="true" class="formfield_center"><!-- Anmeldename -->
+					<f:validator validatorId="loginValidator" />
+					</h:inputText>
+					<div class="formfield_right"></div>
+					</div>
+					
 					<h:message for="nds" style="color:red" />
-                    <h:inputText value="#{loginCtrl.nds}" id="nds" required="true" class="formfield_center"/><!-- Anmeldename -->
-					<f:validateLength minimum="5" maximum="10" />
-                    <div class="formfield_right"></div>
-               </div>
-               
-               <h2>Passwort</h2>
-               <div class="formfield">
-               		<div class="formfield_left"></div>
-
-                    <h:inputSecret value="#{loginCtrl.password}" id="password" required="true" class="formfield_center"/><!-- Benutzerpasswort -->
-
-                    <div class="formfield_right"></div>
-               </div>
-               <!-- <input name="stay_logged" type="image" src="images/check.png" width="13" height="13" border="0" />Ich möchte angemeldet bleiben. -->
-               
-
-               <h:commandButton value="Anmelden" action="#{loginCtrl.login}" class="blue_button" style="margin-top:10px;"/>
-
-              
+					<h2>Passwort</h2>
+					<div class="formfield">
+					<div class="formfield_left"></div>
+					
+					<h:inputSecret value="#{loginCtrl.password}" id="password" required="true" class="formfield_center"><!-- Benutzerpasswort -->
+					<f:validator validatorId="passwordValidator"/>
+					
+					</h:inputSecret>
+					<div class="formfield_right"></div>
+					</div>
+					<h:message for="password" style="color:red"/>
+					<!-- <input name="stay_logged" type="image" src="images/check.png" width="13" height="13" border="0" />Ich möchte angemeldet bleiben. -->
+					
+					
+					<h:commandButton value="Anmelden" action="#{loginCtrl.login}" class="blue_button" style="margin-top:10px;"/>
               </h:form>
               
                </div></div>

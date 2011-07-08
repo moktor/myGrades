@@ -10,40 +10,104 @@
   <h:outputStylesheet library="css" name="style.css" />
   <link rel="stylesheet" type="text/css" href="../resources/css/default.css"/>
   <link rel="stylesheet" type="text/css" href="../resources/css/style.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+//FADE IN AND OUT 
+jQuery(document).ready(function() {
+		jQuery('.logo').append('<span class="hover"></span>').each(function () {
+	  		var $span = $('> span.hover', this).css('opacity', 0);
+	  		$(this).hover(function () {
+	    		$span.stop().fadeTo(200, 1);
+	 		}, function () {
+	   	$span.stop().fadeTo(200, 0);
+	  		});
+		});
+	});
+
+//IMAGE PRELOADER 
+(function($) {
+  var cache = [];
+  // Arguments are image paths relative to the current page.
+  $.preLoadImages = function() {
+    var args_len = arguments.length;
+    for (var i = args_len; i--;) {
+      var cacheImage = document.createElement('img');
+      cacheImage.src = arguments[i];
+      cache.push(cacheImage);
+    }
+  }
+})(jQuery)
+
+jQuery.preLoadImages("../resources/images/logo_hover.png", 
+					"../resources/images/logo_01_hover.png", 
+					"../resources/images/logo_02_hover.png", 
+					"../resources/images/logo_03_hover.png", 
+					"../resources/images/logo_04_hover.png", 
+					"../resources/images/logo_05_hover.png"
+					);
+
+</script>
 </head>
  
 <h:body rendered="#{!loginCtrl.isLoggedIn()}">
 
-    <div class="content"  >
-    <div class="admin_login"><a href="admin">Admin Login</a></div>
-<h1>Bitte Loggen sie sich ein um folgende Seite(n) zu sehen!</h1>
-<br/>
-</div>
-<h:form>
-<h:link value="zur Login Seite !" outcome="/index"/>
-</h:form>
+    <div class="content" style="width:600px;" >
+		<div class="content_header" style="width:410px; margin:auto; margin-bottom:20px; margin-top:100px;">
+     	<div class="logo01"></div>
+     	<div class="logo02"></div>
+     	<div class="logo03"></div>
+     	<div class="logo04"></div>
+     	<div class="logo05"></div>
+     	<h:link class="logo" outcome="../index"></h:link>
+     </div>
+     <div class="content_main">
+     <div class="box">
+          	<div class="big_box_top"></div>
+               <div class="big_box_center">
+               <div class="box_content" style="line-height: 220%;">
+    
+     			<h1 style="margin-top:3px;">Achtung! Die von Ihnen angeforderte Seite ist nicht verfügbar!</h1>
+     			<div class="line"></div>
+     			<p>Möglicherweise haben sie keine Berechtigung, um die angeforderte Ressource zu betrachten. Loggen sie sich auf der <h:link value="Startseite" outcome="/index"/> mit ihrer Benutzerkennung und ihrem Benutzerpasswort ein, um Zugriff zu erhalten.</p>
+				
+			</div></div>
+            <div class="big_box_bottom"></div>
+          </div>
+          </div>
+	</div>
+	<div class="footer"></div>
 </h:body>
+
+
 <h:body rendered="#{loginCtrl.isLoggedIn()}">
-<div class="header"></div>
+
     <div class="content">
+		<div class="admin_login"><h:form>
+               <h:commandLink value="Fill Database" outcome="#{dummy.action()}"/>
+               </h:form></div>
+	
 
 <ui:insert name="header">
-    <!--Content ist the main wrapper class! -->
+    
 	<div class="content_header">
-     	<div class="logo"><!-- <h:graphicImage value="/resources/images/logo.png"  /> -->
-     	</div>
+     	<div class="logo01"></div>
+     	<div class="logo02"></div>
+     	<div class="logo03"></div>
+     	<div class="logo04"></div>
+     	<div class="logo05"></div>
+     	<h:link class="logo" outcome="auth_welcome"></h:link>
+   
           <div class="login_status_box">
           	<div class="login_status_header">
           		<h4 style="float:left;">Anmeldestatus</h4>
-          		<div class="login_icon"></div>
+          		<div class="login_icon_auth"></div>
           	</div>
           	<div class="line" style="margin:5px 0 5px 0;"></div>
           	<div class="loginstatus">
           	<h:form>Angemeldet als <a href="auth_profile.xhtml">#{loginCtrl.nds}</a>,<br />
-          	Jetzt 
-						
-						<h:commandLink value="Abmelden!" class="logout" action="#{loginCtrl.logout()}"/>
-						</h:form>
+          	Jetzt <h:commandLink value="Abmelden!" class="logout" action="#{loginCtrl.logout()}"/>
+			</h:form>		
           	</div>
           	<h:form>
            	<h:commandButton value="Profil" action="auth_profile" class="small_button" style="float:right; margin-top:5px;"/>
@@ -52,6 +116,7 @@
     </div>
     
 </ui:insert>
+	
 	<div class="content_main">
 	<div class="box">
           	<div class="small_box_top"></div>
@@ -62,12 +127,7 @@
 						<h:link value="Studentendaten" class="grey_button" outcome="auth_studentdata" />
 						<h:link value="Übersicht über Prüfer" class="grey_button" outcome="auth_examinerdata" />
 						<h:link value="Prüfungen anlegen/löschen" class="grey_button" outcome="auth_examdata" />
-						<h:link value="dummyCreate" class="grey_button" outcome="addCourse" />
 						<h:link value="Prüfungen benoten" class="grey_button" outcome="auth_grade" />
-						<h:link value="Student hinzu" class="grey_button" outcome="addStudent" />
-					
-
-
 					</div>
 				</div>
                <div class="small_box_bottom"></div>
@@ -81,6 +141,7 @@
 <ui:insert name="content">
     	Default content area - should be hidden!
 </ui:insert>
+
 			</div></div>
             <div class="big_box_bottom"></div>
           </div>

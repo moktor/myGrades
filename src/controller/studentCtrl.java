@@ -61,8 +61,9 @@ public class studentCtrl implements Serializable {
 	// ------------------------- FM -------------------------createStudent---------------------
 	// Creates a new student using all db col params
 	public String createStudent(){
-		dbP.createStudent( nds, gender, firstname, lastname, adresse, email, phone, mobil,loginvalue, keyword, fachsemester);		
-		return "addStudent";
+		loginvalue = 2;
+		dbP.createStudent( nds, gender, firstname, lastname, adresse, email, phone, mobil, loginvalue, keyword, fachsemester);		
+		return "auth_studentdata";
 	}
 	
 	public String addStudentHelper(){

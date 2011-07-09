@@ -14,110 +14,131 @@
                <div class="line"></div>
                <p>Tragen sie die entsprechenden Daten in das unten stehende Formular ein und bestätigen sie mit 'Anlegen'.</p>
                
-                <h:form>
-                <table class="addStudent_table">
+               <h:form>
+                               <table class="addStudent_table">
+              
+               <tr>               
+               <td><h2 class="formlabel">Geschlecht</h2></td>
+               <td><div class="formfield">
+               <h:selectOneMenu value="#{studentCtrl.gender}">
+                   <f:selectItem itemValue="m" itemLabel="männlich"/>
+                   <f:selectItem itemValue="w" itemLabel="weiblich"/>
+               </h:selectOneMenu>
+               </div></td>
+               </tr>
                
-				<tr>               
-                <td><h2 class="formlabel">Geschlecht</h2></td>
-                <td><div class="formfield">
-                <h:selectOneMenu value="#{studentCtrl.gender}">
-					<f:selectItem itemValue="m" itemLabel="männlich"/>
-					<f:selectItem itemValue="w" itemLabel="weiblich"/>
-				</h:selectOneMenu>
-				</div></td>
-				</tr>
-				
-				<tr> 
-               	<td><h2 class="formlabel">Matr-Nr</h2></td>
-               	<td><div class="formfield">
-               		<div class="formfield_left"></div>
-                    <h:inputText value="#{studentCtrl.nds}" required="true" class="formfield_center"/>
-                    <div class="formfield_right"></div>
-                </div></td>
-               	</tr>
-               	
-               	<tr> 
-               	<td><h2 class="formlabel">Name</h2></td>
-               	<td><div class="formfield">
-               		<div class="formfield_left"></div>
-                    <h:inputText value="#{studentCtrl.lastname}" required="true" class="formfield_center"/>
-                    <div class="formfield_right"></div>
-               	</div></td>
-               	</tr>
-               	
-               	<tr> 
-               	<td><h2 class="formlabel">Vorname</h2></td>
-               	<td><div class="formfield">
-               		<div class="formfield_left"></div>
-                    <h:inputText value="#{studentCtrl.firstname}" required="true" class="formfield_center"/>
-                    <div class="formfield_right"></div>
-               	</div></td>
-               	</tr>
-               	
-               	<tr> 
-               	<td><h2 class="formlabel">Passwort</h2></td>
-               	<td><div class="formfield">
-               		<div class="formfield_left"></div>
-                    <h:inputText value="#{studentCtrl.keyword}" required="true" class="formfield_center"/>
-                    <div class="formfield_right"></div>
-               	</div></td>
-               	</tr>
-               	
-               	<tr> 
-               	<td><h2 class="formlabel">Fachsemester</h2></td>
-               	<td><div class="formfield">
-               		<div class="formfield_left"></div>
-                    <h:inputText value="#{studentCtrl.fachsemester}" required="true" class="formfield_center"/>
-                    <div class="formfield_right"></div>
-               	</div></td>
-               	</tr>
-               	
-               	<!-- 
-               	<tr> 
-               	<td><h2 class="formlabel">Studienfach</h2></td>
-               	<td><div class="formfield">
-               		<div class="formfield_left"></div>
-                    <h:inputText value="#{studentCtrl.lastname}" required="false" class="formfield_center"/>
-                    <div class="formfield_right"></div>
-               	</div></td>
-               	</tr>
-               	 -->
-               	 
-               	<tr> 
-               	<td><h2 class="formlabel">Adresse</h2></td>
-               	<td><div class="formfield">
-               		<div class="formfield_left"></div>
-                    <h:inputText value="#{studentCtrl.adresse}" required="false" class="formfield_center"/>
-                    <div class="formfield_right"></div>
-               	</div></td>
-               	</tr>
-               	
-               	<tr> 
-               	<td><h2 class="formlabel">Email</h2></td>
-               	<td><div class="formfield">
-               		<div class="formfield_left"></div>
-                    <h:inputText value="#{studentCtrl.email}" required="false" class="formfield_center"/>
-                    <div class="formfield_right"></div>
-               	</div></td>
-               	</tr>
-               	
-               	<tr> 
-               	<td><h2 class="formlabel">Telefonnr</h2></td>
-               	<td><div class="formfield">
-               		<div class="formfield_left"></div>
-                    <h:inputText value="#{studentCtrl.phone}" required="false" class="formfield_center"/>
-                    <div class="formfield_right"></div>
-               	</div></td>
-              	</tr>
-              	
-              	<tr><td colspan="2"><h:commandButton value="Anlegen" action="#{studentCtrl.createStudent}" class="blue_button" style="float:right;"/></td></tr>
-              	</table>
-              	
-              	
-	   			
-	  
-	  			
-	  			</h:form>
+               <tr> 
+                 <td><h2 class="formlabel">Nds Kürzel</h2></td>
+                 <td><div class="formfield">
+                     <div class="formfield_left"></div>
+                   <h:inputText value="#{studentCtrl.nds}" id="nds" required="true" class="formfield_center">
+                   <f:validator validatorId="loginValidator" />
+                   </h:inputText>
+                   <div class="formfield_right"></div>
+                   <h:message for="nds" style="color:red" />
+               </div></td>
+                 </tr>
+                 
+                 <tr> 
+                 <td><h2 class="formlabel">Nachname</h2></td>
+                 <td><div class="formfield">
+                     <div class="formfield_left"></div>
+                   <h:inputText value="#{studentCtrl.lastname}" id="nachname" required="true" class="formfield_center">
+                   <f:validator validatorId="NameValidator" />
+                   </h:inputText>
+                   <div class="formfield_right"></div>
+                   <h:message for="nachname" style="color:red" />
+                 </div></td>
+                 </tr>
+                 
+                 <tr> 
+                 <td><h2 class="formlabel">Vorname</h2></td>
+                 <td><div class="formfield">
+                     <div class="formfield_left"></div>
+                   <h:inputText value="#{studentCtrl.firstname}" id="vorname" required="true" class="formfield_center">
+                   <f:validator validatorId="NameValidator" />
+                   </h:inputText>
+                   <div class="formfield_right"></div>
+                   <h:message for="vorname" style="color:red" />
+                 </div></td>
+                 </tr>
+                 
+                 <tr> 
+                 <td><h2 class="formlabel">Passwort</h2></td>
+                 <td><div class="formfield">
+                     <div class="formfield_left"></div>
+                   <h:inputSecret value="#{studentCtrl.keyword}" id="password" required="true" class="formfield_center">
+                   <f:validator validatorId="passwordValidator"/>
+                   </h:inputSecret>
+                   <div class="formfield_right"></div>
+                   <h:message for="password" style="color:red" />
+                 </div></td>
+                 </tr>
+                 
+                 <tr> 
+                 <td><h2 class="formlabel">Fachsemester</h2></td>
+                 <td><div class="formfield">
+                     <div class="formfield_left"></div>
+                   <h:inputText value="#{studentCtrl.fachsemester}" required="true" id="sem" class="formfield_center">
+                   <f:validator validatorId="semValidator"/>
+                   </h:inputText>
+                   <div class="formfield_right"></div>
+                   <h:message for="sem" style="color:red" />
+                 </div></td>
+                 </tr>
+                 
+             <!--  
+                 <tr> 
+                 <td><h2 class="formlabel">Studienfach</h2></td>
+                 <td><div class="formfield">
+                     <div class="formfield_left"></div>
+                   <h:selectOneMenu value="#{studentCtrl.gender}">
+                   <f:selectItem itemValue="m" itemLabel="männlich"/>
+                   <f:selectItem itemValue="w" itemLabel="weiblich"/>
+               </h:selectOneMenu>
+                   <div class="formfield_right"></div>
+                 </div></td>
+                 </tr>
+                 
+                  
+                 <tr> 
+                 <td><h2 class="formlabel">Adresse</h2></td>
+                 <td><div class="formfield">
+                     <div class="formfield_left"></div>
+                   <h:inputText value="#{studentCtrl.adresse}" required="false" class="formfield_center"/>
+                   <div class="formfield_right"></div>
+                 </div></td>
+                 </tr>
+                 -->
+                 <tr> 
+                 <td><h2 class="formlabel">Email</h2></td>
+                 <td><div class="formfield">
+                     <div class="formfield_left"></div>
+                   <h:inputText value="#{studentCtrl.email}" id="email" required="false" class="formfield_center">
+                   <f:validator validatorId="emailValidator"/>
+                   </h:inputText>
+                   <div class="formfield_right"></div>
+                   <h:message for="email" style="color:red" />
+                 </div></td>
+                 </tr>
+                 
+                 <tr> 
+                 <td><h2 class="formlabel">Telefonnr</h2></td>
+                 <td><div class="formfield">
+                     <div class="formfield_left"></div>
+                   <h:inputText value="#{studentCtrl.phone}" required="false" id="phone" class="formfield_center">
+                   <f:validator validatorId="phoneValidator"/>
+                   </h:inputText>
+                   <div class="formfield_right"></div>
+                   <h:message for="phone" style="color:red" />
+                 </div></td>
+                 </tr>
+                 
+                 <tr><td colspan="2"><h:commandButton value="Anlegen" action="#{studentCtrl.createStudent}" class="blue_button" style="float:right;"/></td></tr>
+                 </table>
+                 
+                 </h:form>
+                 
 	</ui:define>
 </ui:composition>
 

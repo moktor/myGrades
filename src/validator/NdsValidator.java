@@ -20,9 +20,7 @@ public class NdsValidator implements Validator{
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-]+(\\." +
 			"[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*" +
 			"(\\.[A-Za-z]{2,})$";
-	private static final String AUTH_PATTERN = "^[0-9]{5}$";
-	// ---------- Student und Auth sollten raus genommen werden ----------------- JL------------------------------
-	private static final String ADMIN_PATTERN ="^/admin/$|^/student/$|^/auth/$"; 
+	
 	
 	
 	private Pattern nds_pattern;

@@ -24,20 +24,20 @@ public class Course implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private int studentCount;
+	private int studentcount;
 	private String name;
-	private String fieldOfStudy;
+	private String fieldofstudy;
 	private Date date;
 	
 	// ------------------------ ctors -----------------------------------
 	
 	public Course(){}
 	
-	public Course(int studentCount, String name, String fieldOfStudy, Date date) {
+	public Course(int studentCount, String name, String fieldofstudy, Date date) {
 		super();
-		this.studentCount = studentCount;
+		this.studentcount = studentCount;
 		this.name = name;
-		this.fieldOfStudy = fieldOfStudy;
+		this.fieldofstudy = fieldofstudy;
 		this.date = date;
 	}
 	
@@ -56,11 +56,11 @@ public class Course implements Serializable {
 	}
 
 	public int getStudentCount() {
-		return studentCount;
+		return studentcount;
 	}
 
 	public void setStudentCount(int studentCount) {
-		this.studentCount = studentCount;
+		this.studentcount = studentCount;
 	}
 
 	public String getName() {
@@ -72,11 +72,11 @@ public class Course implements Serializable {
 	}
 
 	public String getFieldOfStudy() {
-		return fieldOfStudy;
+		return fieldofstudy;
 	}
 
 	public void setFieldOfStudy(String fieldOfStudy) {
-		this.fieldOfStudy = fieldOfStudy;
+		this.fieldofstudy = fieldOfStudy;
 	}
 
 	public Date getDate() {

@@ -37,7 +37,7 @@ public class dummy implements Serializable{
 		Logger.getLogger(dummy.class.getName())
 	    .log(Level.INFO, 
 	    "studentctrl Liste:   "+a+ " "+b);
-		return "addCourse";
+		return "index";
 	}
 	
 	public void generateCourses(){

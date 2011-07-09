@@ -161,7 +161,38 @@ public class DbPerson {
 
 
     	
+ // ----------------- LS ---------------------- sorting Methods -------------------
     
+    public List<ExamAuth> sortByIdExamAuth(List<ExamAuth> list){
+    	Collections.sort(list, new ExamAuthId());
+    	return list;
+      } 
+    
+   
+    
+    public List<ExamAuth> sortByNdsExamAuth(List<ExamAuth> list){
+    	Collections.sort(list, new ExamAuthNds());
+    	return list;
+      } 
+
+    
+    public List<ExamAuth> sortByNameExamAuth(List<ExamAuth> list){
+    	Collections.sort(list, new ExamAuthName());
+    	return list;
+    	
+      } 
+    
+    
+    public List<ExamAuth> sortByFirstExamAuth(List<ExamAuth> list){
+    	Collections.sort(list, new ExamAuthFirst());
+    	return list;
+      } 
+    public List<ExamAuth> sortByFieldOfStudyExamAuth(List<ExamAuth> list){
+    	Collections.sort(list, new ExamAuthFieldOfStudy());
+    	return list;
+      } 
+    
+
     
     
     
@@ -172,9 +203,9 @@ public class DbPerson {
     
     public void createExamAuth( String nds, 
     	    String gender,String titel, String firstname, String lastname, String adresse,
-    	    String email, String phone, String mobil, String keyword){
+    	    String email, String phone, String fieldOfStudy, String mobil, String keyword){
     	    		
-    	ExamAuth ea = new ExamAuth(nds, gender,titel, firstname, lastname, adresse, email, phone, mobil, keyword);
+    	ExamAuth ea = new ExamAuth(nds, gender,titel, firstname, lastname, adresse, email, phone, fieldOfStudy, mobil, keyword);
     	    	em.persist(ea);
     	    }
     	    

@@ -42,6 +42,7 @@ public class studentCtrl implements Serializable {
 	private boolean sortFirst;
 	private boolean sortAdress;
 	private boolean sortFieldOfStudy;
+	private int loginvalue;
 	
 	// ----------------- FM ---------------- filter attribute
 	private String filter;
@@ -63,7 +64,7 @@ public class studentCtrl implements Serializable {
 	// ------------------------- FM -------------------------createStudent---------------------
 	// Creates a new student using all db col params
 	public String createStudent(){
-		dbP.createStudent( nds, gender, firstname, lastname, adresse, email, phone, mobil, keyword, fachsemester);		
+		dbP.createStudent( nds, gender, firstname, lastname, adresse, email, phone, mobil,loginvalue, keyword, fachsemester);		
 		return "addStudent";
 	}
 	
@@ -106,8 +107,8 @@ public class studentCtrl implements Serializable {
 	// --------------------- FM ------------------------getAllStudents----------------------
 	// Returns a list of all Students
 	//additional test logger for view of all students
-	public List<Student> getAllStudents(){
-		List<Student> list = dbP.getAllStudents();
+	public List<Student> getAllStudents(int loginvalue){
+		List<Student> list = dbP.getAllStudents(loginvalue);
 		studentList = sortList(list);
 		return list;
 	}

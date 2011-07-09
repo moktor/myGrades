@@ -39,6 +39,7 @@ public class DbAccount {
            .setParameter("nds", nds)
 
            .setParameter("password", password);
+
           return query.getResultList();
 
    

@@ -11,7 +11,7 @@ import javax.persistence.TypedQuery;
 
 import controller.LoggedIn;
 
-import model.Student;
+import model.*;
 
 
 @Stateless
@@ -39,8 +39,36 @@ public class DbAccount {
            .setParameter("nds", nds)
 
            .setParameter("password", password);
+          
 
           return query.getResultList();
 
    
-  }}
+  }
+  public List<ExamAuth> loginauthQuery(String nds, String password){
+	  
+      TypedQuery<ExamAuth> query = em.createQuery("select u from ExamAuth u where u.nds=:nds and u.keyword=:password", ExamAuth.class)
+
+       .setParameter("nds", nds)
+
+       .setParameter("password", password);
+      
+
+      return query.getResultList();
+
+
+}  
+public List<Admin> loginadminQuery(String nds, String password){
+	  
+      TypedQuery<Admin> query = em.createQuery("select u from Admin u where u.nds=:nds and u.keyword=:password", Admin.class)
+
+       .setParameter("nds", nds)
+
+       .setParameter("password", password);
+      
+
+      return query.getResultList();
+
+
+}  
+}

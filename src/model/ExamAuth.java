@@ -35,8 +35,6 @@ public class ExamAuth implements Serializable {
 	private String firstname;
 	private String name;
 	private String fieldOfStudy;
-	
-
 	private String adresse;
 	private String email;
 	private String phone;

@@ -17,6 +17,8 @@ public class Admin implements Serializable {
 	 */
 	private static final long serialVersionUID = 5975597567059046416L;
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
 	private int nds;
 	private String gender;
 	private String firstname;
@@ -27,6 +29,16 @@ public class Admin implements Serializable {
 	private String mobil;
 	private String keyword;
 	private String salt;
+	
+	
+	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	/**
 	 * @return the nds
 	 */

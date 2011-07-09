@@ -29,7 +29,7 @@ public class LoginCtrl implements Serializable {
   * 
   */
  private static final long serialVersionUID = 5186306447159703311L;
- private String nds, password, nameError, firstname, lastname;
+ private String nds, password, firstname, lastname;
 
  private boolean loggedIn = false;
  
@@ -61,15 +61,7 @@ public class LoginCtrl implements Serializable {
  public void setPassword(String password) {
   this.password = password;
  }
-/* public void validateName(ValueChangeEvent e) {
-	    UIComponent nameInput = e.getComponent();
-	   // String name = nameInput.getValue();
-	    
-	    if (name.contains("_"))   nameError = "Name cannot contain underscores";
-	    else if (name.equals("")) nameError = "Name cannot be blank";
-	    else                      nameError = "";
-	  }
-*/
+
  //TODO JL Exam. Auth. dba.validate() == 2
 public String login() {
         List<Student> results = dba.loginQuery(nds, password);

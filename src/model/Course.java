@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.Date;
+
 import javax.persistence.*;
 
 /**
@@ -22,29 +24,44 @@ public class Course implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	private int studentcount;
 	private String name;
-	private int studentCount;
+	private String fieldofstudy;
+	private Date date;
 	
 	// ------------------------ ctors -----------------------------------
 	
 	public Course(){}
 	
-	public Course (String name, int studentCount){
-		
+	public Course(int studentCount, String name, String fieldofstudy, Date date) {
+		super();
+		this.studentcount = studentCount;
 		this.name = name;
-		this.studentCount = 0;
+		this.fieldofstudy = fieldofstudy;
+		this.date = date;
 	}
 	
+
 	// --------------------- getter / setter ----------------------------
 	
-	public void setId(int id) {
-		this.id = id;
-	}
+	
+	
 
 	public int getId() {
 		return id;
 	}
-	
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getStudentCount() {
+		return studentcount;
+	}
+
+	public void setStudentCount(int studentCount) {
+		this.studentcount = studentCount;
+	}
 
 	public String getName() {
 		return name;
@@ -54,13 +71,23 @@ public class Course implements Serializable {
 		this.name = name;
 	}
 
-	public int getStudentCount() {
-		return studentCount;
+	public String getFieldOfStudy() {
+		return fieldofstudy;
 	}
 
-	public void setStudentCount(int studentCount) {
-		this.studentCount = studentCount;
+	public void setFieldOfStudy(String fieldOfStudy) {
+		this.fieldofstudy = fieldOfStudy;
 	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
+	
 
    
 }

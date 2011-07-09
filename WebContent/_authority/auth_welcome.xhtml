@@ -9,9 +9,12 @@
 <ui:composition template="auth_template.xhtml">
 	<ui:define name="content">
 	   <!--This is where the magic happens!!!-->
-          <h1>Willkommen, <h:outputText value="#{studentCtrl.firstname}"/> <h:outputText value="#{studentCtrl.lastname}"/>!</h1>
+          <h1>Willkommen, <h:outputText value="#{loginCtrl.firstname}"/>!</h1>
                <div class="line"></div>
-               <p>Sie wurden erfolgreich eingeloggt. abc Nutzen sie die Navigation links, um neue Studenten einzutragen. Prüfungen anzulegen, zu terminieren, oder zu ändern, oder um Prügungen zu bewerten. Hier ist noch Platz für Neuigkeiten etc...</p>   
+               <p>Sie wurden erfolgreich eingeloggt. Nutzen sie die Navigation links, um neue Studenten <strong>einzutragen</strong>. Prüfungen <strong>anzulegen</strong>, zu <strong>terminieren</strong>, zu ändern, oder um Prügungen zu <strong>bewerten</strong>.
+               </p><div class="test"></div>
+               <p>Umfangreiche <strong>Datenbankzugriffe</strong> ermöglichen es ihnen, bequem auf den gespeicherten Benutzer- und Prüfungsdaten zu operieren. Wenden sie sich bei Problemen bitte umgehend an den <strong>Supportbereich.</strong><br/></p>
+
 	</ui:define>
 	
 </ui:composition>

@@ -2,13 +2,31 @@
 /* CSS Document */
 
 body {
-	background:url(../images/bg.png) repeat-x;
-	background-color:#f0f0f0;
+	/*background:url(../images/bg.png) repeat-x;
+	background-color:#f0f0f0;*/
+	background:url(../images/bg2.png) repeat-x;
+	background-color:#bdc6c7;
 	font-family:Tahoma, Geneva, sans-serif;
 	font-size:12px;
 	text-shadow:#fcfcfc 1px 1px;
 	color:#a6a6a6;
-	
+}
+
+/* helpers */
+
+.green {
+	font-weight:bold;
+	color:#1ad823;
+	text-decoration:underline;
+	font-size:13px;
+	margin-bottom:10px;
+}
+
+.red {
+	font-weight:bold;
+	color:#e41923;
+	font-size:14px;
+	margin-bottom:10px;
 }
 
 h1 {
@@ -48,7 +66,9 @@ h5 {
 }
 
 p { 
-	/* margin:0px; */
+    /* margin:0px; */
+    margin-bottom:10px;
+    padding-bottom:0px;
 }
 
 a {
@@ -57,7 +77,7 @@ a {
 }
 
 a:hover {
-	color:#86e2f2;
+	color:#f62a93;
 }
 
 .line {
@@ -71,30 +91,117 @@ a:hover {
 .logo {
 	background:url(../images/logo.png) no-repeat;
 	float:left;
-	width:361px;
-	height:92px;
+	width:286px;
+	height:87px;
+	display:block;
+}
+
+.logo:hover {
+	background:url(../images/logo_hover.png) no-repeat;
+	float:left;
+	width:286px;
+	height:87px;
+	display:block;
+}
+
+.logo01 {
+	background:url(../images/logo_01.png) no-repeat;
+	float:left;
+	width:16px;
+	height:87px;
+}
+
+.logo01:hover {
+	background:url(../images/logo_01_hover.png) no-repeat;
+	float:left;
+	width:16px;
+	height:87px;
+}
+
+.logo02 {
+	background:url(../images/logo_02.png) no-repeat;
+	float:left;
+	width:10px;
+	height:87px;
+}
+
+.logo02:hover {
+	background:url(../images/logo_02_hover.png) no-repeat;
+	float:left;
+	width:10px;
+	height:87px;
+}
+
+.logo03 {
+	background:url(../images/logo_03.png) no-repeat;
+	float:left;
+	width:11px;
+	height:87px;
+}
+
+.logo03:hover {
+	background:url(../images/logo_03_hover.png) no-repeat;
+	float:left;
+	width:11px;
+	height:87px;
+}
+
+.logo04 {
+	background:url(../images/logo_04.png) no-repeat;
+	float:left;
+	width:14px;
+	height:87px;
+}
+
+.logo04:hover {
+	background:url(../images/logo_04_hover.png) no-repeat;
+	float:left;
+	width:14px;
+	height:87px;
+}
+
+.logo05 {
+	background:url(../images/logo_05.png) no-repeat;
+	float:left;
+	width:16px;
+	height:87px;
+}
+
+.logo05:hover {
+	background:url(../images/logo_05_hover.png) no-repeat;
+	float:left;
+	width:16px;
+	height:87px;
 }
 
 .header {
 	width:100%;
 	height:35px;
-	background:url(../images/bg_header.png) repeat-x;
+	/* background:url(../images/bg_header.png) repeat-x; */
+	background-color:#444544;
 	float:none;
 }
 
 .footer {
 	width:100%;
-	height:107px;
-	background:url(../images/bg_footer.png) repeat-x;
+	height:70px;
+	/* background:url(../images/bg_footer.png) repeat-x; */
+	background-color:#444544;
 	float:none;
 	clear:both;
 	text-shadow:none;
 	color:#979797;
-<<<<<<< HEAD
 	position: absolute;
-	bottom: 0px;
-=======
->>>>>>> 3c47fa951b4a64e55563f3f6e0d2dd0b13873303
+	bottom:0px;
+}
+
+.bottom {/*
+	width:519px;
+	height:215px;
+	margin:auto;
+	overflow:hidden !important;
+	position:absolute;
+	bottom:0px;*/
 }
 
 .content {
@@ -110,18 +217,14 @@ a:hover {
 	height:auto;
 	overflow:auto;
 	margin-bottom:0px;
+	display:block;
+	margin-top:20px;
 }
 
 .content_main {
 	height:auto;
 	overflow:auto;
-	margin-bottom:100px;
-}
-
-.navi_button {
-}
-
-.navi_button:hover {
+	margin-bottom:130px;
 }
 
 .blue_button {
@@ -135,11 +238,14 @@ a:hover {
 	color:#e6f8fb;
 	text-shadow:#0086a0 1px 1px;
 	float:right;
+	font-weight:bold;
 }
 
 .blue_button:hover {
 	background:url(../images/blue_button_hover.png) no-repeat;
 	display:block;
+	text-shadow:#8a1389 1px 1px;
+	font-weight:bold;
 }
 
 .small_button {
@@ -209,7 +315,7 @@ a:hover {
 	width:auto;
 	height:auto;
 	overflow:auto;
-	padding:10px 27px 30px 20px;
+	padding:10px 27px 10px 20px;
 }
 
 .admin_login {
@@ -218,21 +324,24 @@ a:hover {
 	height:auto;
 	overflow:auto;	
 	margin:7px 10px 32px 0;
-	color:#e4e4e4;
+	color:#666666;
+	font-size:13px;
+	text-shadow:#777777 1px 1px;
 }
 
 .admin_login a {
-	font-weight:normal;
+	font-weight:bold;
 	text-decoration:underline;
-	color:#e4e4e4;
-	text-shadow:#1d1d1d 1px 1px;
+	color:#adadad;
+	text-shadow:#ffffff 1px 1px;
 }
 
 .admin_login a:hover {
-	font-weight:normal;
+	font-weight:bold;
+	font-style:italic;
 	text-decoration:none;
-	color:#ffffff;
-	text-shadow:#1d1d1d 1px 1px;
+	color:#adadad;
+	text-shadow:#ffffff 1px 1px;
 }
 
 .searchfield {
@@ -245,10 +354,9 @@ a:hover {
 	background:url(../images/login_status_box.png) no-repeat;
 	float:right;
 	width:235px;
-	height:90px;
-	padding:12px 15px 15px 15px;
+	height:74px;
+	padding:12px 23px 15px 15px;
 	overflow:none;
-	margin-right:7px;
 	
 }
 
@@ -273,17 +381,32 @@ a:hover {
 	color:#808080;
 }
 
-.login_icon {
+.login_icon_admin {
+	background:url(../images/login_icon_admin.png) no-repeat;
+	float:right;
+	width:60px;
+	height:20px;
+}
+
+.login_icon_auth {
 	background:url(../images/login_icon_auth.png) no-repeat;
 	float:right;
 	width:60px;
 	height:20px;
 }
+
+.login_icon {
+	background:url(../images/login_icon.png) no-repeat;
+	float:right;
+	width:60px;
+	height:20px;
+}
+
 .small_box_top {
 	background:url(../images/small_box_top.png) no-repeat;
 	float:none;
 	width:275px;
-	height:8px;
+	height:12px;
 }
 
 .small_box_center {
@@ -292,6 +415,11 @@ a:hover {
 	width:275px;
 	height:auto;
 	overflow:auto;
+	line-height: 180%;
+}
+
+.small_box_center h1 {
+	margin-top:-4px;	
 }
 
 .small_box_bottom {
@@ -305,7 +433,7 @@ a:hover {
 	background:url(../images/big_box_top.png) no-repeat;
 	float:none;
 	width:567px;
-	height:8px;
+	height:12px;
 }
 
 .big_box_center {
@@ -314,13 +442,28 @@ a:hover {
 	width:567px;
 	height:auto;
 	overflow:auto;
+	line-height: 180%;
 }
+
+.big_box_center h1 {
+	margin-top:-4px;	
+}
+
 
 .big_box_bottom {
 	background:url(../images/big_box_bottom.png) no-repeat;
 	float:none;
 	width:567px;
 	height:15px;
+}
+
+.scrollbox {
+	overflow:auto;
+	height:auto;
+	width:100%;
+	overflow-x:hidden;
+	/*padding: 0 10px 0 0;
+	margin-bottom:50px;*/
 }
 
 .formfield {
@@ -373,6 +516,41 @@ a:hover {
 	float:none;
 	width:237px;
 	height:111px;
+}
+
+.facebook {
+	float:none;
+	width:28px;
+	height:26px;
+	display:block;
+	z-index:5;
+	position:relative;
+	left:24px;
+	top:55px;
+}
+
+.test {
+	background:url(../images/test.png) no-repeat;
+	float:none;
+	width:243px;
+	height:160px;
+	display:block;
+	z-index:5;
+	margin:auto;
+}
+
+.schild {
+	background:url(../images/schild.png) no-repeat;
+	float:none;
+	width:134px;
+	height:160px;
+	display:block;
+	z-index:5;
+	margin:auto;
+}
+
+.facebook:hover {
+	background:url(../images/facebook_over.png) no-repeat;
 }
 
 .addStudent_table {

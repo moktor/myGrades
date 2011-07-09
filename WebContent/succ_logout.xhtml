@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="logout_template.xhtml">
+
+<ui:define name="content">
+			<h1 style="margin-top:3px;">Sie wurden erfolgreich ausgeloggt!</h1>
+     		<div class="line"></div>
+     		<p>Der Benutzer mit der Kennung <strong><h:outputText value="#{loginCtrl.getnds()}"/></strong> wurde erfolgreich ausgeloggt!</p>
+	 		<p>Vielen Danke f&uuml;r Ihren Besuch auf myGrades.de, Sie werden in wenigen Momenten auf die <h:link value="Startseite" outcome="index"/> weitergeleitet.</p>
+			
+</ui:define>
+	
+</ui:composition>
+</html>

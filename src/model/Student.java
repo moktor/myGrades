@@ -41,6 +41,8 @@ public class Student implements Serializable {
 	private String keyword;
 	private String salt;
 	private int fachsemester;
+	private int loginvalue;
+	
 	
 	
 	
@@ -50,7 +52,7 @@ public class Student implements Serializable {
 
 	
 	public Student(String nds, String gender, String firstname, String name,
-			String adresse, String email, String phone, String mobil,
+			String adresse, String email, String phone, int loginvalue , String mobil,
 			String keyword, int fachsemester) {
 		this.fachsemester = fachsemester;
 		this.nds = nds;
@@ -62,13 +64,26 @@ public class Student implements Serializable {
 		this.phone = phone;
 		this.mobil = mobil;
 		this.keyword = keyword;
+		this.loginvalue = loginvalue;
 	}
 
 
 // --------------------- getter / setter ----------------------------
 
+	
+	
 	public int getId() {
 		return id;
+	}
+
+
+	public int getLoginvalue() {
+		return loginvalue;
+	}
+
+
+	public void setLoginvalue(int loginvalue) {
+		this.loginvalue = loginvalue;
 	}
 
 

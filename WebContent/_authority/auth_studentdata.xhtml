@@ -10,49 +10,47 @@
 	
 	<ui:define name="content" >
 	   <!--This is where the magic happens!!!-->
-          <h1>Studentendaten</h1>
-           <div class="line"></div>
-           <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Studenten.</p>
+          <div class="scrollbox">
+          	<h1>Studentendaten</h1>
+            <div class="line"></div>
+            <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Studenten.</p>
                 	
                 <h:form>
                 
-                <h:dataTable value="#{studentCtrl.allStudents}" var="student"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
+                <h:dataTable value="#{studentCtrl.getAllStudents(2)}" var="student"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
 
                     <h:column>
                         <f:facet name="header"><h:commandLink value="Nds" action="#{studentCtrl.sortStudentsByNds}"/></f:facet>
                         #{student.nds}
                     </h:column>
                     <h:column>
-              			<f:facet name="header">
-              			
-              	<f:facet name="header"><h:commandLink value="Name" action="#{studentCtrl.sortStudentsByName}"/></f:facet>
-              			
-              			</f:facet>
+              			<f:facet name="header"><h:commandLink value="Name" action="#{studentCtrl.sortStudentsByName}"/></f:facet>
                         #{student.name}
                     </h:column>
                     <h:column>
                         <f:facet name="header"><h:commandLink value="Vorname" action="#{studentCtrl.sortStudentsByFirst}"/></f:facet>
                         #{student.firstname}
                     </h:column>
-                    <h:column>
+                    <!-- <h:column>
                         <f:facet name="header"><h:commandLink value="Adresse" action="#{studentCtrl.sortStudentsByAdress}"/></f:facet>
                         #{student.adresse}
-                    </h:column>
+                    </h:column> -->
                  	<h:column>
         			<f:facet name="header">Ändern</f:facet>
                         <h:commandLink value="" action="#{studentCtrl.edit(student)}" class="edit_button" immediate="true"/>
                     </h:column>
                     <h:column>
                     <f:facet name="header">Löschen</f:facet>
-                       <h:selectBooleanCheckbox value="#{student.deleteInc}"/>
+                       <h:selectBooleanCheckbox value="#{student.deleteInc}" style="margin-left:17px;"/>
                     </h:column>
                 </h:dataTable>
+                <div class="bottom">
                 <div class="line"></div>
                 <h:commandButton value="Löschen" action="#{studentCtrl.deleteSelected}" class="blue_button"  style="float:right;"/>
                 <h:commandButton value="Erstellen" action="#{studentCtrl.addStudentHelper}" class="blue_button" style="float:left;"/>
-                
+                </div>
                 </h:form>
-           
+         </div> 
 	</ui:define>
 	
 </ui:composition>

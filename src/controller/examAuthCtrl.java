@@ -67,7 +67,7 @@ public class examAuthCtrl implements Serializable {
 	
 	public String createExamAuth(){
 		dbP.createExamAuth( nds, gender, titel, firstname, lastname, adresse, email, phone, fieldOfStudy,mobil, keyword);		
-		return "addExamAuth";
+		return "auth_examinerdata.xhtml";
 	}
 	
 	public String addExamAuthHelper(){

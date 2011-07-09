@@ -43,6 +43,9 @@ public class studentCtrl implements Serializable {
 	private boolean sortAdress;
 	private boolean sortFieldOfStudy;
 	
+	// ----------------- FM ---------------- filter attribute
+	private String filter;
+	
 	private Student currentStudent;
 	
 	private Student student; // temp student
@@ -96,6 +99,9 @@ public class studentCtrl implements Serializable {
 		
 
 	}
+	
+	// ------------------------- FM ----------------------- listFilter
+	
 	
 	// --------------------- FM ------------------------getAllStudents----------------------
 	// Returns a list of all Students

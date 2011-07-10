@@ -68,12 +68,15 @@ public class studentCtrl implements Serializable {
 	
 	private List<FieldOfStudy> studyList;
 	private FieldOfStudy fieldOfStudy;
+
 	
 
 	@EJB
 	DbPerson dbP;
 	@EJB
 	DbMisc dbM;
+
+	
 
 	
 
@@ -117,7 +120,6 @@ public class studentCtrl implements Serializable {
 		}
 		String lastname = a.getFirstname();
 		
-
 	}
 	
 	
@@ -183,8 +185,10 @@ public class studentCtrl implements Serializable {
 		return list;
 	}
 	
+	
 	// --------------------- FM ------------------------sortStudents----------------------
 	
+
 	public List<Student> sortList(List<Student> list){
 		if(sortId){
 			list = dbP.sortById(list);
@@ -203,6 +207,7 @@ public class studentCtrl implements Serializable {
 		}
 		return list;
 	}
+	
 	
 	
 	public void sortStudentsById(){
@@ -279,7 +284,7 @@ public class studentCtrl implements Serializable {
 	}
 	// ----------------------- FM ---------------------deleteSelected----------------
     // deletes selected Students
-	
+
 	public String deleteSelected(){
 	
 		dbP.deleteMultipleStudents(studentList);

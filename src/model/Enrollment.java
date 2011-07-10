@@ -16,7 +16,26 @@ public class Enrollment implements Serializable {
 	private static final long serialVersionUID = 5743572355634097500L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
+	@ManyToOne(optional=false)
+	private Student parentStudent; //FremdschlŸssel
+	
+	@ManyToOne(optional=false)
+	private Course parentCourse; //FremdschlŸssel
+	
+	private int grade;
+
+	public Enrollment() {
+		
+	}
+	
+	public Enrollment(Student student, Course course, int grade) {
+		this.parentStudent = student;
+		this.parentCourse = course;
+		this.grade = grade;
+	}
 
 	public void setId(int id) {
 		this.id = id;
@@ -24,6 +43,30 @@ public class Enrollment implements Serializable {
 
 	public int getId() {
 		return id;
+	}
+
+	public int getGrade() {
+		return grade;
+	}
+
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
+
+	public void setParentStudent(Student parentStudent) {
+		this.parentStudent = parentStudent;
+	}
+
+	public Student getParentStudent() {
+		return parentStudent;
+	}
+
+	public void setParentCourse(Course parentCourse) {
+		this.parentCourse = parentCourse;
+	}
+
+	public Course getParentCourse() {
+		return parentCourse;
 	}
    
 }

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="auth_template.xhtml">
+	<ui:define name="content">
+	   <!--This is where the magic happens!!!-->
+	   <div class="scrollbox">
+          <h1>Prüfungen benoten</h1>
+           <div class="line"></div>
+           <p>Hier sehen sie alle Studenten, die sich zur Prüfung #{courseCtrl.currentcourse.name} angemeldet haben. Die Prüfung wurde schon geschrieben, und kann benotet werden. Wählen sie für jeden Studenten am Ende der Zeile das Prüfungsergebnis, und bestätigen sie mit Speichern.</p>
+                
+                <h:form>
+                <h:dataTable value="#{courseCtrl.getStudentsByCourse()}" var="enrollment"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
+                    <h:column>
+                        <f:facet name="header"><h:commandLink value="NDS" action="#{courseCtrl.sortCoursesById}"/></f:facet>
+                        #{enrollment.parentStudent.nds}
+                    </h:column>
+                    <h:column>
+              			<f:facet name="header"><h:commandLink value="Name" action="#{courseCtrl.sortCoursesByName}"/></f:facet>
+                        #{enrollment.parentStudent.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"><h:commandLink value="Vorname" action="#{courseCtrl.sortCoursesByFieldOfStudy}"/></f:facet>
+                        #{enrollment.parentStudent.firstname}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"><h:commandLink value="Fach" action="#{courseCtrl.sortCoursesByDate}"/></f:facet>
+                        #{enrollment.parentCourse.fieldOfStudy}
+                    </h:column>
+                    <h:column>
+                    	<f:facet name="header">Note</f:facet>
+                    	<h:selectOneMenu value="#{enrollment.grade}">
+                   		<f:selectItem itemValue="0" itemLabel="unbenotet"/>
+                   		<f:selectItem itemValue="1" itemLabel="1.0"/>
+                   		<f:selectItem itemValue="2" itemLabel="1.3"/>
+                   		<f:selectItem itemValue="3" itemLabel="1.7"/>
+                   		<f:selectItem itemValue="4" itemLabel="2.0"/>
+                   		<f:selectItem itemValue="5" itemLabel="2.3"/>
+                   		<f:selectItem itemValue="6" itemLabel="2.7"/>
+                   		<f:selectItem itemValue="7" itemLabel="3.0"/>
+                   		<f:selectItem itemValue="8" itemLabel="3.0"/>
+                   		<f:selectItem itemValue="9" itemLabel="3.3"/>
+                   		<f:selectItem itemValue="10" itemLabel="3.7"/>
+                   		<f:selectItem itemValue="11" itemLabel="4.0"/>
+                   		<f:selectItem itemValue="12" itemLabel="4.3"/>
+                   		<f:selectItem itemValue="13" itemLabel="4.7"/>
+                   		<f:selectItem itemValue="14" itemLabel="5.0"/>
+               			</h:selectOneMenu>
+                    </h:column>
+                </h:dataTable>
+                <div class="line"></div>
+                <h:commandButton value="Speichern" action="#{courseCtrl.updateGrades}" class="blue_button" style="float:right;"/>
+                </h:form>
+    </div>       
+	</ui:define>
+	
+</ui:composition>
+</html>

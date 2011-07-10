@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -14,6 +15,8 @@ import javax.inject.Named;
 
 import business.*;
 import model.Course;
+import model.Enrollment;
+import model.Student;
 
 
 @Named
@@ -42,6 +45,9 @@ public class courseCtrl implements Serializable {
 	private boolean sortDate;
 	
 	private Course currentCourse;
+	private Course currentcourse;
+	
+	List<Enrollment> enrollmentList = null;
 	
 	private Course course; // temp course
 	private List<Course> courseList;
@@ -204,8 +210,90 @@ public class courseCtrl implements Serializable {
     }
     	
     }
+    
+    //--------------------------------------------------
+    
+    public String checkDate(Course course) {
+    	
+    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    	Date courseDate = course.getDate();
+    	
+    	Date currentDate =  java.sql.Date.valueOf(dateFormat.format(new java.util.Date()));
+    	
+    	
+    	if ( courseDate.before(currentDate) )
+    		return "yes";
+    	if ( courseDate.after(currentDate) ) 
+    		return "no";
+    	else
+    		return "fehler";
+    	
+    }
+    
+    // -------------------------------------------------
+    
+    public String getStudentsToGrade(Course course) {
+    	
+    	setCurrentCourse(course);
+    	
+    	return "auth_gradestudents";
+    }
 
+    //-------------------------------------
+    
+    public List<Enrollment> getStudentsByCourse() {
+    	
+    	int courseId = currentCourse.getId();
+    	enrollmentList = dbC.getStudentsByCourseId(courseId);
+    	Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "Liste" + enrollmentList.toString());
+    	return  enrollmentList;
+    }
 
+    //-------------------------------------
+    
+    public void testMethod() {
+    	
+    	Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "Checkpoint 1");
+    	
+    	Student student = new Student();
+    	Course course = new Course();
+    	student.setName("Hans");
+    	course.setName("ADP");
+    	//dbC.testMethod(student, course, 1);
+    	Enrollment e = dbC.joinTest();
+    	e.getParentStudent().getName();
+    	Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "Checkpoint 3" + e.getParentStudent().getName());
+    }
+    
+    //-------------------------------------
+    
+    public String updateGrades(){
+    	
+    if( dbC.editEnrollment(enrollmentList)){
+    	return "auth_gradestudents";
+    }else
+    {
+    	return "auth_editError";
+    }
+    	
+    }
+    //-------------------------------------
+    
+    public List<Course> coursesToEnroll() {
+    	int id = 5; //Wie kommen wir an die ID?
+    	List<Course> list = dbC.coursesToEnroll(id);
+		courseList = sortList(list);
+		return list;
+    }
+    
+    //-------------------------------------
+    
+    public List<Enrollment> allEnrollments() {
+    	int id = 5; 
+    	List<Enrollment> list = dbC.allEnrollments(id);
+		return list;
+    }
+    
 	//----------------- Getter / Setter ------------------------------------
     
 	public int getId() {
@@ -302,6 +390,14 @@ public class courseCtrl implements Serializable {
 
 	public void setYear(String year) {
 		this.year = year;
+	}
+
+	public Course getCurrentcourse() {
+		return currentcourse;
+	}
+
+	public void setCurrentcourse(Course currentcourse) {
+		this.currentcourse = currentcourse;
 	}
 	
 }

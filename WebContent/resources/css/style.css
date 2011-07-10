@@ -29,6 +29,24 @@ body {
 	margin-bottom:10px;
 }
 
+.no {
+	width:27px;
+	height:27px;
+	background:url(../images/no.png);
+	float:none;
+	position:relative;
+	left:5px;
+}
+
+.yes {
+	width:27px;
+	height:27px;
+	background:url(../images/yes.png);
+	float:none;
+	position:relative;
+	left:5px;
+}
+
 h1 {
 	font-size:18px;
 	color:#28bad4;

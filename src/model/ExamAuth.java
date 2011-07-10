@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 
-public class ExamAuth implements Serializable {
+public class ExamAuth extends Person implements Serializable {
 
 	
 	/**
@@ -51,7 +51,7 @@ public class ExamAuth implements Serializable {
 	
 	public  ExamAuth(String nds,String titel, String gender, String firstname, String name,
 			String adresse, String email, String phone, String fieldOfStudy, String mobil,
-			String keyword) {
+			String keyword, String salt) {
 	
 		this.nds = nds;
 		this.gender = gender;
@@ -63,6 +63,7 @@ public class ExamAuth implements Serializable {
 		this.phone = phone;
 		this.mobil = mobil;
 		this.keyword = keyword;
+		this.salt = salt;
 		this.fieldOfStudy = fieldOfStudy;
 	}
 	

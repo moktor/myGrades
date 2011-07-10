@@ -6,48 +6,40 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-
 <ui:composition template="auth_template.xhtml">
 	<ui:define name="content">
 	   <!--This is where the magic happens!!!-->
 	   <div class="scrollbox">
-          <h1>Prüfungen anlegen/löschen</h1>
+          <h1>Prüfungen benoten</h1>
            <div class="line"></div>
-           <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Prüfungen. Klicken sie auf Edit, um die Prüfung zu bearbeiten oder einen Termin festzulegen.</p>
+           <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Prüfungen. Klicken sie auf den Prüfungsnamen, um alle Studenten anzuzeigen, die sich zur jeweiligen Prüfung angemeldet haben, um diese zu benoten.</p>
                 
+              
                 <h:form>
                 <h:dataTable value="#{courseCtrl.allCourses}" var="course"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
                     <h:column>
-                        <f:facet name="header"><h:commandLink value="Prüfungs ID" action="#{courseCtrl.sortCoursesById}"/></f:facet>
+                        <f:facet name="header"><h:commandLink value="ID" action="#{courseCtrl.sortCoursesById}"/></f:facet>
                         #{course.id}
                     </h:column>
                     <h:column>
               			<f:facet name="header"><h:commandLink value="Name" action="#{courseCtrl.sortCoursesByName}"/></f:facet>
-                        #{course.name}
+                        <h:commandLink value="#{course.name}" action="#{courseCtrl.getStudentsToGrade(course)}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header"><h:commandLink value="Fach" action="#{courseCtrl.sortCoursesByFieldOfStudy}"/></f:facet>
                         #{course.fieldOfStudy}
                     </h:column>
-                    <h:column>
-                        <f:facet name="header"><h:commandLink value="Termin" action="#{courseCtrl.sortCoursesByDate}"/></f:facet>
-                        #{course.date}
-                    </h:column>
                  	<h:column>
-        			<f:facet name="header">Ändern</f:facet>
-                        <h:commandLink value="" action="#{courseCtrl.edit(course)}" class="edit_button" immediate="true"/>
-                    </h:column>
-                    <h:column>
-                    <f:facet name="header">Löschen</f:facet>
-                       <h:selectBooleanCheckbox value="addCourse" style="margin-left:17px;"/>
+        			<f:facet name="header">Status</f:facet>
+                        <div class="yes"></div> <!-- courseCtrl.checkDate(course) -->
                     </h:column>
                 </h:dataTable>
-                <div class="bottom">
+                
+                
+                
                 <div class="line"></div>
-                <h:commandButton value="Löschen" action="auth_authData" class="blue_button"  style="float:right;"/>
-                <h:commandButton value="Erstellen" action="#{courseCtrl.addCourseHelper}" class="blue_button" style="float:left;"/>
-                </div>
-                </h:form>
+                </h:form> 
+                
     </div>       
 	</ui:define>
 	

@@ -39,9 +39,8 @@ private boolean loggedInadmin = false;
 private boolean loggedInauth = false;
  
  
- private Student loggedinstudent;
- private ExamAuth loggedinperson;
- private Admin loggedinadmin;
+ private Person loggedinstudent;
+
  @EJB
  DbAccount dba;
  
@@ -69,13 +68,13 @@ private boolean loggedInauth = false;
   this.password = password;
  }
 
- //TODO JL Exam. Auth. dba.validate() == 2
+
 public String login() {
 	List<Student> results = dba.loginQuery(nds, password);
         if ( !results.isEmpty() ) {
         	loggedinstudent = results.get(0);
-        	firstname = loggedinstudent.getFirstname();
-        	lastname = loggedinstudent.getName();
+        	firstname = ((Student) loggedinstudent).getFirstname();
+        	lastname = ((Student) loggedinstudent).getName();
          
          		if (loggedinstudent instanceof Student){
             
@@ -87,13 +86,12 @@ public String login() {
          }
          
          List<ExamAuth> authresults = dba.loginauthQuery(nds, password);
-         
          if ( !authresults.isEmpty() ){
-         loggedinperson = authresults.get(0);
-         firstname = loggedinperson.getFirstname();
-         lastname = loggedinperson.getName();
+        	 loggedinstudent = authresults.get(0);
+         	 firstname = ((ExamAuth) loggedinstudent).getFirstname();
+         	 lastname = ((ExamAuth) loggedinstudent).getName();
          
-         		if (loggedinperson instanceof ExamAuth){
+         		if (loggedinstudent instanceof ExamAuth){
          			setLoggedInauth();
          			return "_authority/auth_welcome";
         
@@ -103,11 +101,11 @@ public String login() {
          List<Admin> adminresults = dba.loginadminQuery(nds, password);
          
          if ( !adminresults.isEmpty() ){
-        	 loggedinadmin = adminresults.get(0);
-        	 firstname = loggedinadmin.getFirstname();
-        	 lastname = loggedinadmin.getLastname();
-         
-        	 	if(loggedinadmin instanceof Admin){
+        	 loggedinstudent = adminresults.get(0);
+         	firstname = ((Admin) loggedinstudent).getFirstname();
+         	lastname = ((Admin) loggedinstudent).getLastname();
+        	 
+        	 	if(loggedinstudent instanceof Admin){
         	 		setLoggedInadmin();
         	 		return "_admin/admin_welcome";
         	 	}
@@ -167,7 +165,7 @@ public boolean isLoggedInauth() {
 		return false;
 
  }
-@Produces @LoggedIn Student getCurrentUser() {
+@Produces @LoggedIn Object getCurrentUser() {
 
         return loggedinstudent;
 

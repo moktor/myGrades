@@ -6,7 +6,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-<ui:composition template="auth_template.xhtml">
+<ui:composition template="admin_template.xhtml">
 	
 	<ui:define name="content">
 
@@ -28,7 +28,7 @@
                </tr>
                
                <tr> 
-                 <td><h2 class="formlabel">Prüfer ID</h2></td>
+                 <td><h2 class="formlabel">Kennung</h2></td>
                  <td><div class="formfield">
                      <div class="formfield_left"></div>
                    <h:inputText value="#{studentCtrl.nds}" id="nds" required="true" class="formfield_center">

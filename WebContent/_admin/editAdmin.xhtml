@@ -26,7 +26,7 @@
                <h2>Name</h2>
                <div class="formfield">
                		<div class="formfield_left"></div>
-                    <h:inputText value="#{adminCtrl.currentAdmin.name}" id="userName" required="true" class="formfield_center"/><!-- Benutzerpasswort -->
+                    <h:inputText value="#{adminCtrl.currentAdmin.lastname}" id="userName" required="true" class="formfield_center"/><!-- Benutzerpasswort -->
                     <div class="formfield_right"></div>
                </div>
                
@@ -35,10 +35,10 @@
                		<div class="formfield_left"></div>
                     <h:inputText value="#{adminCtrl.currentAdmin.firstname}" id="userFirstname" required="true" class="formfield_center"/><!-- Benutzerpasswort -->
                     <div class="formfield_right"></div>
-               
+                </div>
                
                <h:commandButton value="Speichern" action="#{adminCtrl.updateAdmin}" class="blue_button" style="margin-top:10px;"/>
-              
+            
               </h:form>
 	
 	

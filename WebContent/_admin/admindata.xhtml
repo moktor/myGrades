@@ -13,32 +13,28 @@
           <div class="scrollbox">
           <h1>Übersicht über Admin</h1>
            <div class="line"></div>
-           <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Prüfer.</p>
+           <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Admin's.</p>
                 
                 <h:form>
-                <h:dataTable value="#{adminCtrl.getAllAdmins(1)}" var="admin"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
+                <h:dataTable value="#{adminCtrl.getAllAdmins()}" var="admin"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
                     <h:column>
                          
-                         <f:facet name="header"><h:commandLink value="Prüfer ID" action="#{examAuthCtrl.sortExamAuthsByNds}"/></f:facet>
+                         <f:facet name="header"><h:commandLink value="Kennung" action="#{adminCtrl.sortAdminsByNds}"/></f:facet>
                         
-                        ${examAuth.nds}
+                        ${admin.nds}
                     </h:column>
                     <h:column>
                     
-         				<f:facet name="header"><h:commandLink value="Name" action="#{examAuthCtrl.sortExamAuthsByName}"/></f:facet>
+         				<f:facet name="header"><h:commandLink value="Name" action="#{adminCtrl.sortAdminsByName}"/></f:facet>
                     
                 
-                        #{examAuth.name}
+                        #{admin.lastname}
                     </h:column>
                     <h:column>
-                        <f:facet name="header"><h:commandLink value="Vorname" action="#{examAuthCtrl.sortExamAuthsByFirst}"/></f:facet>
-                        #{examAuth.firstname}
+                        <f:facet name="header"><h:commandLink value="Vorname" action="#{adminCtrl.sortAdminsByFirst}"/></f:facet>
+                        #{admin.firstname}
                     </h:column>
-                    <h:column>
-                        <f:facet name="header"><h:commandLink value="Fachrichtung" action="#{examAuthCtrl.sortExamAuthsByFieldOfStudy}"/></f:facet>
-                        #{examAuth.fieldOfStudy}
-
-                    </h:column>
+                   
                  	<h:column>
         			<f:facet name="header">Ändern</f:facet>
                         <h:commandLink value="" action="#{adminCtrl.edit(admin)}" class="edit_button" immediate="true"/>
@@ -51,8 +47,8 @@
                 
                 <div class="bottom">
                 <div class="line"></div>
-                <h:commandButton value="Löschen" action="#{examAuthCtrl.deleteSelected}" class="blue_button"  style="float:right;"/>
-                <h:commandButton value="Erstellen" action="#{examAuthCtrl.addExamAuthHelper}" class="blue_button" style="float:left;"/>
+                <h:commandButton value="Löschen" action="#{adminCtrl.deleteSelected}" class="blue_button"  style="float:right;"/>
+                <h:commandButton value="Erstellen" action="#{adminCtrl.addAdminHelper}" class="blue_button" style="float:left;"/>
                 </div>
                 </h:form>
            </div>

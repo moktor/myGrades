@@ -16,10 +16,16 @@ public class Admin implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 5975597567059046416L;
+	
+	
+	@Transient
+	private boolean deleteInc;
+
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private int nds;
+	private String nds;
 	private String gender;
 	private String firstname;
 	private String lastname;
@@ -29,7 +35,28 @@ public class Admin implements Serializable {
 	private String mobil;
 	private String keyword;
 	private String salt;
+
 	
+	
+	// ------------------------ ctors -----------------------------------
+	public Admin(){}
+
+	
+	public Admin(String nds, String gender, String firstname, String name,
+			String adresse, String email, String phone , String mobil,
+			String keyword) {
+		
+		this.nds = nds;
+		this.gender = gender;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.adresse = adresse;
+		this.email = email;
+		this.phone = phone;
+		this.mobil = mobil;
+		this.keyword = keyword;
+	}
+
 	
 	
 	
@@ -42,13 +69,13 @@ public class Admin implements Serializable {
 	/**
 	 * @return the nds
 	 */
-	public int getNds() {
+	public String getNds() {
 		return nds;
 	}
 	/**
 	 * @param nds the nds to set
 	 */
-	public void setNds(int nds) {
+	public void setNds(String nds) {
 		this.nds = nds;
 	}
 	/**
@@ -160,7 +187,16 @@ public class Admin implements Serializable {
 		this.salt = salt;
 	}
 	
-	
+
+	public void setDeleteInc(boolean deleteInc) {
+		this.deleteInc = deleteInc;
+	}
+
+
+	public boolean isDeleteInc() {
+		return deleteInc;
+	}
+
 	
 	
    

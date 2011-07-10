@@ -120,6 +120,7 @@ public class studentCtrl implements Serializable {
 	//additional test logger for view of all students
 	public List<Student> getAllStudents(){
 		List<Student> list = dbP.getAllStudents();
+
 		studentList = sortList(list);				// sort
 		
 		studentList = dbP.filter(studentList, criteria);		// filter

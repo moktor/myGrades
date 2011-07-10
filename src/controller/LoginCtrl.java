@@ -29,9 +29,14 @@ public class LoginCtrl implements Serializable {
   * 
   */
  private static final long serialVersionUID = 5186306447159703311L;
- private String nds, password, firstname, lastname;
+ private String nds, password, firstname, lastname, email;
 
- private boolean loggedIn = false;
+ 
+
+
+private boolean loggedIn = false;
+private boolean loggedInadmin = false;
+private boolean loggedInauth = false;
  
  
  private Student loggedinstudent;
@@ -89,7 +94,7 @@ public String login() {
          lastname = loggedinperson.getName();
          
          		if (loggedinperson instanceof ExamAuth){
-         			setLoggedIn();
+         			setLoggedInauth();
          			return "_authority/auth_welcome";
         
          		}
@@ -103,7 +108,7 @@ public String login() {
         	 lastname = loggedinadmin.getLastname();
          
         	 	if(loggedinadmin instanceof Admin){
-        	 		setLoggedIn();
+        	 		setLoggedInadmin();
         	 		return "_admin/admin_welcome";
         	 	}
         }
@@ -118,9 +123,24 @@ public void setLoggedIn(){
     "studentctrl Liste:");
  loggedIn = true;
 }
+public void setLoggedInauth(){
+	Logger.getLogger(LoginCtrl.class.getName())
+    .log(Level.INFO, 
+    "studentctrl Liste:");
+ loggedInauth = true;
+}
+public void setLoggedInadmin(){
+	Logger.getLogger(LoginCtrl.class.getName())
+    .log(Level.INFO, 
+    "studentctrl Liste:");
+ loggedInadmin = true;
+}
+
 
 public String logout() {
     loggedIn = false;
+    loggedInadmin = false;
+    loggedInauth = false;
     loggedinstudent = null;
     return "/succ_logout.xhtml?faces-redirect=true";
 
@@ -132,12 +152,25 @@ public boolean isLoggedIn() {
 		return false;
 
  }
+public boolean isLoggedInadmin() {
+	if(loggedInadmin == true)
+		return true;
+	else
+		return false;
+
+ }
+public boolean isLoggedInauth() {
+	if(loggedInauth == true)
+		return true;
+	else
+		return false;
+
+ }
 @Produces @LoggedIn Student getCurrentUser() {
 
         return loggedinstudent;
 
     }
-
 
 
 public String getFirstname() {
@@ -161,5 +194,15 @@ public String getLastname() {
 public void setLastname(String lastname) {
 	this.lastname = lastname;
 }
+public String getEmail() {
+	return email;
+}
+
+
+
+public void setEmail(String email) {
+	this.email = email;
+}
+
  
 }

@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="auth_template.xhtml">
+	
+	<ui:define name="content">
+
+          <h1>Admindaten</h1>
+               <div class="line"></div>
+               <p>Tragen sie die entsprechenden Daten in das unten stehende Formular ein und bestätigen sie mit 'Anlegen'.</p>
+               
+               <h:form>
+                               <table class="addAdmin_table">
+              
+               <tr>               
+               <td><h2 class="formlabel">Geschlecht</h2></td>
+               <td><div class="formfield">
+               <h:selectOneMenu value="#{studentCtrl.gender}">
+                   <f:selectItem itemValue="m" itemLabel="männlich"/>
+                   <f:selectItem itemValue="w" itemLabel="weiblich"/>
+               </h:selectOneMenu>
+               </div></td>
+               </tr>
+               
+               <tr> 
+                 <td><h2 class="formlabel">Prüfer ID</h2></td>
+                 <td><div class="formfield">
+                     <div class="formfield_left"></div>
+                   <h:inputText value="#{studentCtrl.nds}" id="nds" required="true" class="formfield_center">
+                   <f:validator validatorId="loginValidator" />
+                   </h:inputText>
+                   <div class="formfield_right"></div>
+                   <h:message for="nds" style="color:red" />
+               </div></td>
+                 </tr>
+                 
+                 <tr> 
+                 <td><h2 class="formlabel">Nachname</h2></td>
+                 <td><div class="formfield">
+                     <div class="formfield_left"></div>
+                   <h:inputText value="#{studentCtrl.lastname}" id="nachname" required="true" class="formfield_center">
+                   <f:validator validatorId="NameValidator" />
+                   </h:inputText>
+                   <div class="formfield_right"></div>
+                   <h:message for="nachname" style="color:red" />
+                 </div></td>
+                 </tr>
+                 
+                 <tr> 
+                 <td><h2 class="formlabel">Vorname</h2></td>
+                 <td><div class="formfield">
+                     <div class="formfield_left"></div>
+                   <h:inputText value="#{studentCtrl.firstname}" id="vorname" required="true" class="formfield_center">
+                   <f:validator validatorId="NameValidator" />
+                   </h:inputText>
+                   <div class="formfield_right"></div>
+                   <h:message for="vorname" style="color:red" />
+                 </div></td>
+                 </tr>
+                 
+                 <tr> 
+                 <td><h2 class="formlabel">Passwort</h2></td>
+                 <td><div class="formfield">
+                     <div class="formfield_left"></div>
+                   <h:inputSecret value="#{studentCtrl.keyword}" id="password" required="true" class="formfield_center">
+                   <f:validator validatorId="passwordValidator"/>
+                   </h:inputSecret>
+                   <div class="formfield_right"></div>
+                   <h:message for="password" style="color:red" />
+                 </div></td>
+                 </tr>
+                 
+              
+                 <tr> 
+                 <td><h2 class="formlabel">Email</h2></td>
+                 <td><div class="formfield">
+                     <div class="formfield_left"></div>
+                   <h:inputText value="#{studentCtrl.email}" id="email" required="false" class="formfield_center">
+                   <f:validator validatorId="emailValidator"/>
+                   </h:inputText>
+                   <div class="formfield_right"></div>
+                   <h:message for="email" style="color:red" />
+                 </div></td>
+                 </tr>
+                 
+                 <tr> 
+                 <td><h2 class="formlabel">Telefonnr</h2></td>
+                 <td><div class="formfield">
+                     <div class="formfield_left"></div>
+                   <h:inputText value="#{studentCtrl.phone}" required="false" id="phone" class="formfield_center">
+                   <f:validator validatorId="phoneValidator"/>
+                   </h:inputText>
+                   <div class="formfield_right"></div>
+                   <h:message for="phone" style="color:red" />
+                 </div></td>
+                 </tr>
+                 
+                 <tr><td colspan="2"><h:commandButton value="Anlegen" action="#{adminCtrl.createAdmin}" class="blue_button" style="float:right;"/></td></tr>
+                 </table>
+                 
+                 </h:form>
+                 
+	</ui:define>
+</ui:composition>
+
+</html>

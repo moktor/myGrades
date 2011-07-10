@@ -36,7 +36,7 @@ public class PasswordValidator implements Validator{
  
 			FacesMessage msg = 
 				new FacesMessage("Passwort validierung fehlgeschlagen.", 
-						"Ungültiges Passwort.");
+						"UngŸltiges Passwort.");
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			throw new ValidatorException(msg);
  

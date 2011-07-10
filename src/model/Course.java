@@ -2,7 +2,8 @@ package model;
 
 import java.io.Serializable;
 import java.sql.Date;
-
+import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -28,6 +29,10 @@ public class Course implements Serializable {
 	private String name;
 	private String fieldofstudy;
 	private Date date;
+	
+	@OneToMany(mappedBy = "parentCourse", cascade=CascadeType.ALL, orphanRemoval=true)
+    private List<Enrollment> items = new LinkedList<Enrollment>();
+	
 	
 	// ------------------------ ctors -----------------------------------
 	

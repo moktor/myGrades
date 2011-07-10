@@ -39,7 +39,7 @@ private boolean loggedInadmin = false;
 private boolean loggedInauth = false;
  
  
- private Object loggedinstudent;
+ private Person loggedinstudent;
 
  @EJB
  DbAccount dba;
@@ -86,11 +86,10 @@ public String login() {
          }
          
          List<ExamAuth> authresults = dba.loginauthQuery(nds, password);
-         
          if ( !authresults.isEmpty() ){
-        	 loggedinstudent = results.get(0);
-         	firstname = ((ExamAuth) loggedinstudent).getFirstname();
-         	lastname = ((ExamAuth) loggedinstudent).getName();
+        	 loggedinstudent = authresults.get(0);
+         	 firstname = ((ExamAuth) loggedinstudent).getFirstname();
+         	 lastname = ((ExamAuth) loggedinstudent).getName();
          
          		if (loggedinstudent instanceof ExamAuth){
          			setLoggedInauth();
@@ -102,7 +101,7 @@ public String login() {
          List<Admin> adminresults = dba.loginadminQuery(nds, password);
          
          if ( !adminresults.isEmpty() ){
-        	 loggedinstudent = results.get(0);
+        	 loggedinstudent = adminresults.get(0);
          	firstname = ((Admin) loggedinstudent).getFirstname();
          	lastname = ((Admin) loggedinstudent).getLastname();
         	 

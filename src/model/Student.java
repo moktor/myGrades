@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 
 
 import javax.annotation.ManagedBean;
@@ -41,9 +43,10 @@ public class Student extends Person implements Serializable {
 	private String keyword;
 	private String salt;
 	private int fachsemester;
+	
+	@OneToMany(mappedBy = "parentStudent", cascade=CascadeType.ALL, orphanRemoval=true)
+    private List<Enrollment> items = new LinkedList<Enrollment>();
 
-	
-	
 	
 	
 	
@@ -74,9 +77,6 @@ public class Student extends Person implements Serializable {
 	public int getId() {
 		return id;
 	}
-
-
-	
 
 	public void setId(int id) {
 		this.id = id;
@@ -305,6 +305,17 @@ public class Student extends Person implements Serializable {
 
 	public int getFachsemester() {
 		return fachsemester;
+	}
+
+
+	public void setItems(List<Enrollment> items) {
+		this.items = items;
+	}
+
+
+	public List<Enrollment> getItems() {
+		return items;
+
 	}
 	
 	

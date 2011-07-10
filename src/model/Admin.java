@@ -44,7 +44,7 @@ public class Admin extends Person implements Serializable {
 	
 	public Admin(String nds, String gender, String firstname, String name,
 			String adresse, String email, String phone , String mobil,
-			String keyword) {
+			String keyword, String salt) {
 		
 		this.nds = nds;
 		this.gender = gender;
@@ -55,6 +55,7 @@ public class Admin extends Person implements Serializable {
 		this.phone = phone;
 		this.mobil = mobil;
 		this.keyword = keyword;
+		this.salt = salt;
 	}
 
 	

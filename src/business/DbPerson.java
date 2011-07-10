@@ -24,7 +24,6 @@ public class DbPerson {
 	ExamAuth examAuth = null; // examAuth help pointer
 	Admin admin = null; // admin help pointer
 	
-	
     @PersistenceContext
     private EntityManager em;
 	
@@ -34,10 +33,7 @@ public class DbPerson {
 	}
     
     // ====================================== Student ======================================================
-    
-    // ------------------------------------------ FM -----------------------------createStudent-------------
-    // Adds a new Student to db, with all parameters
-    
+
     public void createStudent( String nds, 
     String gender, String firstname, String lastname, String adresse,
     String email, String phone, String mobil, String keyword, int fachsemester){
@@ -61,7 +57,7 @@ public class DbPerson {
         }
     }
        
-    
+
     // ------------------------------------------ FM ------------------------findStudentByName---------------
     // find a student by lastname 
     public Student findStudentByName(String name){
@@ -75,16 +71,16 @@ public class DbPerson {
         }   
     }
         
+
     
     // ------------------------------------------ FM ---------------------getAllStudents----------------------
     // Returns a List of all Students in the db
     public List<Student> getAllStudents() {
 
         TypedQuery<Student> query = em.createQuery("select c from Student c", Student.class);
- 
-
         return query.getResultList();
     }
+    
 
     
     //--------------------------------------------JL----------------------deleteStudentByNds--------------------
@@ -104,7 +100,6 @@ public class DbPerson {
         
     }
     
-    
     // ------------------------------------------ FM ---------------------editStudent-------------------------
     // edits some parameter of given student
     
@@ -118,7 +113,6 @@ public class DbPerson {
     	}
    	}
     
-    
  // ------------------------------------------ FM ---------------------deleteMultipleStudents-------------------------
     // deletes selected objects of a list
     
@@ -130,8 +124,6 @@ public class DbPerson {
     			em.remove(student);
     		}
     	}
-    	
-    	
     	return true;
     }
 
@@ -208,9 +200,9 @@ public class DbPerson {
     
     public void createExamAuth( String nds, 
     	    String gender,String titel, String firstname, String lastname, String adresse,
-    	    String email, String phone, String fieldOfStudy, String mobil, String keyword){
+    	    String email, String phone, String fieldOfStudy, String mobil, String keyword, String salt){
     	    		
-    	ExamAuth ea = new ExamAuth(nds, gender,titel, firstname, lastname, adresse, email, phone, fieldOfStudy, mobil, keyword);
+    	ExamAuth ea = new ExamAuth(nds, gender,titel, firstname, lastname, adresse, email, phone, fieldOfStudy, mobil, keyword, salt);
     	    	em.persist(ea);
     	    }
     	    
@@ -340,9 +332,9 @@ public class DbPerson {
     
     public void createAdmin( String nds, 
     String gender, String firstname, String lastname, String adresse,
-    String email, String phone, String mobil,String keyword){
+    String email, String phone, String mobil,String keyword, String salt){
     		
-    	Admin s = new Admin(nds,  gender, firstname, lastname, adresse, email, phone, mobil, keyword);
+    	Admin s = new Admin(nds,  gender, firstname, lastname, adresse, email, phone, mobil, keyword, salt);
     	em.persist(s);
     }
     
@@ -375,18 +367,11 @@ public class DbPerson {
     public boolean deleteAdminByNds(String nds){
         Query query = em.createQuery("select c from Admin c where c.nds = :ndsquery");
         query.setParameter("ndsquery", nds);
-        try {
-            
-        	Admin admin = (Admin)query.getSingleResult();
-        	em.remove(admin);
-        	return true;
-        } catch (NoResultException e) {
-          return false;  
-        }
-  
-        
+        Admin admin = (Admin)query.getSingleResult();
+    	em.remove(admin);
+    	return true;
     }
-    
+
     
 //------------------------------------- LS ---------------------editAdmin-------------------------
     // edits some parameter of given Admin
@@ -443,11 +428,7 @@ public class DbPerson {
        	Collections.sort(list, new AdminAdress());
        	return list;
          } 
-       
-    
-    
-    //===========================================
-    
+     
     
 }
 

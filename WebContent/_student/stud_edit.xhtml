@@ -10,7 +10,40 @@
 	
 	<ui:define name="content">
 
-        
+          <h1>Studentendaten</h1>
+               <div class="line"></div>
+               <p>Tragen sie ihre Änderungen in das unten stehende Formular ein und bestätigen sie mit Speichern.</p>
+               
+                <h:form>
+               <h2>Name</h2>
+               <div class="formfield">
+               		<div class="formfield_left"></div>
+                    <h:inputText value="#{studentCtrl.currentStudent.name}" id="userName" required="true" class="formfield_center"/><!-- Benutzerpasswort -->
+                    <div class="formfield_right"></div>
+               </div>
+               
+               <h2>Vorname</h2>
+               <div class="formfield">
+               		<div class="formfield_left"></div>
+                    <h:inputText value="#{studentCtrl.currentStudent.firstname}" id="userFirstname" required="true" class="formfield_center"/><!-- Benutzerpasswort -->
+                    <div class="formfield_right"></div>
+               </div>
+               <h2>Email</h2>
+               <div class="formfield">
+               		<div class="formfield_left"></div>
+                    <h:inputText value="#{studentCtrl.currentStudent.email}" id="userAddress" required="false" class="formfield_center"/><!-- Benutzerpasswort -->
+                    <div class="formfield_right"></div>
+               </div>
+               <h2>Password</h2>
+               <div class="formfield">
+               		<div class="formfield_left"></div>
+                    <h:inputSecret value="#{studentCtrl.currentStudent.password}" id="userAddress" required="false" class="formfield_center"/><!-- Benutzerpasswort -->
+                    <div class="formfield_right"></div>
+               </div>
+               
+               <h:commandButton value="Speichern" action="#{studentCtrl.updateStudent}" class="blue_button" style="margin-top:10px;"/>
+              
+              </h:form>
 	
 	
 	</ui:define>

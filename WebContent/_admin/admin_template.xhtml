@@ -50,7 +50,9 @@ jQuery.preLoadImages("../resources/images/logo_hover.png",
 </script>
 </head>
  
+
 <h:body rendered="#{!loginCtrl.isLoggedInadmin()}">
+
 
     <div class="content" style="width:600px;" >
 		<div class="content_header" style="width:410px; margin:auto; margin-bottom:20px; margin-top:100px;">
@@ -80,7 +82,9 @@ jQuery.preLoadImages("../resources/images/logo_hover.png",
 </h:body>
 
 
+
 <h:body rendered="#{loginCtrl.isLoggedInadmin()}">
+
 
     <div class="content">
 		<div class="admin_login"><h:form>
@@ -132,6 +136,9 @@ jQuery.preLoadImages("../resources/images/logo_hover.png",
 						<h:link value="(Student) Prüfungsübersicht" class="grey_button" outcome="auth_studentdata" />
 						<h:link value="(Student) Noteneinsicht" class="grey_button" outcome="auth_studentdata" />
 						<h:link value="(Admin) Datenbank füllen" class="grey_button" outcome="auth_studentdata" />
+						<h:form>
+						<h:commandLink value="test Email" class="grey_button" action="#{email.sendEmail()}" />
+						</h:form>
 					</div>
 				</div>
                <div class="small_box_bottom"></div>

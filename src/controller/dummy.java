@@ -75,7 +75,7 @@ public class dummy implements Serializable{
 		String mobil;
 		String keyword;		
 		int fachsemester;
-		int loginvalue;
+		
 		
 		Logger.getLogger(dummy.class.getName())
 	    .log(Level.INFO, 
@@ -92,6 +92,7 @@ public class dummy implements Serializable{
 		String [] mobilList = {"123","admin", "123", "033056/82400","03338/766528","03476/854111","03338/38531","033398/76478","033397/72709","033398/87522","030/4744614","033397/61285","0178/4909813"};
 		int [] fachsemesterList = {1,3,3,2,3,5,1,6,3,4,4,5,6};
 		int [] loginvaluelist = {0,0,1,2,2,2,2,2,2,2,2,2,2};
+
 		
 		Logger.getLogger(dummy.class.getName())
 	    .log(Level.INFO, 
@@ -108,13 +109,13 @@ public class dummy implements Serializable{
 			mobil = mobilList[i];
 			keyword = keywordList[i];
 			fachsemester = fachsemesterList[i];
-			loginvalue = loginvaluelist[i];
+			
 			
 			Logger.getLogger(dummy.class.getName())
 		    .log(Level.INFO, 
 		    "studentctrl Liste: 3 "+nds+ " "+gender);
 			
-			dbP.createStudent( nds, gender, firstname, lastname, adresse, email, phone,mobil ,loginvalue, keyword,fachsemester);
+			dbP.createStudent( nds, gender, firstname, lastname, adresse, email, phone,mobil , keyword,fachsemester);
 			
 			Logger.getLogger(dummy.class.getName())
 		    .log(Level.INFO, 

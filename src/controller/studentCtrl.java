@@ -43,7 +43,7 @@ public class studentCtrl implements Serializable {
 	private boolean sortFirst;
 	private boolean sortAdress;
 	private boolean sortFieldOfStudy;
-	private int loginvalue;
+	
 	
 	// ------------ FM ------------ checkBox marker ----
 	
@@ -74,8 +74,8 @@ public class studentCtrl implements Serializable {
 	// ------------------------- FM -------------------------createStudent---------------------
 	// Creates a new student using all db col params
 	public String createStudent(){
-		loginvalue = 2;
-		dbP.createStudent( nds, gender, firstname, lastname, adresse, email, phone, mobil, loginvalue, keyword, fachsemester);		
+		
+		dbP.createStudent( nds, gender, firstname, lastname, adresse, email, phone, mobil, keyword, fachsemester);		
 		return "auth_studentdata";
 	}
 	

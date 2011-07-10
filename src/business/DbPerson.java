@@ -38,9 +38,9 @@ public class DbPerson {
     
     public void createStudent( String nds, 
     String gender, String firstname, String lastname, String adresse,
-    String email, String phone, String mobil,int loginvalue, String keyword, int fachsemester){
+    String email, String phone, String mobil, String keyword, int fachsemester){
     		
-    	Student s = new Student(nds,  gender, firstname, lastname, adresse, email, phone,loginvalue , mobil, keyword, fachsemester);
+    	Student s = new Student(nds,  gender, firstname, lastname, adresse, email, phone, mobil, keyword, fachsemester);
     	em.persist(s);
     }
     
@@ -74,9 +74,9 @@ public class DbPerson {
         
     // ------------------------------------------ FM ---------------------getAllStudents----------------------
     // Returns a List of all Students in the db
-    public List<Student> getAllStudents(int loginvalue) {
-        TypedQuery<Student> query = em.createQuery("select c from Student c where c.loginvalue = :loginvalue", Student.class);
-        query.setParameter("loginvalue", loginvalue);
+    public List<Student> getAllStudents() {
+        TypedQuery<Student> query = em.createQuery("select c from Student c", Student.class);
+ 
         return query.getResultList();
     }
     
@@ -165,7 +165,38 @@ public class DbPerson {
 
 
     	
+ // ----------------- LS ---------------------- sorting Methods -------------------
     
+    public List<ExamAuth> sortByIdExamAuth(List<ExamAuth> list){
+    	Collections.sort(list, new ExamAuthId());
+    	return list;
+      } 
+    
+   
+    
+    public List<ExamAuth> sortByNdsExamAuth(List<ExamAuth> list){
+    	Collections.sort(list, new ExamAuthNds());
+    	return list;
+      } 
+
+    
+    public List<ExamAuth> sortByNameExamAuth(List<ExamAuth> list){
+    	Collections.sort(list, new ExamAuthName());
+    	return list;
+    	
+      } 
+    
+    
+    public List<ExamAuth> sortByFirstExamAuth(List<ExamAuth> list){
+    	Collections.sort(list, new ExamAuthFirst());
+    	return list;
+      } 
+    public List<ExamAuth> sortByFieldOfStudyExamAuth(List<ExamAuth> list){
+    	Collections.sort(list, new ExamAuthFieldOfStudy());
+    	return list;
+      } 
+    
+
     
     
     
@@ -176,9 +207,9 @@ public class DbPerson {
     
     public void createExamAuth( String nds, 
     	    String gender,String titel, String firstname, String lastname, String adresse,
-    	    String email, String phone, String mobil, String keyword){
+    	    String email, String phone, String fieldOfStudy, String mobil, String keyword){
     	    		
-    	ExamAuth ea = new ExamAuth(nds, gender,titel, firstname, lastname, adresse, email, phone, mobil, keyword);
+    	ExamAuth ea = new ExamAuth(nds, gender,titel, firstname, lastname, adresse, email, phone, fieldOfStudy, mobil, keyword);
     	    	em.persist(ea);
     	    }
     	    

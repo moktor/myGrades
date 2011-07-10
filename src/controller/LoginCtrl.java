@@ -18,7 +18,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.bean.ManagedBean;
 
 
-import model.Student;
+import model.*;
 
 import business.*;
 @Named
@@ -29,12 +29,14 @@ public class LoginCtrl implements Serializable {
   * 
   */
  private static final long serialVersionUID = 5186306447159703311L;
- private String nds, password, nameError, firstname, lastname;
+ private String nds, password, firstname, lastname;
 
  private boolean loggedIn = false;
  
  
  private Student loggedinstudent;
+ private ExamAuth loggedinperson;
+ private Admin loggedinadmin;
  @EJB
  DbAccount dba;
  
@@ -61,48 +63,53 @@ public class LoginCtrl implements Serializable {
  public void setPassword(String password) {
   this.password = password;
  }
-/* public void validateName(ValueChangeEvent e) {
-	    UIComponent nameInput = e.getComponent();
-	   // String name = nameInput.getValue();
-	    
-	    if (name.contains("_"))   nameError = "Name cannot contain underscores";
-	    else if (name.equals("")) nameError = "Name cannot be blank";
-	    else                      nameError = "";
-	  }
-*/
+
  //TODO JL Exam. Auth. dba.validate() == 2
 public String login() {
-        List<Student> results = dba.loginQuery(nds, password);
-        Logger.getLogger(LoginCtrl.class.getName())
-        .log(Level.INFO, 
-        "studentctrl Liste:");
+	List<Student> results = dba.loginQuery(nds, password);
         if ( !results.isEmpty() ) {
-         loggedinstudent = results.get(0);
-         firstname = loggedinstudent.getFirstname();
-         lastname = loggedinstudent.getName();
-         if (loggedinstudent.getLoginvalue() == 0){
-             Logger.getLogger(LoginCtrl.class.getName())
-             .log(Level.INFO, 
-             "admin Liste:--------------------------------------------");
-             setLoggedIn();
-             return "_admin/admin_welcome";
-            }
-        if (loggedinstudent.getLoginvalue() == 1){
-         Logger.getLogger(LoginCtrl.class.getName())
-         .log(Level.INFO, 
-         "auth Liste:--------------------------------------------");
-         setLoggedIn();
-         return "_authority/auth_welcome";
+        	loggedinstudent = results.get(0);
+        	firstname = loggedinstudent.getFirstname();
+        	lastname = loggedinstudent.getName();
+         
+         		if (loggedinstudent instanceof Student){
+            
+         			setLoggedIn();
+         			return "_student/stud_welcome";
+            
+            
+         		}
+         }
+         
+         List<ExamAuth> authresults = dba.loginauthQuery(nds, password);
+         
+         if ( !authresults.isEmpty() ){
+         loggedinperson = authresults.get(0);
+         firstname = loggedinperson.getFirstname();
+         lastname = loggedinperson.getName();
+         
+         		if (loggedinperson instanceof ExamAuth){
+         			setLoggedIn();
+         			return "_authority/auth_welcome";
+        
+         		}
+         }
+         
+         List<Admin> adminresults = dba.loginadminQuery(nds, password);
+         
+         if ( !adminresults.isEmpty() ){
+        	 loggedinadmin = adminresults.get(0);
+        	 firstname = loggedinadmin.getFirstname();
+        	 lastname = loggedinadmin.getLastname();
+         
+        	 	if(loggedinadmin instanceof Admin){
+        	 		setLoggedIn();
+        	 		return "_admin/admin_welcome";
+        	 	}
         }
-         else{
-        	 Logger.getLogger(LoginCtrl.class.getName())
-             .log(Level.INFO, 
-             "stud Liste:-----------------asdasdasdasdas---------------------------");
-             setLoggedIn();
-        	 return "_student/stud_welcome";
-        }}
-        else
-         return "index";
+        
+        return "index";
+		
 
     }
 public void setLoggedIn(){

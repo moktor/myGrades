@@ -1,5 +1,4 @@
 package controller;
-
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,7 +12,7 @@ import javax.inject.Named;
 
 import business.*;
 import model.ExamAuth;
-import model.Student;
+
 
 
 
@@ -30,10 +29,22 @@ public class examAuthCtrl implements Serializable {
 	private String firstname;
 	private String lastname;
 	private String adresse;
+	private String fieldOfStudy;
+	
+
 	private String email;
 	private String phone;
 	private String mobil;
 	private String keyword;
+	
+	
+	//---------------- FM ------------- sorting variables ---------------------------
+	private boolean sortId;
+	private boolean sortNds;
+	private boolean sortName;
+	private boolean sortFirst;
+	private boolean sortAdress;
+	private boolean sortFieldOfStudy;
 	
 	
 	private ExamAuth currentExamAuth;
@@ -55,8 +66,8 @@ public class examAuthCtrl implements Serializable {
 	// Creates a new ExamAuth using all db col params
 	
 	public String createExamAuth(){
-		dbP.createExamAuth( nds, gender, titel, firstname, lastname, adresse, email, phone, mobil, keyword);		
-		return "addExamAuth";
+		dbP.createExamAuth( nds, gender, titel, firstname, lastname, adresse, email, phone, fieldOfStudy,mobil, keyword);		
+		return "auth_examinerdata.xhtml";
 	}
 	
 	public String addExamAuthHelper(){
@@ -68,6 +79,7 @@ public class examAuthCtrl implements Serializable {
 		  adresse= "";
 		  email= "";
 		  phone= "";
+		  fieldOfStudy= "";
 		  mobil= "";
 		  keyword= "";	 
 		return "addExamAuth";
@@ -92,17 +104,90 @@ public class examAuthCtrl implements Serializable {
 
 	}
 
-	// --------------------- LS ------------------------getAllExamAuths----------------------
+	// --------------------- LS ------------------------ExamAuths----------------------
 	// Returns a list of all ExamAuths
 	//additional test logger for view of all ExamAuths
 	public List getAllExamAuths(){
-		
 		List<ExamAuth> list = dbP.getAllExamAuths();
 		
-		examAuthList = list;
+		examAuthList = sortListExamAuth(list);
 		
 		return list;
 	}
+	
+// --------------------- LS ------------------------sortStudents----------------------
+	
+	public List<ExamAuth> sortListExamAuth(List<ExamAuth> list){
+		
+		if(sortId){
+			list = dbP.sortByIdExamAuth(list);
+		}
+		if(sortNds){
+			list = dbP.sortByNdsExamAuth(list);
+		}
+		
+		
+		if (sortName){
+		list = dbP.sortByNameExamAuth(list);
+		}
+		
+		if(sortFirst){
+		list = dbP.sortByFirstExamAuth(list);
+		}
+		if(sortFieldOfStudy){
+		list = dbP.sortByFieldOfStudyExamAuth(list);
+		}
+	
+		return list;
+		
+	}
+	
+	
+	public void sortExamAuthsByID(){
+		sortId = true;
+		sortNds = false;
+		sortName = false;
+		sortFirst = false;
+		sortAdress = false;
+		sortFieldOfStudy = false;
+	}
+	
+	public void sortExamAuthsByNds(){
+		sortId = false;
+		sortNds = true;
+		sortName = false;
+		sortFirst = false;
+		sortAdress = false;
+		sortFieldOfStudy = false;
+	}
+	
+	public void sortExamAuthsByName(){
+		sortId = false;
+		sortNds = false;
+		sortName = true;
+		sortFirst = false;
+		sortAdress = false;
+		sortFieldOfStudy = false;
+	}
+	
+	public void sortExamAuthsByFirst(){
+		sortId = false;
+		sortNds = false;
+		sortName = false;
+		sortFirst = true;
+		sortAdress = false;
+		sortFieldOfStudy = false;
+	}
+	
+	public void sortExamAuthsByFieldOfStudy(){
+		sortId = false;
+		sortNds = false;
+		sortName = false;
+		sortFirst = false;
+		sortAdress = false;
+		sortFieldOfStudy = true;
+	}
+	
 	
 	//-------------------------LS----------------deleteExamAuth-----------------
 	//deletes a ExamAuth from db, using nds (primary key)
@@ -249,6 +334,13 @@ public class examAuthCtrl implements Serializable {
 		return currentExamAuth;
 	}
 	
+	public String getFieldOfStudy() {
+		return fieldOfStudy;
+	}
+
+	public void setFieldOfStudy(String fieldOfStudy) {
+		this.fieldOfStudy = fieldOfStudy;
+	}
 
 
 

@@ -17,12 +17,6 @@ public class NdsValidator implements Validator{
 	
 	private static final String NDS_PATTERN = "^[a-z]{3}[0-9]{5}$|^[0-9]{5}$|^[a][d][m][i][n]$|^[s][t][u][d][e][n][t]$|^[a][u][t][h]$";
 	
-	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-]+(\\." +
-			"[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*" +
-			"(\\.[A-Za-z]{2,})$";
-	
-	
-	
 	private Pattern nds_pattern;
 	private Matcher nds_matcher; 
  
@@ -42,7 +36,7 @@ public class NdsValidator implements Validator{
  
 			FacesMessage msg = 
 				new FacesMessage("Nds validierung fehlgeschlagen.", 
-						"UngŸltiges Nds KŸrzel.");
+						"Ungültiges Nds Kürzel.");
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			throw new ValidatorException(msg);
  

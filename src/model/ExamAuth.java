@@ -34,6 +34,7 @@ public class ExamAuth implements Serializable {
 	private String titel;
 	private String firstname;
 	private String name;
+	private String fieldOfStudy;
 	private String adresse;
 	private String email;
 	private String phone;
@@ -42,12 +43,14 @@ public class ExamAuth implements Serializable {
 	private String salt;
 	
 	
+	
+
 	// ------------------------ ctors -----------------------------------
 	public ExamAuth(){}
 
 	
 	public  ExamAuth(String nds,String titel, String gender, String firstname, String name,
-			String adresse, String email, String phone, String mobil,
+			String adresse, String email, String phone, String fieldOfStudy, String mobil,
 			String keyword) {
 	
 		this.nds = nds;
@@ -60,14 +63,26 @@ public class ExamAuth implements Serializable {
 		this.phone = phone;
 		this.mobil = mobil;
 		this.keyword = keyword;
+		this.fieldOfStudy = fieldOfStudy;
 	}
 	
 	
 	
 	// --------------------- getter / setter ----------------------------
 	
-	
-	
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+	/**
+	 * @param id the nds to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	
 	/**
 	 * @return the nds
@@ -210,6 +225,15 @@ public class ExamAuth implements Serializable {
 
 	public boolean isDeleteInc() {
 		return deleteInc;
+	}
+	
+	public String getFieldOfStudy() {
+		return fieldOfStudy;
+	}
+
+
+	public void setFieldOfStudy(String fieldOfStudy) {
+		this.fieldOfStudy = fieldOfStudy;
 	}
 	
 	

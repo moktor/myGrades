@@ -1,5 +1,7 @@
 package controller;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.Date;
@@ -27,6 +29,10 @@ public class courseCtrl implements Serializable {
 	private String name;
 	private String fieldofstudy;
 	private String date;
+	
+	private String day;
+	private String month;
+	private String year;
 
 	//---------------- MH ------------- sorting variables ---------------------------
 	private boolean sortId;
@@ -51,13 +57,15 @@ public class courseCtrl implements Serializable {
 	
 	// ------------------------- MH -------------------------createCourse---------------------
 	// Creates a new course using all db col params
-	public String createCourse(){
-		date = java.sql.Date.valueOf("2010-01-30");
-		Logger.getLogger(courseCtrl.class.getName())
-	    .log(Level.INFO,"courseCtrl Liste  /////////////////////////////////////////////");
-		
-		dbC.createCourse(studentcount, name, fieldofstudy, date);
-		return "addCourse";
+	 public String createCourse(){
+	       date = this.year+this.month+this.day;
+	       Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO,"Daum: "+date);
+	       Logger.getLogger(courseCtrl.class.getName())
+	       .log(Level.INFO, 
+	       "studentCtrl Liste  "+date);
+	       Date datum = java.sql.Date.valueOf(date);
+	       dbC.createCourse(studentcount, name, fieldofstudy, datum);
+	       return "auth_examdata";
 	}
 	
 	public String addCourseHelper(){
@@ -66,6 +74,9 @@ public class courseCtrl implements Serializable {
 		  name = "";
 		  fieldofstudy = "";
 		  date = null;
+		  day = "01";
+		  month = "01-";
+		  year = "2011-";
 		return "addCourse";
 	}
 	
@@ -179,11 +190,14 @@ public class courseCtrl implements Serializable {
     }
     
  // ----------------------- MH ---------------------updateCourse----------------  
-    public String updateStudent(){
-    	
+    public String updateCourse(){
+    
+    	String dateTempString = this.year+this.month+this.day;
+    	Date dateTemp = java.sql.Date.valueOf(dateTempString);
+    	currentCourse.setDate(dateTemp);
     	
     if( dbC.editCourse(currentCourse)){
-    	return "auth_studentdata";
+    	return "auth_examdata";
     }else
     {
     	return "auth_editError";
@@ -226,11 +240,11 @@ public class courseCtrl implements Serializable {
 		this.fieldofstudy = fieldofstudy;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -255,7 +269,39 @@ public class courseCtrl implements Serializable {
 	}
 
 	public void setCurrentCourse(Course currentCourse) {
+		DateFormat dateFormatDay = new SimpleDateFormat("dd");
+		DateFormat dateFormatMonth = new SimpleDateFormat("MM");
+		DateFormat dateFormatYear = new SimpleDateFormat("yyyy");
+		
+		this.day = dateFormatDay.format(currentCourse.getDate());
+		this.month = dateFormatMonth.format(currentCourse.getDate()) + "-";
+		this.year = dateFormatYear.format(currentCourse.getDate()) + "-";
+		
 		this.currentCourse = currentCourse;
+	}
+
+	public String getDay() {
+		return day;
+	}
+
+	public void setDay(String day) {
+		this.day = day;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
 	}
 	
 }

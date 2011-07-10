@@ -1,7 +1,11 @@
 package business;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -261,7 +265,33 @@ public class DbPerson {
     	return true;
     }
     
+    //------------------------------------------- FM -------------- Student Filter ----
     
+    public List<Student> filter(List<Student> list, String filter){
+
+
+    	List<Student> temp = new ArrayList<Student>();
+    	
+    	Logger.getLogger(DbPerson.class.getName())
+	    .log(Level.INFO, 
+	    "LOGGERtest"); 		
+    	
+    	
+		for (Student student : list) {
+
+			if(filter == student.getName()){
+				Logger.getLogger(DbPerson.class.getName())
+			    .log(Level.INFO, 
+			    "filtertest:  "+student.getName()); 	
+			}
+			
+			
+			
+		
+		}
+    	return list;
+    	
+	}
     
     
     

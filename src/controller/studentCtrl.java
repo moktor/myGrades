@@ -13,6 +13,7 @@ import javax.inject.Named;
 
 
 import business.*;
+import model.FieldOfStudy;
 import model.Student;
 
 
@@ -44,18 +45,27 @@ public class studentCtrl implements Serializable {
 	private boolean sortFieldOfStudy;
 	private int loginvalue;
 	
+	// ------------ FM ------------ checkBox marker ----
+	
+	private boolean markAll = false;
+	private String marked;
+	
 	// ----------------- FM ---------------- filter attribute
-	private String filter;
+	private String criteria;
 	
 	private Student currentStudent;
 	
 	private Student student; // temp student
 	private List<Student> studentList;
 	
+	private List<FieldOfStudy> studyList;
+	private FieldOfStudy fieldOfStudy;
+	
 
 	@EJB
 	DbPerson dbP;
-	
+	@EJB
+	DbMisc dbM;
 
 	
 
@@ -64,8 +74,9 @@ public class studentCtrl implements Serializable {
 	// ------------------------- FM -------------------------createStudent---------------------
 	// Creates a new student using all db col params
 	public String createStudent(){
-		dbP.createStudent( nds, gender, firstname, lastname, adresse, email, phone, mobil,loginvalue, keyword, fachsemester);		
-		return "addStudent";
+		loginvalue = 2;
+		dbP.createStudent( nds, gender, firstname, lastname, adresse, email, phone, mobil, loginvalue, keyword, fachsemester);		
+		return "auth_studentdata";
 	}
 	
 	public String addStudentHelper(){
@@ -107,9 +118,19 @@ public class studentCtrl implements Serializable {
 	// --------------------- FM ------------------------getAllStudents----------------------
 	// Returns a list of all Students
 	//additional test logger for view of all students
-	public List<Student> getAllStudents(int loginvalue){
-		List<Student> list = dbP.getAllStudents(loginvalue);
-		studentList = sortList(list);
+	public List<Student> getAllStudents(){
+		List<Student> list = dbP.getAllStudents();
+		studentList = sortList(list);				// sort
+		
+		studentList = dbP.filter(studentList, criteria);		// filter
+		studentList = checkAll(list);
+				
+		return list;
+	}
+	
+	//------------------------ FM --------------------- getAllStudyFields -------------
+	public List<FieldOfStudy> getAllStudyFields(){
+		List<FieldOfStudy> list = dbM.getAllFieldsOfStudy();
 		return list;
 	}
 	
@@ -242,6 +263,26 @@ public class studentCtrl implements Serializable {
     	
     }
 	
+   // --------------------- FM ----------- mark all Checkboxes -----
+    
+    private List<Student> checkAll(List<Student> list){
+    	
+    	if(markAll){
+    	for (Student student : list) {
+			student.setDeleteInc(true);
+		}
+    	markAll = false;
+    	marked = "unmark all";
+    	}else{
+    		for (Student student : list) {
+    			student.setDeleteInc(false);
+    		}	
+    		markAll = true;
+    		marked = "mark all";
+    	}
+    	
+    	return list;
+    }
 
 	
 	//----------------- Getter / Setter ------------------------------------

@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="auth_template.xhtml">
+	
+	<ui:define name="content">
+
+          <h1>Bestehende Prüfung ändern.</h1>
+               <div class="line"></div>
+               <p>Tragen sie ihre Änderungen in das unten stehende Formular ein und bestätigen sie mit Speichern. Das Datum ist im Format (yy-mm-dd) angegeben.</p>
+               
+              <h:form>
+               <table class="addStudent_table">
+              
+               <!---->
+               
+               <tr> 
+                 <td><h2 class="formlabel">Name</h2></td>
+                 <td><div class="formfield">
+                     <div class="formfield_left"></div>
+                   <h:inputText value="#{courseCtrl.currentCourse.name}" required="true" class="formfield_center"/>
+                   <div class="formfield_right"></div>
+               </div></td>
+                 </tr>
+                 
+                 <tr> 
+                 <td><h2 class="formlabel">Fach</h2></td>
+                 <td><div class="formfield">
+                     <div class="formfield_left"></div>
+                   <h:inputText value="#{courseCtrl.currentCourse.fieldOfStudy}" required="false" class="formfield_center"/>
+                   <div class="formfield_right"></div>
+                 </div></td>
+                 </tr>
+                 
+                 <!-- <tr> 
+                 <td><h2 class="formlabel">Termin</h2></td>
+                 <td><div class="formfield">
+                     <div class="formfield_left"></div>
+                   <h:inputText value="#{courseCtrl.currentCourse.date}" required="false" class="formfield_center"/>
+                   <div class="formfield_right"></div>
+                 </div></td>
+                 </tr> -->
+                 
+                 <tr><td colspan="2">Diese Maske sollte zukünftig dazu dienen, das Datum via Drop-Down zu ändern!</td></tr>
+                 <tr>               
+               <td><h2 class="formlabel">Termin</h2></td>
+               <td><div class="formfield">
+               <h:selectOneMenu value="#{courseCtrl.day}">
+                   <f:selectItem itemValue="01" itemLabel="Tag"/>
+                   <f:selectItem itemValue="01" itemLabel="1"/>
+                   <f:selectItem itemValue="02" itemLabel="2"/>
+                   <f:selectItem itemValue="03" itemLabel="3"/>
+                   <f:selectItem itemValue="04" itemLabel="4"/>
+                   <f:selectItem itemValue="05" itemLabel="5"/>
+                   <f:selectItem itemValue="06" itemLabel="6"/>
+                   <f:selectItem itemValue="07" itemLabel="7"/>
+                   <f:selectItem itemValue="08" itemLabel="8"/>
+                   <f:selectItem itemValue="09" itemLabel="9"/>
+                   <f:selectItem itemValue="10" itemLabel="10"/>
+                   <f:selectItem itemValue="11" itemLabel="11"/>
+                   <f:selectItem itemValue="12" itemLabel="12"/>
+                   <f:selectItem itemValue="13" itemLabel="13"/>
+                   <f:selectItem itemValue="14" itemLabel="14"/>
+                   <f:selectItem itemValue="15" itemLabel="15"/>
+                   <f:selectItem itemValue="16" itemLabel="16"/>
+                   <f:selectItem itemValue="17" itemLabel="17"/>
+                   <f:selectItem itemValue="18" itemLabel="18"/>
+                   <f:selectItem itemValue="19" itemLabel="19"/>
+                   <f:selectItem itemValue="20" itemLabel="20"/>
+                   <f:selectItem itemValue="21" itemLabel="21"/>
+                   <f:selectItem itemValue="22" itemLabel="22"/>
+                   <f:selectItem itemValue="23" itemLabel="23"/>
+                   <f:selectItem itemValue="24" itemLabel="24"/>
+                   <f:selectItem itemValue="25" itemLabel="25"/>
+                   <f:selectItem itemValue="26" itemLabel="26"/>
+                   <f:selectItem itemValue="27" itemLabel="27"/>
+                   <f:selectItem itemValue="28" itemLabel="28"/>
+                   <f:selectItem itemValue="29" itemLabel="29"/>
+                   <f:selectItem itemValue="30" itemLabel="30"/>
+                   <f:selectItem itemValue="31" itemLabel="31"/>
+               </h:selectOneMenu>
+               
+               <h:selectOneMenu value="#{courseCtrl.month}" style="margin-left:9px;">
+                   <f:selectItem itemValue="01-" itemLabel="Monat"/>
+                   <f:selectItem itemValue="01-" itemLabel="Januar"/>
+                   <f:selectItem itemValue="02-" itemLabel="Februar"/>
+                   <f:selectItem itemValue="03-" itemLabel="März"/>
+                   <f:selectItem itemValue="04-" itemLabel="April"/>
+                   <f:selectItem itemValue="05-" itemLabel="Mai"/>
+                   <f:selectItem itemValue="06-" itemLabel="Juni"/>
+                   <f:selectItem itemValue="07-" itemLabel="Juli"/>
+                   <f:selectItem itemValue="08-" itemLabel="August"/>
+                   <f:selectItem itemValue="09-" itemLabel="September"/>
+                   <f:selectItem itemValue="10-" itemLabel="Oktober"/>
+                   <f:selectItem itemValue="11-" itemLabel="November"/>
+                   <f:selectItem itemValue="12-" itemLabel="Dezember"/>
+               </h:selectOneMenu>
+               
+               <h:selectOneMenu value="#{courseCtrl.year}" style="margin-left:9px;">
+                   <f:selectItem itemValue="2000-" itemLabel="Jahr"/>
+                   <f:selectItem itemValue="2010-" itemLabel="2010"/>
+                   <f:selectItem itemValue="2011-" itemLabel="2011"/>
+                   <f:selectItem itemValue="2012-" itemLabel="2012"/>
+                   <f:selectItem itemValue="2013-" itemLabel="2013"/>
+                   <f:selectItem itemValue="2014-" itemLabel="2014"/>
+                   <f:selectItem itemValue="2015-" itemLabel="2015"/>
+               </h:selectOneMenu>
+               </div></td>
+               </tr>
+                 
+                 <tr><td colspan="2"><h:commandButton value="Speichern" action="#{courseCtrl.updateCourse}" class="blue_button" style="float:right;"/></td></tr>
+                 </table>
+                 </h:form>
+	
+	
+	</ui:define>
+	
+</ui:composition>
+
+
+</html>

@@ -28,9 +28,9 @@ public class DbCourse {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void createCourse(int studentCount, String name, String fieldOfStudy, Date date){
+	public void createCourse(int studentcount, String name, String fieldofstudy, Date date){
 		    		
-		Course c = new Course (studentCount, name, fieldOfStudy, date);
+		Course c = new Course (studentcount, name, fieldofstudy, date);
 		Logger.getLogger(courseCtrl.class.getName())
 	    .log(Level.INFO,"DbCourse  /////////////////////////////////////////////");
     	
@@ -42,6 +42,15 @@ public class DbCourse {
         return query.getResultList();
 	}
 
+	public boolean editCourse(Course course) {
+		if(course != null){
+	    	em.merge(course);
+	    	return true;
+	    } else {
+	    return false;	
+	    }
+	}
+	
     
     
 	public List<Course> sortById(List<Course> list) {
@@ -79,9 +88,6 @@ public class DbCourse {
 		
 	}
 
-	public boolean editCourse(Course currentCourse) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 }
 

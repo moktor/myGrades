@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="stud_template.xhtml">
+	
+	<ui:define name="content">
+	   <!--This is where the magic happens!!!-->
+          <h1>Benutzerprofil</h1>
+           <div class="line"></div>
+           <p>Hier erhalten Sie eine Übersicht über ihre Benutzerdaten, und die Möglichkeit, Änderungen vorzunehmen.</p>
+                
+                
+               	<h:panelGrid columns="2">
+               		<h2>Matr-Nr</h2>
+               		<h5>#{loginCtrl.nds}</h5>
+               		
+               		<h2>Name</h2>
+               		<h5>#{loginCtrl.lastname}</h5>
+               		
+               		<h2>Vorname</h2>
+               		<h5>#{loginCtrl.firstname}</h5>
+               		
+               		<h2>Passwort</h2>
+               		<h5>#{loginCtrl.password}</h5>
+               		
+               		<h2>Email</h2>
+               		<h5>#{loginCtrl.email}</h5>
+               	
+               	</h:panelGrid> 
+                <h:form>
+               
+               <h:commandButton value="Bearbeiten" action="stud_edit?faces-redirect=true" class="blue_button" style="margin-top:10px;"/>
+              
+              </h:form>
+           
+	</ui:define>
+	
+</ui:composition>
+</html>

@@ -70,9 +70,8 @@ public class DbPerson {
         
     // ------------------------------------------ FM ---------------------getAllStudents----------------------
     // Returns a List of all Students in the db
-    public List<Student> getAllStudents(int loginvalue) {
-        TypedQuery<Student> query = em.createQuery("select c from Student c where c.loginvalue = :loginvalue", Student.class);
-        query.setParameter("loginvalue", loginvalue);
+    public List<Student> getAllStudents() {
+        TypedQuery<Student> query = em.createQuery("select c from Student c ", Student.class);
         return query.getResultList();
     }
     

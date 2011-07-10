@@ -102,8 +102,8 @@ public class studentCtrl implements Serializable {
 	// --------------------- FM ------------------------getAllStudents----------------------
 	// Returns a list of all Students
 	//additional test logger for view of all students
-	public List<Student> getAllStudents(int loginvalue){
-		List<Student> list = dbP.getAllStudents(loginvalue);
+	public List<Student> getAllStudents(){
+		List<Student> list = dbP.getAllStudents();
 		studentList = sortList(list);
 		return list;
 	}

@@ -17,7 +17,7 @@
                 	
                 <h:form>
                 
-                <h:dataTable value="#{studentCtrl.getAllStudents(2)}" var="student"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
+                <h:dataTable value="#{studentCtrl.getAllStudents()}" var="student"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
 
                     <h:column>
                         <f:facet name="header"><h:commandLink value="Nds" action="#{studentCtrl.sortStudentsByNds}"/></f:facet>

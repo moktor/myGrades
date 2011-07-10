@@ -141,6 +141,8 @@ public class DbPerson {
     	String a = "";
     	if(filter != null){
     		a = filter;
+    	}else{
+    		return list;
     	}
     	
     	

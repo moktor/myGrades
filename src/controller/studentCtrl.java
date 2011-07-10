@@ -57,6 +57,7 @@ public class studentCtrl implements Serializable {
 	
 		
 	// ----------------- FM ---------------- filter attribute
+	private String criteriaNds;
 	private String criteria;
 	
 
@@ -130,12 +131,7 @@ public class studentCtrl implements Serializable {
 	//additional test logger for view of all students
 	public List<Student> getAllStudents(){
 		List<Student> list = dbP.getAllStudents();
-
-		
-		Logger.getLogger(dummy.class.getName())
-	    .log(Level.INFO, 
-	    "getAllStudents()");
-		
+	
 		studentList = sortList(list);				// sort
 		
 		studentList = dbP.filter(studentList, criteria);		// filter
@@ -430,6 +426,14 @@ public class studentCtrl implements Serializable {
 
 	public void setCriteria(String criteria) {
 		this.criteria = criteria;
+	}
+
+	public void setCriteriaNds(String criteriaNds) {
+		this.criteriaNds = criteriaNds;
+	}
+
+	public String getCriteriaNds() {
+		return criteriaNds;
 	}
 	
 

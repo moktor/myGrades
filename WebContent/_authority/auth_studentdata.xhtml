@@ -16,20 +16,17 @@
             <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Studenten.</p>
                 <h4>Filters</h4>
                 <h:form>
-                Name: <h:inputText value="#{studentCtrl.criteria}"/>
+                NDS: <h:inputText value="#{studentCtrl.criteriaNds}" size="10"/>
+                Name: <h:inputText value="#{studentCtrl.criteria}" size="10"/>
+                
                 <h:commandLink value="filter" action="auth_studentdata"/>
                 </h:form>
                 
-<<<<<<< HEAD
                 <h:form>
                 <h:commandLink value="#{studentCtrl.marked}" action="#{studentCtrl.markIt}" style="float:right; margin-right:30px;"/>
                 <h:dataTable value="#{studentCtrl.allStudents}" var="student"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
 					
-=======
-                <h:dataTable value="#{studentCtrl.getAllStudents()}" var="student"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
 
-
->>>>>>> b5f78b5ab1384790a2e33e08f288bbe28681f33e
                     <h:column>
                         <f:facet name="header"><h:commandLink value="Nds" action="#{studentCtrl.sortStudentsByNds}"/></f:facet>
                         #{student.nds}

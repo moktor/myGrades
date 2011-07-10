@@ -142,6 +142,7 @@ public String logout() {
     loggedInadmin = false;
     loggedInauth = false;
     loggedinstudent = null;
+    FacesContext.getCurrentInstance().getCurrentInstance().getExternalContext().invalidateSession();
     return "/succ_logout.xhtml?faces-redirect=true";
 
 }

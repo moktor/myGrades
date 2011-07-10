@@ -2,6 +2,7 @@ package business;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +16,8 @@ import javax.persistence.TypedQuery;
 
 import model.*;
 import comparators.*;
+import controller.dummy;
+
 
 @Stateless
 public class DbPerson {
@@ -143,23 +146,23 @@ public class DbPerson {
 
     	List<Student> temp = new ArrayList<Student>();
     	
-    	Logger.getLogger(DbPerson.class.getName())
-	    .log(Level.INFO, 
-	    "LOGGERtest"); 		
+    	String a = "";
+    	if(filter != null){
+    		a = filter;
+    	}
     	
     	
-		for (Student student : list) {
-
-			if(filter == student.getName()){
-				Logger.getLogger(DbPerson.class.getName())
-			    .log(Level.INFO, 
-			    "filtertest:  "+student.getName()); 	
-			}
-			
-			
-			
-		
-		}
+    	for (Iterator iter = list.iterator(); iter.hasNext();)
+    	{
+    	    Student o = (Student) iter.next();
+    	    if (!a.equals(o.getName()) && filter != "") // hier die gewünschte Bedingung einfügen
+    	    {
+    	    	if(list.contains(o)){
+    	        iter.remove();
+    	    	}
+    	    }
+    	}
+    			
     	return list;
     	
 	}
@@ -199,6 +202,20 @@ public class DbPerson {
        	
          } 
 
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
    
        
     // ====================================== ExamAuth =====================================================

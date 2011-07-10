@@ -13,6 +13,7 @@ import javax.inject.Named;
 
 
 import business.*;
+import model.FieldOfStudy;
 import model.Student;
 
 
@@ -44,15 +45,27 @@ public class studentCtrl implements Serializable {
 	private boolean sortFieldOfStudy;
 	
 	
+	// ------------ FM ------------ checkBox marker ----
+	
+	private boolean markAll = false;
+	private String marked;
+	
+	// ----------------- FM ---------------- filter attribute
+	private String criteria;
+	
 	private Student currentStudent;
 	
 	private Student student; // temp student
 	private List<Student> studentList;
 	
+	private List<FieldOfStudy> studyList;
+	private FieldOfStudy fieldOfStudy;
+	
 
 	@EJB
 	DbPerson dbP;
-	
+	@EJB
+	DbMisc dbM;
 
 	
 
@@ -99,12 +112,26 @@ public class studentCtrl implements Serializable {
 
 	}
 	
+	// ------------------------- FM ----------------------- listFilter
+	
+	
 	// --------------------- FM ------------------------getAllStudents----------------------
 	// Returns a list of all Students
 	//additional test logger for view of all students
 	public List<Student> getAllStudents(){
 		List<Student> list = dbP.getAllStudents();
-		studentList = sortList(list);
+
+		studentList = sortList(list);				// sort
+		
+		studentList = dbP.filter(studentList, criteria);		// filter
+		studentList = checkAll(list);
+				
+		return list;
+	}
+	
+	//------------------------ FM --------------------- getAllStudyFields -------------
+	public List<FieldOfStudy> getAllStudyFields(){
+		List<FieldOfStudy> list = dbM.getAllFieldsOfStudy();
 		return list;
 	}
 	
@@ -237,6 +264,26 @@ public class studentCtrl implements Serializable {
     	
     }
 	
+   // --------------------- FM ----------- mark all Checkboxes -----
+    
+    private List<Student> checkAll(List<Student> list){
+    	
+    	if(markAll){
+    	for (Student student : list) {
+			student.setDeleteInc(true);
+		}
+    	markAll = false;
+    	marked = "unmark all";
+    	}else{
+    		for (Student student : list) {
+    			student.setDeleteInc(false);
+    		}	
+    		markAll = true;
+    		marked = "mark all";
+    	}
+    	
+    	return list;
+    }
 
 	
 	//----------------- Getter / Setter ------------------------------------

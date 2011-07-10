@@ -24,6 +24,8 @@ public class dummy implements Serializable{
 	DbCourse dbC;
 	@EJB
 	DbPerson dbP;
+	@EJB
+	DbMisc dbM;
 	
 	public String action() {
 		generateCourses();
@@ -79,17 +81,18 @@ public class dummy implements Serializable{
 	    .log(Level.INFO, 
 	    "studentctrl Liste:   "+nds+ " "+gender);
 		
-		String [] ndsList = {"admin", "auth", "student","hju87448","kdf90873","urt45627","uru94858","lko87474","hdg35462","jhg74645","wes65710","scg64642"};
-		String [] genderList = {"male","female","male","female","male","female","male","female","male","female","male","female"};
-		String [] firstnameList = {"admin", "auth", "Alexander","Manuela","Peter","Barbara","Hans","Nicola","Mike","Jane","Ludwich","Sandra"};
-		String [] lastnameList = {"admin", "auth", "Mayer","Schönefeld","Brummer","Tannenbaum","Goldmann","Fischermann","Silbermann","Schuhmacher","Holzmann","Wassermann"};
-		String [] adresseList = {"admin", "123", "Schönfließ Dorfstraße 35","Bernau Saturnring16","Bernau Rollenhagenstr.29","Werneuchen Löhmerdorfstr","Zühlsdorf Wandlitzer Chaussee 14","Panketal Bernauerstraße 41","Werneuchen Marxstraße 32","Zühlsdorf Basdorferstr.50","Lindenberg Karl-Marx-Str.20","Werneuchen Löhmerdorfstr. 50a"};
-		String [] emailListe = {"admin", "123", "hbork4@aol.com","thomas-bussdorf@web.de","werbegestalter@web.de","wilhelm0804@web.de","moniwill@t-online.de","holger.Lusche@t-online.de","ronnyundute@t-online.de","jg.rauchhaus@freenet.de","RoszkiewiczW@aol.com","R.Santer@t-online.de"};
-		String [] phoneList =  {"admin", "123", "033056/82400","03338/766528","03476/854111","03338/38531","033398/76478","033397/72709","033398/87522","030/4744614","033397/61285","0178/4909813"};
-		String [] keywordList = {"admin", "auth", "student","ösdkkfjg","södgh","uiouior","diordigh","kjdfgss","pweornb","mdflkgdf","dfgdfg","ödkfgjsdäflg"};
-		String [] mobilList = {"admin", "123", "033056/82400","03338/766528","03476/854111","03338/38531","033398/76478","033397/72709","033398/87522","030/4744614","033397/61285","0178/4909813"};
-		int [] fachsemesterList = {3,3,2,3,5,1,6,3,4,4,5,6};
-		
+		String [] ndsList = {"123","admin", "auth", "student","hju87448","kdf90873","urt45627","uru94858","lko87474","hdg35462","jhg74645","wes65710","scg64642"};
+		String [] genderList = {"male","male","female","male","female","male","female","male","female","male","female","male","female"};
+		String [] firstnameList = {"123","admin", "auth", "Alexander","Manuela","Peter","Barbara","Hans","Nicola","Mike","Jane","Ludwich","Sandra"};
+		String [] lastnameList = {"123","admin", "auth", "Mayer","Schönefeld","Brummer","Tannenbaum","Goldmann","Fischermann","Silbermann","Schuhmacher","Holzmann","Wassermann"};
+		String [] adresseList = {"123","admin", "123", "Schönfließ Dorfstraße 35","Bernau Saturnring16","Bernau Rollenhagenstr.29","Werneuchen Löhmerdorfstr","Zühlsdorf Wandlitzer Chaussee 14","Panketal Bernauerstraße 41","Werneuchen Marxstraße 32","Zühlsdorf Basdorferstr.50","Lindenberg Karl-Marx-Str.20","Werneuchen Löhmerdorfstr. 50a"};
+		String [] emailListe = {"123","admin", "123", "hbork4@aol.com","thomas-bussdorf@web.de","werbegestalter@web.de","wilhelm0804@web.de","moniwill@t-online.de","holger.Lusche@t-online.de","ronnyundute@t-online.de","jg.rauchhaus@freenet.de","RoszkiewiczW@aol.com","R.Santer@t-online.de"};
+		String [] phoneList =  {"123","admin", "123", "033056/82400","03338/766528","03476/854111","03338/38531","033398/76478","033397/72709","033398/87522","030/4744614","033397/61285","0178/4909813"};
+		String [] keywordList = {"123","admin", "auth", "student","ösdkkfjg","södgh","uiouior","diordigh","kjdfgss","pweornb","mdflkgdf","dfgdfg","ödkfgjsdäflg"};
+		String [] mobilList = {"123","admin", "123", "033056/82400","03338/766528","03476/854111","03338/38531","033398/76478","033397/72709","033398/87522","030/4744614","033397/61285","0178/4909813"};
+		int [] fachsemesterList = {1,3,3,2,3,5,1,6,3,4,4,5,6};
+		int [] loginvaluelist = {0,0,1,2,2,2,2,2,2,2,2,2,2};
+
 		
 		Logger.getLogger(dummy.class.getName())
 	    .log(Level.INFO, 
@@ -119,4 +122,18 @@ public class dummy implements Serializable{
 		    "studentctrl Liste:   "+nds+ " "+gender);
 		}
 	}
+	
+	public String generateFieldsOfStudy(){
+		String name;
+				
+		String [] nameList = {"Bwl","Vwl", "Wirtschaftsinformatik","iVwl", "Jura"};
+		for (int i = 1; i <nameList.length; i++){
+			name = nameList[i];
+			dbM.createFieldsOfStudy(name);	
+			
+		}
+		return "addCourse";
+	}
+	
+	
 }

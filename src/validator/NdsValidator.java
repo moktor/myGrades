@@ -36,7 +36,7 @@ public class NdsValidator implements Validator{
  
 			FacesMessage msg = 
 				new FacesMessage("Nds validierung fehlgeschlagen.", 
-						"UngŸltiges Nds KŸrzel.");
+						"Ungültiges Nds Kürzel.");
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			throw new ValidatorException(msg);
  

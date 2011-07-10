@@ -14,10 +14,21 @@ public class FieldOfStudy implements Serializable {
 	private static final long serialVersionUID = -1114601378177859227L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	private String name;
 
+	
+	
+	public FieldOfStudy(){}
+	
+	public FieldOfStudy(String name){
+		this.name = name;
+	}
+	
+	
+	
 	public int getId() {
 		return id;
 	}

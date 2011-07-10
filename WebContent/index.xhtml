@@ -64,7 +64,10 @@
 					<div class="formfield">
 					<div class="formfield_left"></div>
 					<h:inputText value="#{loginCtrl.nds}" id="nds" required="true" class="formfield_center"><!-- Anmeldename -->
-					<f:validator validatorId="loginValidator" />
+					
+					<!-- Validator deaktiviert -->
+					<ui:remove><f:validator validatorId="loginValidator" /></ui:remove>
+
 					</h:inputText>
 					<div class="formfield_right"></div>
 					</div>
@@ -75,7 +78,9 @@
 					<div class="formfield_left"></div>
 					
 					<h:inputSecret value="#{loginCtrl.password}" id="password" required="true" class="formfield_center"><!-- Benutzerpasswort -->
-					<f:validator validatorId="passwordValidator"/>
+					
+					<!-- Validator deaktiviert -->
+					<ui:remove><f:validator validatorId="passwordValidator"/></ui:remove>
 					
 					</h:inputSecret>
 					<div class="formfield_right"></div>

@@ -16,6 +16,12 @@ public class Admin extends Person implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 5975597567059046416L;
+	
+	
+	@Transient
+	private boolean deleteInc;
+
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -29,7 +35,28 @@ public class Admin extends Person implements Serializable {
 	private String mobil;
 	private String keyword;
 	private String salt;
+
 	
+	
+	// ------------------------ ctors -----------------------------------
+	public Admin(){}
+
+	
+	public Admin(String nds, String gender, String firstname, String name,
+			String adresse, String email, String phone , String mobil,
+			String keyword) {
+		
+		this.nds = nds;
+		this.gender = gender;
+		this.firstname = firstname;
+		this.lastname = name;
+		this.adresse = adresse;
+		this.email = email;
+		this.phone = phone;
+		this.mobil = mobil;
+		this.keyword = keyword;
+	}
+
 	
 	
 	
@@ -160,7 +187,16 @@ public class Admin extends Person implements Serializable {
 		this.salt = salt;
 	}
 	
-	
+
+	public void setDeleteInc(boolean deleteInc) {
+		this.deleteInc = deleteInc;
+	}
+
+
+	public boolean isDeleteInc() {
+		return deleteInc;
+	}
+
 	
 	
    

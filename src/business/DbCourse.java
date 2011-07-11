@@ -2,6 +2,7 @@
 package business;
 
 import java.sql.Date;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
@@ -13,6 +14,11 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+
+import comparators.CourseDate;
+import comparators.CourseField;
+import comparators.CourseId;
+import comparators.CourseName;
 
 import controller.courseCtrl;
 import controller.emailCtrl;
@@ -82,28 +88,27 @@ public class DbCourse {
     
     
 	public List<Course> sortById(List<Course> list) {
-		// TODO Auto-generated method stub
-		return null;
+		Collections.sort(list, new CourseId());
+		return list;
 	}
 
 	public List<Course> sortByStudentCount(List<Course> list) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public List<Course> sortByName(List<Course> list) {
-		// TODO Auto-generated method stub
-		return null;
+		Collections.sort(list, new CourseName());
+		return list;
 	}
 
 	public List<Course> sortByFieldOfStudy(List<Course> list) {
-		// TODO Auto-generated method stub
-		return null;
+		Collections.sort(list, new CourseField());
+		return list;
 	}
 
 	public List<Course> sortByDate(List<Course> list) {
-		// TODO Auto-generated method stub
-		return null;
+		Collections.sort(list, new CourseDate());
+		return list;
 	}
 
 	public boolean deleteStudentById(int id) {

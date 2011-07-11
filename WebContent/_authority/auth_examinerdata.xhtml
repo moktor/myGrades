@@ -43,11 +43,11 @@
                     </h:column>
                  	<h:column>
         			<f:facet name="header">Ändern</f:facet>
-                        <h:commandLink value="" action="#{studentCtrl.edit(student)}" class="edit_button" immediate="true"/>
+                        <h:commandLink value="" action="#{examAuthCtrl.edit(examAuth)}" class="edit_button" immediate="true"/>
                     </h:column>
                     <h:column>
                     <f:facet name="header">Löschen</f:facet>
-                       <h:selectBooleanCheckbox value="#{student.deleteInc}" style="margin-left:17px;"/>
+                       <h:selectBooleanCheckbox value="#{examAuth.deleteInc}" style="margin-left:17px;"/>
 
                     </h:column>
                 </h:dataTable>

@@ -18,7 +18,6 @@ import model.Course;
 import model.Enrollment;
 import model.Student;
 
-//Push von mir
 @Named
 @SessionScoped
 public class courseCtrl implements Serializable {
@@ -75,7 +74,6 @@ public class courseCtrl implements Serializable {
 	}
 	 
 	public String addCourseHelper(){
-		  id = 0;
 		  studentcount = 0;
 		  name = "";
 		  fieldofstudy = "";
@@ -92,6 +90,8 @@ public class courseCtrl implements Serializable {
 	public List<Course> getAllCourses(){
 		List<Course> list = dbC.getAllCourses();
 		setCourseList(list);
+		courseList = sortList(list);
+		
 		return list;
 	}
 	
@@ -254,6 +254,22 @@ public class courseCtrl implements Serializable {
     }
     
     //-------------
+    
+    public String changeDateFormat(Course c) {
+    	DateFormat dateFormatDay = new SimpleDateFormat("dd");
+		DateFormat dateFormatMonth = new SimpleDateFormat("MM");
+		DateFormat dateFormatYear = new SimpleDateFormat("yyyy");
+		
+		String dayString = dateFormatDay.format(c.getDate());
+		String monthString = dateFormatMonth.format(c.getDate());
+		String yearString = dateFormatYear.format(c.getDate());
+		
+    	
+    	
+    	String dateString = dayString + "." + monthString + "." + yearString;
+    	
+    	return dateString;
+    }
     
     public String getStudentsToGrade(Course c) {
     	

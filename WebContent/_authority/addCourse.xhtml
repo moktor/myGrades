@@ -50,8 +50,7 @@
                  <tr>               
                <td><h2 class="formlabel">Termin</h2></td>
                <td><div class="formfield">
-               <h:selectOneMenu value="#{courseCtrl.day}">
-                   <f:selectItem itemValue="01" itemLabel="Tag"/>
+               <h:selectOneMenu value="#{courseCtrl.day}" label="Tag">
                    <f:selectItem itemValue="01" itemLabel="1"/>
                    <f:selectItem itemValue="02" itemLabel="2"/>
                    <f:selectItem itemValue="03" itemLabel="3"/>
@@ -85,8 +84,7 @@
                    <f:selectItem itemValue="31" itemLabel="31"/>
                </h:selectOneMenu>
                
-               <h:selectOneMenu value="#{courseCtrl.month}" style="margin-left:9px;">
-                   <f:selectItem itemValue="01-" itemLabel="Monat"/>
+               <h:selectOneMenu value="#{courseCtrl.month}" label="Monat" style="margin-left:9px;">
                    <f:selectItem itemValue="01-" itemLabel="Januar"/>
                    <f:selectItem itemValue="02-" itemLabel="Februar"/>
                    <f:selectItem itemValue="03-" itemLabel="März"/>
@@ -101,8 +99,7 @@
                    <f:selectItem itemValue="12-" itemLabel="Dezember"/>
                </h:selectOneMenu>
                
-               <h:selectOneMenu value="#{courseCtrl.year}" style="margin-left:9px;">
-                   <f:selectItem itemValue="2000-" itemLabel="Jahr"/>
+               <h:selectOneMenu value="#{courseCtrl.year}" label="Jahr" style="margin-left:9px;">
                    <f:selectItem itemValue="2010-" itemLabel="2010"/>
                    <f:selectItem itemValue="2011-" itemLabel="2011"/>
                    <f:selectItem itemValue="2012-" itemLabel="2012"/>

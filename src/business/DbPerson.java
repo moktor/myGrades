@@ -161,95 +161,91 @@ public class DbPerson {
      if(nds == null){
       nds = "";
      }
-   	
-    	
-    	// ---------- no filters ------------------
-    	if(name.equals("") && nds.equals("")){
-    		
-        	Logger.getLogger(dummy.class.getName())
-    	    .log(Level.INFO, 
-    	    "kein Filter");
-        	return list;
-    	}
-    	
-    	// -------------- Name Filter ------------------
-    	
-    	if (!name.equals("") && nds.equals("")){
-    		
-        	Logger.getLogger(dummy.class.getName())
-    	    .log(Level.INFO, 
-    	    "Name Filter");
-    		
-        	for (Iterator iter = list.iterator(); iter.hasNext();)
-        	{
-        	    Student o = (Student) iter.next();
-        	    if (!name.equalsIgnoreCase(o.getName()) && !name.equals("")) // hier die gewünschte Bedingung einfügen
-        	    {
-        	    	if(list.contains(o)){
-        	        iter.remove();
-        	    	}
-        	    }
-        	}
-    		return list;
-    	}
-    	
-    	// --------------- Nds Filter -------------------------
-    	
-    	if(name.equals("")&& !nds.equals("")){
-    		
-        	Logger.getLogger(dummy.class.getName())
-    	    .log(Level.INFO, 
-    	    "Nds Filter");
-    		
-        	for (Iterator iter = list.iterator(); iter.hasNext();)
-        	{
-        	    Student o = (Student) iter.next();
-        	    if (!nds.equalsIgnoreCase(o.getNds()) && nds != "") // hier die gewünschte Bedingung einfügen
-        	    {
-        	    	if(list.contains(o)){
-        	        iter.remove();
-        	    	}
-        	    }
-        	}
-    		return list;
-    	}
-    	
-    	
-    	
-    	// ------------ Both Filters --------------------
-    	if(!name.equals("") && !nds.equals("")){
-        	Logger.getLogger(dummy.class.getName())
-    	    .log(Level.INFO, 
-    	    "Both Filters");
-        	
-        	for (Iterator iter = list.iterator(); iter.hasNext();)
-        	{
-        	    Student o = (Student) iter.next();
-        	    if (!nds.equalsIgnoreCase(o.getNds()) || !name.equalsIgnoreCase(o.getName())) // hier die gewünschte Bedingung einfügen
-        	    {
-                	Logger.getLogger(dummy.class.getName())
-            	    .log(Level.INFO, 
-            	    "Both Filters -------------------------"+o.getName());
-        	    	
-        	    	
-        	    	if(list.contains(o)){
-        	        iter.remove();
-        	    	}
-        	    }
-        	}
-        	
-        	
-    	}
-    	
-    	
-    	return list;
-    	
-	}
 
      
-    
-    
-
+     
+     // ---------- no filters ------------------
+     if(name.equals("") && nds.equals("")){
+      
+         Logger.getLogger(dummy.class.getName())
+         .log(Level.INFO, 
+         "kein Filter");
+         return list;
+     }
+     
+     // -------------- Name Filter ------------------
+     
+     if (!name.equals("") && nds.equals("")){
+      
+         Logger.getLogger(dummy.class.getName())
+         .log(Level.INFO, 
+         "Name Filter");
+      
+         for (Iterator iter = list.iterator(); iter.hasNext();)
+         {
+             Student o = (Student) iter.next();
+             if (!name.equalsIgnoreCase(o.getName()) && !name.equals("")) // hier die gewŸnschte Bedingung einfŸgen
+             {
+              if(list.contains(o)){
+                 iter.remove();
+              }
+             }
+         }
+      return list;
+     }
+     
+     // --------------- Nds Filter -------------------------
+     
+     if(name.equals("")&& !nds.equals("")){
+      
+         Logger.getLogger(dummy.class.getName())
+         .log(Level.INFO, 
+         "Nds Filter");
+      
+         for (Iterator iter = list.iterator(); iter.hasNext();)
+         {
+             Student o = (Student) iter.next();
+             if (!nds.equalsIgnoreCase(o.getNds()) && nds != "") // hier die gewŸnschte Bedingung einfŸgen
+             {
+              if(list.contains(o)){
+                 iter.remove();
+              }
+             }
+         }
+      return list;
+     }
+     
+     
+     
+     // ------------ Both Filters --------------------
+     if(!name.equals("") && !nds.equals("")){
+         Logger.getLogger(dummy.class.getName())
+         .log(Level.INFO, 
+         "Both Filters");
+         
+         for (Iterator iter = list.iterator(); iter.hasNext();)
+         {
+             Student o = (Student) iter.next();
+             if (!nds.equalsIgnoreCase(o.getNds()) || !name.equalsIgnoreCase(o.getName())) // hier die gewŸnschte Bedingung einfŸgen
+             {
+                 Logger.getLogger(dummy.class.getName())
+                 .log(Level.INFO, 
+                 "Both Filters -------------------------"+o.getName());
+              
+              
+              if(list.contains(o)){
+                 iter.remove();
+              }
+             }
+         }
+         
+         
+     }
+     
+     
+     return list;
+     
+ }
        
 
     // ----------------- FM ---------------------- sorting Methods -------------------

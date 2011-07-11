@@ -26,15 +26,27 @@
 
 
                     <h:column>
-                        <f:facet name="header"><h:commandLink value="Nds" action="#{studentCtrl.sortStudentsByNds}"/></f:facet>
+                        <f:facet name="header">
+                        	<h:commandButton value="Nds" action="#{studentCtrl.sortStudentsByNds}">
+                        		<f:ajax render="@form" execute="@form"/>
+                        	</h:commandButton>
+                        </f:facet>
                         #{student.nds}
                     </h:column>
                     <h:column>
-              			<f:facet name="header"><h:commandLink value="Name" action="#{studentCtrl.sortStudentsByName}"/></f:facet>
+              			<f:facet name="header">
+              				<h:commandButton value="Name" action="#{studentCtrl.sortStudentsByName}">
+              				<f:ajax render="@form" execute="@form"/>
+              				</h:commandButton>
+              			</f:facet>
                         #{student.name}
                     </h:column>
                     <h:column>
-                        <f:facet name="header"><h:commandLink value="Vorname" action="#{studentCtrl.sortStudentsByFirst}"/></f:facet>
+                        <f:facet name="header">
+                        	<h:commandButton value="Vorname" action="#{studentCtrl.sortStudentsByFirst}">
+                        	<f:ajax render="@form" execute="@form"/>
+                        	</h:commandButton>
+                        </f:facet>
                         #{student.firstname}
                     </h:column>
                  	<h:column>

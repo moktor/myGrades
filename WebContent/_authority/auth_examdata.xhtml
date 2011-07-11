@@ -17,10 +17,10 @@
                 
                 <h:form>
                 
-
+  
                 
-                <table>
-               <tr><td colspan="6"><div class="line"></div></td></tr>
+                <table class="table_reset">
+            
                <tr>
                <td colspan="6"><p>Geben sie in die nachfolgenden Suchfelder Prüfungs-ID oder Name derjenigen Prüfung an, den sie anzeigen lassen wollen, und klicken sie auf 'Suchen'.</p></td>
                </tr>
@@ -45,13 +45,15 @@
                <td><h:commandButton value="" action="#{studentCtrl.markIt}" class="#{studentCtrl.markClass}" style="float:right;"/>
                 </td>
                </tr>
+               <tr><td colspan="6"><div class="line"></div></td></tr>
                </table>
                
 
-                <h:dataTable value="#{courseCtrl.allCourses}" var="course"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
+
+                <h:dataTable value="#{courseCtrl.allCourses}" var="course"  styleClass="" headerClass="data_table_header" rowClasses="" cellspacing="0" cellpadding="0" border="0">
                     <h:column>
                     <f:facet name="header">
-                        <h:commandButton value="ID" action="#{courseCtrl.sortCoursesById}">
+                        <h:commandButton value="ID" action="#{courseCtrl.sortCoursesById}" class="clear_button">
                         <f:ajax render="@form" execute="@form"/>
                         </h:commandButton>
                     </f:facet>
@@ -59,7 +61,7 @@
                     </h:column>
                     <h:column>
               			<f:facet name="header">
-              				<h:commandButton value="Name" action="#{courseCtrl.sortCoursesByName}">
+              				<h:commandButton value="Name" action="#{courseCtrl.sortCoursesByName}" class="clear_button">
               				<f:ajax render="@form" execute="@form"/>
               				</h:commandButton>
               			</f:facet>
@@ -67,7 +69,7 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                        	<h:commandButton value="Fach" action="#{courseCtrl.sortCoursesByFieldOfStudy}">
+                        	<h:commandButton value="Fach" action="#{courseCtrl.sortCoursesByFieldOfStudy}" class="clear_button">
                         	<f:ajax render="@form" execute="@form"/>
                         	</h:commandButton>
                         </f:facet>
@@ -76,7 +78,7 @@
                     <h:column>
 
                     	<f:facet name="header">
-                    		<h:commandButton value="Termin" action="#{courseCtrl.sortCoursesByDate}">
+                    		<h:commandButton value="Termin" action="#{courseCtrl.sortCoursesByDate}" class="clear_button">
                     			<f:ajax render="@form" execute="@form"/>
                     		</h:commandButton>
                     	</f:facet>

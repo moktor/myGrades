@@ -645,3 +645,27 @@ a:hover {
 	width:200px;
 	height:auto;
 }
+
+.clear_button{
+border: none;
+background: none;
+color:#5fcbde;
+font-weight:bold;
+text-decoration: underline;
+text-align: left;
+padding: 0;
+margin: 0;
+border: 0;
+}
+
+.clear_button:hover{
+color:#f62a93;
+}
+.table_reset{
+margin: 0;
+padding 0;
+}
+
+.data_table_header{
+padding-bottom: 15px;
+}

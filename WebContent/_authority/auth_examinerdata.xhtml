@@ -16,52 +16,69 @@
            <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Prüfer.</p>
                 
                 <h:form>
-				<table>
-               <tr><td colspan="6"><div class="line"></div></td></tr>
+                
+                               <table class="table_reset">
+               
                <tr>
-               <td colspan="6"><p>Geben sie in die nachfolgenden Suchfelder Prüfer ID oder Nachname desjenigen Prüfers an, den sie anzeigen lassen wollen, und klicken sie auf 'Suchen'.</p></td>
+               <td colspan="6"><p>Geben sie in die nachfolgenden Suchfelder nds-Kürzel oder Nachname desjenigen Studenten an, den sie anzeigen lassen wollen, und klicken sie auf 'Suchen'.</p></td>
                </tr>
                <tr>
-               		<td>ID </td>
+               		<td>NDS </td>
                   	<td><div class="searchfield">
                      <div class="searchfield_left"></div>
-                   <h:inputText value="#{studentCtrl.criteriaNds}" required="false" class="searchfield_center"/>
+                   <h:inputText value="#{examAuthCtrl.criteriaNds}" required="false" class="searchfield_center"/>
                    <div class="searchfield_right"></div>
                  </div></td>
                  
                   <td>Name </td>
                   <td><div class="searchfield">
                      <div class="searchfield_left"></div>
-                   <h:inputText value="#{studentCtrl.criteria}" required="false" class="searchfield_center"/>
+                   <h:inputText value="#{examAuthCtrl.criteria}" required="false" class="searchfield_center"/>
                    <div class="searchfield_right"></div>
                  </div></td>
                  
                <td>  
-               <h:commandButton value="" action="auth_studentdata" class="search" style="float:left;"/>
+               		<h:commandButton value="" action="auth_examinerdata" class="search" style="float:left;">
+               		<f:ajax render="@form" execute="@form"/>
+               		</h:commandButton>
                </td>
-               <td><h:commandButton value="" action="#{studentCtrl.markIt}" class="#{studentCtrl.markClass}" style="float:right; margin-right:30px;"/>
+               <td>
+               		<h:commandButton value="" action="#{examAuthCtrl.markIt}" class="#{examAuthCtrl.markClass}" style="float:right; margin-right:30px;">
+               		<f:ajax render="@form" execute="@form"/>
+               		</h:commandButton>
                 </td>
                </tr>
+               <tr><td colspan="6"><div class="line"></div></td></tr>
                </table>
+
                 <h:dataTable value="#{examAuthCtrl.allExamAuths}" var="examAuth"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
                     <h:column>
                          
-                         <f:facet name="header"><h:commandLink value="Prüfer ID" action="#{examAuthCtrl.sortExamAuthsByNds}"/></f:facet>
+                         <f:facet name="header">
+                         	<h:commandButton value="Prüfer ID" action="#{examAuthCtrl.sortExamAuthsByNds}" class="clear_button">
+                         	<f:ajax render="@form" execute="@form"/>
+                         	</h:commandButton>
+                         </f:facet>
                         
                         ${examAuth.nds}
                     </h:column>
-                    <h:column>
-                    
-         				<f:facet name="header"><h:commandLink value="Name" action="#{examAuthCtrl.sortExamAuthsByName}"/></f:facet>
-                    
-                
+                    <h:column>               
+         	       			<f:facet name="header">
+              				<h:commandButton value="Name" action="#{examAuthCtrl.sortExamAuthsByName}" class="clear_button">
+              				<f:ajax render="@form" execute="@form"/>
+              				</h:commandButton>
+              			</f:facet>
                         #{examAuth.name}
                     </h:column>
                     <h:column>
-                        <f:facet name="header"><h:commandLink value="Vorname" action="#{examAuthCtrl.sortExamAuthsByFirst}"/></f:facet>
+                       <f:facet name="header">
+                       	<h:commandButton value="Vorname" action="#{examAuthCtrl.sortExamAuthsByFirst}" class="clear_button">
+                        	<f:ajax render="@form" execute="@form"/>
+                        </h:commandButton>
+                       </f:facet>
                         #{examAuth.firstname}
                     </h:column>
-             
+                   
                  	<h:column>
         			<f:facet name="header">Ändern</f:facet>
                         <h:commandLink value="" action="#{examAuthCtrl.edit(examAuth)}" class="edit_button" immediate="true"/>

@@ -241,7 +241,7 @@ public class studentCtrl implements Serializable {
 	
 		dbP.deleteMultipleStudents(studentList);
 		
-		return "auth_studentdata";
+		return "auth_delStudSuccess";
 	}
 	
 	

@@ -15,7 +15,6 @@ body {
 /* helpers */
 
 .green {
-	font-weight:bold;
 	color:#1ad823;
 	text-decoration:underline;
 	font-size:13px;
@@ -23,10 +22,13 @@ body {
 }
 
 .red {
-	font-weight:bold;
 	color:#e41923;
-	font-size:14px;
+	font-size:12px;
 	margin-bottom:10px;
+}
+
+.bold {
+	font-weight:bold;
 }
 
 .no {
@@ -308,6 +310,42 @@ a:hover {
 	text-decoration:underline;
 }
 
+.select_all {
+	background:url(../images/select.png) no-repeat;
+	float:none;
+	width:67px;
+	height:21px;
+	border:none;
+}
+
+.select_all:hover {
+	background:url(../images/select_hover.png) no-repeat;
+}
+
+.deselect_all {
+	background:url(../images/deselect.png) no-repeat;
+	float:none;
+	width:67px;
+	height:21px;
+	border:none;
+}
+
+.deselect_all:hover {
+	background:url(../images/deselect_hover.png) no-repeat;
+}
+
+.search {
+	background:url(../images/search.png) no-repeat;
+	float:none;
+	width:55px;
+	height:21px;
+	border:none;
+}
+
+.search:hover {
+	background:url(../images/search_hover.png) no-repeat;
+}
+
 .edit_button {
 	background:url(../images/edit_button.png) no-repeat;
 	float:none;
@@ -360,12 +398,6 @@ a:hover {
 	text-decoration:none;
 	color:#adadad;
 	text-shadow:#ffffff 1px 1px;
-}
-
-.searchfield {
-	background:url(../images/searchfield.png) no-repeat;
-	width:161px;
-	height:20px;
 }
 
 .login_status_box {
@@ -493,6 +525,13 @@ a:hover {
 	margin-bottom:10px;
 }
 
+.searchfield {
+	width:auto;
+	height:24px;
+	float:none;
+	overflow:hidden;
+}
+
 .formlabel {
 	width:100px;
 	height:30px;
@@ -518,7 +557,7 @@ a:hover {
 	display:block;
 	font-size:13px;
 	font-style:italic;
-	color:#bfbfbf;
+	color:#b3b3b3;
 	overflow:none;
 }
 
@@ -527,6 +566,32 @@ a:hover {
 	float:left;
 	width:5px;
 	height:30px;
+}
+
+.searchfield_left {
+	background:url(../images/searchfield_left.png) no-repeat;
+	float:left;
+	width:7px;
+	height:24px;
+}
+
+.searchfield_center {
+	background:url(../images/searchfield_center.png) repeat-x;
+	float:left;
+	width:90px;
+	height:24px;
+	border:none;
+	display:block;
+	font-size:12px;
+	font-style:italic;
+	color:#a3a3a3;
+}
+
+.searchfield_right {
+	background:url(../images/searchfield_right.png) no-repeat;
+	float:left;
+	width:7px;
+	height:24px;
 }
 
 .social_media {

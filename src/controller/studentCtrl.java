@@ -49,6 +49,7 @@ public class studentCtrl implements Serializable {
 
 	private boolean mark = false;
 	private String marked = "Alles auswählen";
+	private String markClass = "select_all";
 	
 	// ----------------- FM ---------------- filter attribute
 	private String criteria;
@@ -295,10 +296,11 @@ public class studentCtrl implements Serializable {
    if (mark){
     mark = false;
     setMarked("Alles auswählen");
+    setMarkClass("select_all");
    }else{
     mark = true;
-       
-       setMarked("Alles abwählen");
+    setMarked("Alles abwählen");
+    setMarkClass("deselect_all");
    } 
    return "auth_studentdata";
   }
@@ -437,6 +439,14 @@ public class studentCtrl implements Serializable {
 
 	public void setStudent(Student student) {
 		this.student = student;
+	}
+
+	public void setMarkClass(String markClass) {
+		this.markClass = markClass;
+	}
+
+	public String getMarkClass() {
+		return markClass;
 	}
 	
 	

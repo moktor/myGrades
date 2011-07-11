@@ -17,41 +17,37 @@
                 
                 <h:form>
                 
-                                <!-- Searchfield -->
-               
-               <table>
-               <tr><td colspan="2"><div class="line"></div></td></tr>
+
+                
+                <table>
+               <tr><td colspan="6"><div class="line"></div></td></tr>
                <tr>
-               <td colspan="2"><p>Geben sie in die nachfolgenden Suchfelder nds-Kürzel oder Nachname desjenigen Studenten an, den sie anzeigen lassen wollen, und klicken sie auf 'Suchen'.</p></td>
+               <td colspan="6"><p>Geben sie in die nachfolgenden Suchfelder Prüfungs-ID oder Name derjenigen Prüfung an, den sie anzeigen lassen wollen, und klicken sie auf 'Suchen'.</p></td>
                </tr>
                <tr>
-               <td>
-               <h2 class="formlabel">NDS: </h2></td>
-                  <td><div class="formfield">
-                     <div class="formfield_left"></div>
-                   <h:inputText value="#{studentCtrl.criteriaNds}" required="false" class="formfield_center"/>
-                   <div class="formfield_right"></div>
+               		<td>ID </td>
+                  	<td><div class="searchfield">
+                     <div class="searchfield_left"></div>
+                   <h:inputText value="#{studentCtrl.criteriaNds}" required="false" class="searchfield_center"/>
+                   <div class="searchfield_right"></div>
                  </div></td>
-                 </tr>
                  
-                 <tr>
-                  <td><h2 class="formlabel">Name: </h2></td>
-                  <td><div class="formfield">
-                     <div class="formfield_left"></div>
-                   <h:inputText value="#{studentCtrl.criteria}" required="false" class="formfield_center"/>
-                   <div class="formfield_right"></div>
+                  <td>Name </td>
+                  <td><div class="searchfield">
+                     <div class="searchfield_left"></div>
+                   <h:inputText value="#{studentCtrl.criteria}" required="false" class="searchfield_center"/>
+                   <div class="searchfield_right"></div>
                  </div></td>
-                 </tr>
                  
-               <tr>
-               <td colspan="2">  
-               <h:commandButton value="Suchen" action="auth_studentdata" class="blue_button" style="float:left;">
-               <f:ajax render="@form" execute="@form"/>
-               </h:commandButton>
+               <td>  
+               <h:commandButton value="" action="auth_studentdata" class="search" style="float:left;"/>
                </td>
+               <td><h:commandButton value="" action="#{studentCtrl.markIt}" class="#{studentCtrl.markClass}" style="float:right;"/>
+                </td>
                </tr>
                </table>
-                
+               
+
                 <h:dataTable value="#{courseCtrl.allCourses}" var="course"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
                     <h:column>
                     <f:facet name="header">
@@ -78,11 +74,15 @@
                         #{course.fieldOfStudy}
                     </h:column>
                     <h:column>
+
                     	<f:facet name="header">
                     		<h:commandButton value="Termin" action="#{courseCtrl.sortCoursesByDate}">
                     			<f:ajax render="@form" execute="@form"/>
                     		</h:commandButton>
                     	</f:facet>
+
+      
+
                         #{courseCtrl.changeDateFormat(course)}
                     </h:column>
                  	<h:column>

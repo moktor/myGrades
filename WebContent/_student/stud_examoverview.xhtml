@@ -12,7 +12,7 @@
 	   
           <h1>Prüfungsübersicht</h1>
            <div class="line"></div>
-           <p>Hier sehen sie eine Liste aller Kurse, zu denen sie sich bereits angemeldet haben, und die noch nicht geschrieben wurden. Wählen sie die betreffenden Prüfungen aus, geben sie eine gültige TAN an und bestätigen sie mit Abmelden, um sich von Prüfungen abzumelden.</p>
+           <p>Hier sehen sie eine Liste aller Kurse, zu denen sie sich bereits angemeldet haben, und die noch nicht geschrieben wurden. Wählen sie die betreffenden Prüfungen aus, geben sie eine gültige TAN an und bestätigen sie mit Abmelden, um sich von Prüfungen abzumelden. <p class="red">Achtung! Sie können sich nur von Kursen abmelden, die noch nicht geschrieben wurden!</p></p>
                 
                 <h:form>
                 <h:dataTable value="#{courseCtrl.allEnrollments(loginCtrl.id)}" var="enrollment"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
@@ -30,11 +30,11 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header"><h:commandLink value="Termin" action="#{courseCtrl.sortCoursesByDate}"/></f:facet>
-                        #{enrollment.parentCourse.date}
+                        #{courseCtrl.changeDateFormat(enrollment.parentCourse)}
                     </h:column>
                     <h:column>
                     <f:facet name="header">Abmelden</f:facet>
-                       <h:selectBooleanCheckbox value="#{enrollment.selected}" style="margin-left:23px;"/>
+                       <h:selectBooleanCheckbox value="#{enrollment.selected}" rendered="#{!courseCtrl.written(enrollment.parentCourse)}" style="margin-left:23px;"/>
                     </h:column>
                 </h:dataTable>
                 

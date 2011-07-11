@@ -16,7 +16,33 @@
            <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Prüfer.</p>
                 
                 <h:form>
-
+				<table>
+               <tr><td colspan="6"><div class="line"></div></td></tr>
+               <tr>
+               <td colspan="6"><p>Geben sie in die nachfolgenden Suchfelder Prüfer ID oder Nachname desjenigen Prüfers an, den sie anzeigen lassen wollen, und klicken sie auf 'Suchen'.</p></td>
+               </tr>
+               <tr>
+               		<td>ID </td>
+                  	<td><div class="searchfield">
+                     <div class="searchfield_left"></div>
+                   <h:inputText value="#{studentCtrl.criteriaNds}" required="false" class="searchfield_center"/>
+                   <div class="searchfield_right"></div>
+                 </div></td>
+                 
+                  <td>Name </td>
+                  <td><div class="searchfield">
+                     <div class="searchfield_left"></div>
+                   <h:inputText value="#{studentCtrl.criteria}" required="false" class="searchfield_center"/>
+                   <div class="searchfield_right"></div>
+                 </div></td>
+                 
+               <td>  
+               <h:commandButton value="" action="auth_studentdata" class="search" style="float:left;"/>
+               </td>
+               <td><h:commandButton value="" action="#{studentCtrl.markIt}" class="#{studentCtrl.markClass}" style="float:right; margin-right:30px;"/>
+                </td>
+               </tr>
+               </table>
                 <h:dataTable value="#{examAuthCtrl.allExamAuths}" var="examAuth"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
                     <h:column>
                          
@@ -35,12 +61,7 @@
                         <f:facet name="header"><h:commandLink value="Vorname" action="#{examAuthCtrl.sortExamAuthsByFirst}"/></f:facet>
                         #{examAuth.firstname}
                     </h:column>
-                    <h:column>
-                        <f:facet name="header"><h:commandLink value="Fachrichtung" action="#{examAuthCtrl.sortExamAuthsByFieldOfStudy}"/></f:facet>
-                        #{examAuth.fieldOfStudy}
-
-
-                    </h:column>
+             
                  	<h:column>
         			<f:facet name="header">Ändern</f:facet>
                         <h:commandLink value="" action="#{examAuthCtrl.edit(examAuth)}" class="edit_button" immediate="true"/>

@@ -12,10 +12,8 @@
 	   <div class="scrollbox">
           <h1>Prüfungen benoten</h1>
            <div class="line"></div>
-           <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Prüfungen. Klicken sie auf den Prüfungsnamen, um alle Studenten anzuzeigen, die sich zur jeweiligen Prüfung angemeldet haben, um diese zu benoten.</p>
-                
-              
-                <h:form>
+           <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Prüfungen. Prüfungen, die mit einer grünen Markierung versehen sind, wurden schon geschrieben, und können bewertet werden. Klicken sie dazu auf den Prüfungsnamen, um alle Studenten anzuzeigen, die sich zur jeweiligen Prüfung angemeldet haben, um diese zu benoten.</p>
+				<h:form>
                 <h:dataTable value="#{courseCtrl.allCourses}" var="course"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
                     <h:column>
                         <f:facet name="header"><h:commandLink value="ID" action="#{courseCtrl.sortCoursesById}"/></f:facet>
@@ -23,7 +21,8 @@
                     </h:column>
                     <h:column>
               			<f:facet name="header"><h:commandLink value="Name" action="#{courseCtrl.sortCoursesByName}"/></f:facet>
-                        <h:commandLink value="#{course.name}" action="#{courseCtrl.getStudentsToGrade(course)}"/>
+                        <h:commandLink value="#{course.name}" rendered="#{courseCtrl.written(course)}" action="#{courseCtrl.getStudentsToGrade(course)}"/>
+                        <h:outputText value="#{course.name}" rendered="#{!courseCtrl.written(course)}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header"><h:commandLink value="Fach" action="#{courseCtrl.sortCoursesByFieldOfStudy}"/></f:facet>
@@ -34,9 +33,6 @@
                         <div class="#{courseCtrl.checkDate(course)}"></div> <!-- courseCtrl.checkDate(course) -->
                     </h:column>
                 </h:dataTable>
-                
-                
-                
                 <div class="line"></div>
                 </h:form> 
                 

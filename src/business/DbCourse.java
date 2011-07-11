@@ -15,6 +15,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import controller.courseCtrl;
+import controller.emailCtrl;
 
 import model.*;
  //================================= AS ===========================================
@@ -110,10 +111,20 @@ public class DbCourse {
 		return false;
 	}
 
-	public void deleteMultipleCourses(List<Course> courseList) {
-		// TODO Auto-generated method stub
-		
-	}
+	 // ------------------------------------------ FM ---------------------deleteMultipleStudents-------------------------
+    // deletes selected objects of a list
+    
+    public boolean deleteSelectedCourses(List<Course> list){
+    	
+    	for(Course course: list){
+    		if(course.isSelected()){
+    			course = (Course)em.merge(course);
+    			em.remove(course);
+    			course.setSelected(false);
+    		}
+    	}
+    	return true;
+    }
 	
 	//Methoden für die Enrollment Klasse
 
@@ -134,9 +145,20 @@ public class DbCourse {
 
 	// Anmelden/Abmelden/Benoten
 	public boolean updateGrades(List<Enrollment> enrollmentList) {
+		emailCtrl emailCtrl = new emailCtrl();
 		
 		for(Enrollment e: enrollmentList){
-    			em.merge(e);
+			int id = e.getId();
+			TypedQuery<Enrollment> query = em.createQuery("select e from Enrollment e where e.id = :id", Enrollment.class);
+			query.setParameter("id", id);
+			Enrollment enrollment = query.getSingleResult();
+			int oldGrade = enrollment.getGrade();
+			
+			em.merge(e);
+    		
+			if (e.getGrade() != oldGrade) {
+				emailCtrl.sendEmail(e.getParentStudent().getEmail(), e.getParentCourse().getName());
+			}
     	}
 		
 		return true;

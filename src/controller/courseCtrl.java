@@ -91,7 +91,7 @@ public class courseCtrl implements Serializable {
 	//additional test logger for view of all courses
 	public List<Course> getAllCourses(){
 		List<Course> list = dbC.getAllCourses();
-		courseList = sortList(list);
+		setCourseList(list);
 		return list;
 	}
 	
@@ -158,26 +158,15 @@ public class courseCtrl implements Serializable {
 	}
 	
 	
-	
-	//-------------------------JL----------------deleteCourse-----------------
-	//deletes a course from db, using nds (primary key)
-	public String deleteStudent(){
-
-		if(dbC.deleteStudentById(this.id) == true){
-		return "delSuccess";
-		}
-		else
-		return "delError";
-		
-	}
 	// ----------------------- MH ---------------------deleteSelected----------------
-    // deletes selected Students
-	
-	public String deleteSelected(){
-	
-		dbC.deleteMultipleCourses(courseList);
+    // deletes selected Courses
 		
-		return "auth_delSuccess";
+    
+    public String deleteSelectedCourses(){
+    	
+		dbC.deleteSelectedCourses(courseList);
+		
+		return "auth_examdata";
 	}
 	
 	
@@ -213,10 +202,10 @@ public class courseCtrl implements Serializable {
     
     //-------------------------------------------------- Datum überprüfen
     
-    public String checkDate(Course course) {
+    public String checkDate(Course c) {
     	
     	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    	Date courseDate = course.getDate();
+    	Date courseDate = c.getDate();
     	
     	Date currentDate =  java.sql.Date.valueOf(dateFormat.format(new java.util.Date()));
     	
@@ -231,16 +220,36 @@ public class courseCtrl implements Serializable {
     
     // ------------------------------------------------- 
     
-    public String getStudentsToGrade(Course course) {
+    public boolean written(Course c) {
     	
     	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    	Date courseDate = course.getDate();
+    	Date courseDate = c.getDate();
+    	Date currentDate =  java.sql.Date.valueOf(dateFormat.format(new java.util.Date()));
+    	
+    	if ( courseDate.before(currentDate) )
+    		return true;
+    	if ( courseDate.after(currentDate) ) 
+    		return false;
+    	else
+    		return false;
+    }
+    
+    //-------------
+    
+    public String getStudentsToGrade(Course c) {
+    	
+    	/*
+    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    	Date courseDate = c.getDate();
     	Date currentDate =  java.sql.Date.valueOf(dateFormat.format(new java.util.Date()));
 
+    	setCurrentCourse(c);
+    	
     	if (courseDate.after(currentDate)) 
     		return "invalid";
+    	*/
     	
-    	setCurrentCourse(course);
+    	setCurrentCourse(c);
     	
     	return "auth_gradestudents";
     }

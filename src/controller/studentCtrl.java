@@ -46,6 +46,11 @@ public class studentCtrl implements Serializable {
 	
 	
 	// ------------ FM ------------ checkBox marker ----
+<<<<<<< HEAD
+=======
+	private boolean mark = false;
+	private String marked = "mark all";
+>>>>>>> 4b7ba9e98189fd8307c867df3b352e6ade8c2a36
 	
 	private boolean markAll = false;
 	private String marked;
@@ -125,7 +130,12 @@ public class studentCtrl implements Serializable {
 
 		studentList = sortList(list);				// sort
 		
+<<<<<<< HEAD
 		studentList = dbP.filter(studentList, criteria);		// filter
+=======
+		studentList = dbP.filter(studentList, criteria, criteriaNds);		// filter
+				
+>>>>>>> 4b7ba9e98189fd8307c867df3b352e6ade8c2a36
 		studentList = checkAll(list);
 				
 		return list;

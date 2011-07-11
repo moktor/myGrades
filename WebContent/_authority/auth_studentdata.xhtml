@@ -10,13 +10,12 @@
 	
 	<ui:define name="content" >
 	   <!--This is where the magic happens!!!-->
-          <div class="scrollbox">
+          
           	<h1>Studentendaten</h1>
             <div class="line"></div>
-            <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Studenten.</p>
+            <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Studenten. Klicken sie auf Anlegen, um neue Studenten einzutragen, markieren sie einen oder mehrere Studenten und bestätigen sie mit Löschen, um die betreffenden Studenten aus dem System zu löschen. Ein Klick auf 'Edit' lässt sie die Benutzerdaten des jeweiligen Studenten bearbeiten.</p>
                 	
                 <h:form>
-                
                 <h:dataTable value="#{studentCtrl.getAllStudents()}" var="student"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
 
 
@@ -41,13 +40,12 @@
                        <h:selectBooleanCheckbox value="#{student.deleteInc}" style="margin-left:17px;"/>
                     </h:column>
                 </h:dataTable>
-                <div class="bottom">
+
                 <div class="line"></div>
                 <h:commandButton value="Löschen" action="#{studentCtrl.deleteSelected}" class="blue_button"  style="float:right;"/>
                 <h:commandButton value="Erstellen" action="#{studentCtrl.addStudentHelper}" class="blue_button" style="float:left;"/>
-                </div>
-                </h:form>
-         </div> 
+                
+                </h:form> 
 	</ui:define>
 	
 </ui:composition>

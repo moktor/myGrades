@@ -11,8 +11,8 @@
 	   
           <h1>Zu Prüfungen anmelden</h1>
            <div class="line"></div>
-           <p>Nachfolgend sehen sie eine Liste der Prüfungen, zu denen sie sich gegenwärtig anmelden können. Wählen sie die betreffenden Prüfungen aus, geben sie eine gültige TAN ein und bestätigen sie mit 'Anmelden'.</p>
-                
+           <p>Nachfolgend sehen sie eine Liste der Prüfungen, zu denen sie sich gegenwärtig anmelden können. Die rot markierten Prüfungen wurden bereits geschrieben. Zu ihnen können sie sich nicht mehr anmelden. Wählen sie die betreffenden Prüfungen aus, die grün markiet sind, und zu denen sie sich anmelden wollen, geben sie eine gültige TAN ein und bestätigen sie mit 'Anmelden'.</p>
+         
                 <h:form>
                 <h:dataTable value="#{courseCtrl.coursesToEnroll(loginCtrl.id)}" var="course"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
                     <h:column>
@@ -29,11 +29,11 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">Status</f:facet>
-                        <div class="#{courseCtrl.checkDate(course)}"></div>
+                        <div class="#{courseCtrl.checkDateReversed(course)}"></div>
                     </h:column>
                     <h:column>
                     <f:facet name="header">Anmelden</f:facet>
-                       <h:selectBooleanCheckbox value="#{course.selected}" style="margin-left:22px;"/>
+                       <h:selectBooleanCheckbox value="#{course.selected}" rendered="#{!courseCtrl.written(course)}" style="margin-left:22px;"/>
                     </h:column>
                 </h:dataTable>
                 <div class="line"></div>

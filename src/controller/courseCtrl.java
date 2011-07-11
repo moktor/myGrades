@@ -18,7 +18,7 @@ import model.Course;
 import model.Enrollment;
 import model.Student;
 
-
+//Push von mir
 @Named
 @SessionScoped
 public class courseCtrl implements Serializable {
@@ -218,6 +218,25 @@ public class courseCtrl implements Serializable {
     		return "fehler";
     }
     
+
+    //-------------------------------------------------- Status überprüfen
+    
+    public String checkDateReversed(Course c) {
+    	
+    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    	Date courseDate = c.getDate();
+    	
+    	Date currentDate =  java.sql.Date.valueOf(dateFormat.format(new java.util.Date()));
+    	
+    	
+    	if ( courseDate.before(currentDate) )
+    		return "no";
+    	if ( courseDate.after(currentDate) ) 
+    		return "yes";
+    	else
+    		return "fehler";
+    }
+    
     // ------------------------------------------------- 
     
     public boolean written(Course c) {
@@ -288,9 +307,9 @@ public class courseCtrl implements Serializable {
     //------------------------------------- Zu ausgewählten Kursen anmelden
     
     public String enrollToSelected(int id){
-    	
+    	Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "checkpoint 1");
 		dbC.enrollToSelected(courseList, id);
-		
+		Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "checkpoint 7");
 		return "stud_enroll";
 	}
     

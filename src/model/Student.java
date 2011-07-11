@@ -16,7 +16,7 @@ import javax.persistence.*;
 
 @Entity
 @ManagedBean
-public class Student extends Person implements Serializable {
+public class Student implements Serializable {
 
 		
 	

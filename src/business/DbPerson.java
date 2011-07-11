@@ -18,7 +18,6 @@ import model.*;
 import comparators.*;
 import controller.dummy;
 
-
 @Stateless
 public class DbPerson {
 
@@ -52,6 +51,20 @@ public class DbPerson {
         
     	Query query = em.createQuery("select c from Student c where c.nds = :nds");
         query.setParameter("nds", nds);
+        try{
+        student = (Student)query.getSingleResult();
+        return student;
+        }catch(NoResultException e){
+        	return student;        	
+        }
+    }
+    
+ // ------------------------------------------ MH -------------------------findStudentById---------------
+    // find a student by nds
+    public Student findStudentById(int id){
+        
+    	Query query = em.createQuery("select c from Student c where c.id = :id");
+        query.setParameter("id", id);
         try{
         student = (Student)query.getSingleResult();
         return student;
@@ -131,25 +144,24 @@ public class DbPerson {
     }
 
     
-    //------------------------------------------- FM -------------- Student Filter ----
+  //------------------------------------------- FM -------------- Student Filter ----
     
     public List<Student> filter(List<Student> list, String name, String nds){
 
-    	
-    	Logger.getLogger(dummy.class.getName())
-	    .log(Level.INFO, 
-	    "uebergabe: "+name+" .."+nds);
+     
+     Logger.getLogger(dummy.class.getName())
+     .log(Level.INFO, 
+     "uebergabe: "+name+" .."+nds);
   
-    	List<Student> temp = new ArrayList<Student>();
+     List<Student> temp = new ArrayList<Student>();
 
-    	if(name == null){
-    		name = "";
-    	}
-    	if(nds == null){
-    		nds = "";
-    	}
-
-    	
+     if(name == null){
+      name = "";
+     }
+     if(nds == null){
+      nds = "";
+     }
+   	
     	
     	// ---------- no filters ------------------
     	if(name.equals("") && nds.equals("")){
@@ -233,6 +245,11 @@ public class DbPerson {
     	return list;
     	
 	}
+
+     
+    
+    
+
        
 
     // ----------------- FM ---------------------- sorting Methods -------------------
@@ -269,20 +286,6 @@ public class DbPerson {
        	
          } 
 
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
    
        
     // ====================================== ExamAuth =====================================================

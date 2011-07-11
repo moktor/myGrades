@@ -10,9 +10,9 @@
 	<ui:define name="content">
 	   <!--This is where the magic happens!!!-->
 	   <div class="scrollbox">
-          <h1>Prüfungen benoten</h1>
+          <h1>Prüfungen benoten - #{courseCtrl.currentCourse.name}</h1>
            <div class="line"></div>
-           <p>Hier sehen sie alle Studenten, die sich zur Prüfung #{courseCtrl.currentcourse.name} angemeldet haben. Die Prüfung wurde schon geschrieben, und kann benotet werden. Wählen sie für jeden Studenten am Ende der Zeile das Prüfungsergebnis, und bestätigen sie mit Speichern.</p>
+           <p>Hier sehen sie alle Studenten, die sich zur Prüfung <strong>#{courseCtrl.currentCourse.name}</strong> angemeldet haben. Die Prüfung wurde schon geschrieben, und kann benotet werden. Wählen Sie für jeden Studenten am Ende der Zeile das Prüfungsergebnis, und bestätigen sie mit Speichern.</p>
                 
                 <h:form>
                 <h:dataTable value="#{courseCtrl.getStudentsByCourse()}" var="enrollment"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
@@ -43,13 +43,12 @@
                    		<f:selectItem itemValue="5" itemLabel="2.3"/>
                    		<f:selectItem itemValue="6" itemLabel="2.7"/>
                    		<f:selectItem itemValue="7" itemLabel="3.0"/>
-                   		<f:selectItem itemValue="8" itemLabel="3.0"/>
-                   		<f:selectItem itemValue="9" itemLabel="3.3"/>
-                   		<f:selectItem itemValue="10" itemLabel="3.7"/>
-                   		<f:selectItem itemValue="11" itemLabel="4.0"/>
-                   		<f:selectItem itemValue="12" itemLabel="4.3"/>
-                   		<f:selectItem itemValue="13" itemLabel="4.7"/>
-                   		<f:selectItem itemValue="14" itemLabel="5.0"/>
+                   		<f:selectItem itemValue="8" itemLabel="3.3"/>
+                   		<f:selectItem itemValue="9" itemLabel="3.7"/>
+                   		<f:selectItem itemValue="10" itemLabel="4.0"/>
+                   		<f:selectItem itemValue="11" itemLabel="4.3"/>
+                   		<f:selectItem itemValue="12" itemLabel="4.7"/>
+                   		<f:selectItem itemValue="13" itemLabel="5.0"/>
                			</h:selectOneMenu>
                     </h:column>
                 </h:dataTable>

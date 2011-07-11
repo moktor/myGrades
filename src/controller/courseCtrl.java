@@ -47,7 +47,7 @@ public class courseCtrl implements Serializable {
 	private Course currentCourse;
 	private Course currentcourse;
 	
-	List<Enrollment> enrollmentList = null;
+	private List<Enrollment> enrollmentList;
 	
 	private Course course; // temp course
 	private List<Course> courseList;
@@ -73,7 +73,7 @@ public class courseCtrl implements Serializable {
 	       dbC.createCourse(studentcount, name, fieldofstudy, datum);
 	       return "auth_examdata";
 	}
-	
+	 
 	public String addCourseHelper(){
 		  id = 0;
 		  studentcount = 0;
@@ -91,7 +91,7 @@ public class courseCtrl implements Serializable {
 	//additional test logger for view of all courses
 	public List<Course> getAllCourses(){
 		List<Course> list = dbC.getAllCourses();
-		courseList = sortList(list);
+		setCourseList(list);
 		return list;
 	}
 	
@@ -158,26 +158,15 @@ public class courseCtrl implements Serializable {
 	}
 	
 	
-	
-	//-------------------------JL----------------deleteCourse-----------------
-	//deletes a course from db, using nds (primary key)
-	public String deleteStudent(){
-
-		if(dbC.deleteStudentById(this.id) == true){
-		return "delSuccess";
-		}
-		else
-		return "delError";
-		
-	}
 	// ----------------------- MH ---------------------deleteSelected----------------
-    // deletes selected Students
-	
-	public String deleteSelected(){
-	
-		dbC.deleteMultipleCourses(courseList);
+    // deletes selected Courses
 		
-		return "auth_delSuccess";
+    
+    public String deleteSelectedCourses(){
+    	
+		dbC.deleteSelectedCourses(courseList);
+		
+		return "auth_examdata";
 	}
 	
 	
@@ -211,12 +200,12 @@ public class courseCtrl implements Serializable {
     	
     }
     
-    //--------------------------------------------------
+    //-------------------------------------------------- Datum überprüfen
     
-    public String checkDate(Course course) {
+    public String checkDate(Course c) {
     	
     	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    	Date courseDate = course.getDate();
+    	Date courseDate = c.getDate();
     	
     	Date currentDate =  java.sql.Date.valueOf(dateFormat.format(new java.util.Date()));
     	
@@ -227,19 +216,45 @@ public class courseCtrl implements Serializable {
     		return "no";
     	else
     		return "fehler";
-    	
     }
     
-    // -------------------------------------------------
+    // ------------------------------------------------- 
     
-    public String getStudentsToGrade(Course course) {
+    public boolean written(Course c) {
     	
-    	setCurrentCourse(course);
+    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    	Date courseDate = c.getDate();
+    	Date currentDate =  java.sql.Date.valueOf(dateFormat.format(new java.util.Date()));
+    	
+    	if ( courseDate.before(currentDate) )
+    		return true;
+    	if ( courseDate.after(currentDate) ) 
+    		return false;
+    	else
+    		return false;
+    }
+    
+    //-------------
+    
+    public String getStudentsToGrade(Course c) {
+    	
+    	/*
+    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    	Date courseDate = c.getDate();
+    	Date currentDate =  java.sql.Date.valueOf(dateFormat.format(new java.util.Date()));
+
+    	setCurrentCourse(c);
+    	
+    	if (courseDate.after(currentDate)) 
+    		return "invalid";
+    	*/
+    	
+    	setCurrentCourse(c);
     	
     	return "auth_gradestudents";
     }
 
-    //-------------------------------------
+    //------------------------------------- Alle Studenten, die zu einem bestimmten Kurs angemeldet sind
     
     public List<Enrollment> getStudentsByCourse() {
     	
@@ -249,27 +264,12 @@ public class courseCtrl implements Serializable {
     	return  enrollmentList;
     }
 
-    //-------------------------------------
     
-    public void testMethod() {
-    	
-    	Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "Checkpoint 1");
-    	
-    	Student student = new Student();
-    	Course course = new Course();
-    	student.setName("Hans");
-    	course.setName("ADP");
-    	//dbC.testMethod(student, course, 1);
-    	Enrollment e = dbC.joinTest();
-    	e.getParentStudent().getName();
-    	Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "Checkpoint 3" + e.getParentStudent().getName());
-    }
-    
-    //-------------------------------------
+    //------------------------------------- Noten eintragen
     
     public String updateGrades(){
     	
-    if( dbC.editEnrollment(enrollmentList)){
+    if( dbC.updateGrades(enrollmentList)){
     	return "auth_gradestudents";
     }else
     {
@@ -277,23 +277,77 @@ public class courseCtrl implements Serializable {
     }
     	
     }
-    //-------------------------------------
+    //------------------------------------- Kurse, zu denen man sich noch anmelden kann
     
-    public List<Course> coursesToEnroll() {
-    	int id = 5; //Wie kommen wir an die ID?
+    public List<Course> coursesToEnroll(int id) {
     	List<Course> list = dbC.coursesToEnroll(id);
 		courseList = sortList(list);
 		return list;
     }
     
-    //-------------------------------------
+    //------------------------------------- Zu ausgewählten Kursen anmelden
     
-    public List<Enrollment> allEnrollments() {
-    	int id = 5; 
+    public String enrollToSelected(int id){
+    	
+		dbC.enrollToSelected(courseList, id);
+		
+		return "stud_enroll";
+	}
+    
+     //------------------------------------- Zu ausgewählten Kursen abmelden
+    
+    public String signOffSelected(int id){
+    	Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "checkpoint 1");
+		dbC.signOffSelected(enrollmentList, id);
+		Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "checkpoint 7");
+		return "stud_examoverview";
+	} 
+    
+   //------------------------------------- Alle Kurse, zu denen der Student eingeschrieben ist
+    
+    public List<Enrollment> allEnrollments(int id) {
     	List<Enrollment> list = dbC.allEnrollments(id);
+    	setEnrollmentList(list);
 		return list;
     }
     
+    //-------------------------------------- Alle Kurse, die schon bewertet wurden
+    
+    public List<Enrollment> getGradedCourses(int id) {
+    	List<Enrollment> list = dbC.getGradedCourses(id);
+    	setEnrollmentList(list);
+    	return list;
+    }
+    
+    //--------------------------------------  Durchschnittsnote berechnen
+    
+    public String getAverage(int id) {
+    	double avg = dbC.getAverage(id);
+    	return "Durchschnittsnote: " + avg;
+    }
+    
+    //--------------------------------------  Note umrechnen
+    
+    public double convertGrade(int grade) {
+    	double convertedGrade = 0;
+		switch (grade) {
+		case 0: convertedGrade = 0; break;
+		case 1: convertedGrade = 1.0; break;
+		case 2: convertedGrade = 1.3; break;
+		case 3: convertedGrade = 1.7; break;
+		case 4: convertedGrade = 2.0; break;
+		case 5: convertedGrade = 2.3; break;
+		case 6: convertedGrade = 2.7; break;
+		case 7: convertedGrade = 3.0; break;
+		case 8: convertedGrade = 3.3; break;
+		case 9: convertedGrade = 3.7; break;
+		case 10: convertedGrade = 4.0; break;
+		case 11: convertedGrade = 4.3; break;
+		case 12: convertedGrade = 4.7; break;
+		case 13: convertedGrade = 5.0; break;
+		}
+    	return convertedGrade;
+    }
 	//----------------- Getter / Setter ------------------------------------
     
 	public int getId() {
@@ -398,6 +452,14 @@ public class courseCtrl implements Serializable {
 
 	public void setCurrentcourse(Course currentcourse) {
 		this.currentcourse = currentcourse;
+	}
+
+	public List<Enrollment> getEnrollmentList() {
+		return enrollmentList;
+	}
+
+	public void setEnrollmentList(List<Enrollment> enrollmentList) {
+		this.enrollmentList = enrollmentList;
 	}
 	
 }

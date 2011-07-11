@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 
-public class ExamAuth extends Person implements Serializable {
+public class ExamAuth implements Serializable {
 
 	
 	/**

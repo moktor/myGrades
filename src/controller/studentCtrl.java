@@ -8,13 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.ejb.Stateful;
-import javax.ejb.Stateless;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
 
@@ -22,7 +16,7 @@ import business.*;
 import model.FieldOfStudy;
 import model.Student;
 
-@ManagedBean
+
 @Named
 @SessionScoped
 public class studentCtrl implements Serializable {
@@ -52,16 +46,14 @@ public class studentCtrl implements Serializable {
 	
 	
 	// ------------ FM ------------ checkBox marker ----
+
 	private boolean mark = false;
-	private String marked = "mark all";
+	private String marked = "Alles auswählen";
 	
-		
 	// ----------------- FM ---------------- filter attribute
-	private String criteriaNds;
 	private String criteria;
+	private String criteriaNds;
 	
-
-
 	private Student currentStudent;
 	
 	private Student student; // temp student
@@ -123,7 +115,7 @@ public class studentCtrl implements Serializable {
 		
 	}
 	
-	
+	// ------------------------- FM ----------------------- listFilter
 	
 	
 	// --------------------- FM ------------------------getAllStudents----------------------
@@ -131,49 +123,15 @@ public class studentCtrl implements Serializable {
 	//additional test logger for view of all students
 	public List<Student> getAllStudents(){
 		List<Student> list = dbP.getAllStudents();
-	
-		studentList = sortList(list);				// sort
-		
+
+		studentList = sortList(list);	
+
 		studentList = dbP.filter(studentList, criteria, criteriaNds);		// filter
 				
 		studentList = checkAll(list);
-			
+				
 		return list;
 	}
-	
-// --------------------- FM ----------- mark all Checkboxes -----	
-	//sets the mark state
-	public String markIt(){	
-				
-		if (mark){
-			mark = false;
-			setMarked("mark all");
-		}else{
-			mark = true;
-    		
-    		setMarked("unmark all");
-		}	
-		return "auth_studentdata";
-	}
-	
-	
- 
-    //------------ edits the list of students
-    private List<Student> checkAll(List<Student> list){
-    	  	
-    	if(mark){
-    	for (Student student : list) {
-			student.setDeleteInc(true);
-		}
-    	}else{
-    		for (Student student : list) {
-    			student.setDeleteInc(false);
-    		}	
-    	}    	
-    	return list;
-    }
-    
-
 	
 	//------------------------ FM --------------------- getAllStudyFields -------------
 	public List<FieldOfStudy> getAllStudyFields(){
@@ -215,25 +173,22 @@ public class studentCtrl implements Serializable {
 		sortFieldOfStudy = false;
 	}
 	
-	public String sortStudentsByNds(){
+	public void sortStudentsByNds(){
 		sortId = false;
 		sortNds = true;
 		sortName = false;
 		sortFirst = false;
 		sortAdress = false;
 		sortFieldOfStudy = false;
-		return "auth_studentdata";
 	}
 	
-	public String sortStudentsByName(){
+	public void sortStudentsByName(){
 		sortId = false;
 		sortNds = false;
 		sortName = true;
 		sortFirst = false;
 		sortAdress = false;
 		sortFieldOfStudy = false;
-		
-		return "auth_studentdata";
 	}
 	
 	public void sortStudentsByFirst(){
@@ -285,7 +240,7 @@ public class studentCtrl implements Serializable {
 	
 		dbP.deleteMultipleStudents(studentList);
 		
-		return "auth_delSuccess";
+		return "auth_studentdata";
 	}
 	
 	
@@ -295,7 +250,10 @@ public class studentCtrl implements Serializable {
     public String edit(Student s){
     	
     	setCurrentStudent(s);
-
+    	
+    	Logger.getLogger(studentCtrl.class.getName())
+	    .log(Level.INFO, 
+	    "studentCtrl Liste  "+s.getFirstname());
     	
     	return "editStudent";
     }
@@ -313,12 +271,37 @@ public class studentCtrl implements Serializable {
     	
     }
 	
-
+   // --------------------- FM ----------- mark all Checkboxes -----
     
-
+  //------------ edits the list of students
+    private List<Student> checkAll(List<Student> list){
+        
+     if(mark){
+     for (Student student : list) {
+   student.setDeleteInc(true);
+  }
+     }else{
+      for (Student student : list) {
+       student.setDeleteInc(false);
+      } 
+     }     
+     return list;
+    }
     
-
-
+ // --------------------- FM ----------- mark all Checkboxes ----- 
+  //sets the mark state
+  public String markIt(){ 
+     
+   if (mark){
+    mark = false;
+    setMarked("Alles auswählen");
+   }else{
+    mark = true;
+       
+       setMarked("Alles abwählen");
+   } 
+   return "auth_studentdata";
+  }
 	
 	//----------------- Getter / Setter ------------------------------------
 
@@ -412,14 +395,6 @@ public class studentCtrl implements Serializable {
 		this.fachsemester = fachsemester;
 	}
 
-	public void setMarked(String marked) {
-		this.marked = marked;
-	}
-
-	public String getMarked() {
-		return marked;
-	}
-	
 	public String getCriteria() {
 		return criteria;
 	}
@@ -428,13 +403,43 @@ public class studentCtrl implements Serializable {
 		this.criteria = criteria;
 	}
 
+	public String getCriteriaNds() {
+		return criteriaNds;
+	}
+
 	public void setCriteriaNds(String criteriaNds) {
 		this.criteriaNds = criteriaNds;
 	}
 
-	public String getCriteriaNds() {
-		return criteriaNds;
+	public boolean isMark() {
+		return mark;
 	}
+
+	public void setMark(boolean mark) {
+		this.mark = mark;
+	}
+
+	public String getMarked() {
+		return marked;
+	}
+
+	public void setMarked(String marked) {
+		this.marked = marked;
+	}
+
+	public List<Student> getStudentList() {
+		return studentList;
+	}
+
+	public void setStudentList(List<Student> studentList) {
+		this.studentList = studentList;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+	
+	
 	
 
 

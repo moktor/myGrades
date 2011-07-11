@@ -6,10 +6,6 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-<h:head>
- <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/favicon.ico"/>
-</h:head>
-
 <ui:composition template="index_template.xhtml">
 	
 	<ui:define name="content">
@@ -18,30 +14,29 @@
           	<div class="big_box_top"></div>
                <div class="big_box_center">
                <div class="box_content">
-               <!--<h1>Einfach. Unkompliziert. Schnell.</h1>-->
-               <h1>Still to go!!!!!</h1>
+               <h1>Einfach. Unkompliziert. Schnell.</h1>
                <div class="line"></div>
                <table>
                	<tr>
-               		<!-- <td width="50%">MyGrades ist ein innovatives Prüfungs- verwaltungssystem, in dem die Prüfungsleistungen aller Studenten im Laufe ihres Studiums gesammelt werden. Von den </td>
+               		 <td width="50%">MyGrades ist ein innovatives Prüfungs- verwaltungssystem, in dem die Prüfungsleistungen aller Studenten im Laufe ihres Studiums gesammelt werden. Von den </td>
                		<td width="50%">zuständigen Prüfern dokumentiert und in einer zentralen Datenbank verwaltet, liegen aktuelle Prüfungsleistungen, sowie ein Archiv vergangener Prüfungsergebnisse vor. </td>
-               		 -->
+               		<!--
                		 <td colspan="2"><ul>
                		 <li class="green">Registrierung von Prüflingen</li> 
-               		 <li class="red">Prüfungsanmeldung von Prüflingen</li> 
-               		 <li class="red">Benachrichtigung bei Noteneintragung per eMail</li> 
-               		 <li class="red">Noteneinsicht</li> 
-               		 <li class="red">Überblick über angemeldete Prüfungen</li> 
+               		 <li class="green">Prüfungsanmeldung von Prüflingen</li> 
+               		 <li class="green">Benachrichtigung bei Noteneintragung per eMail</li> 
+               		 <li class="green">Noteneinsicht</li> 
+               		 <li class="green">Überblick über angemeldete Prüfungen</li> 
                		 <li class="green">Registrierung von Prüfern</li>  
                		 <li class="green">Erstellen von Prüfungen</li>  
                		 <li class="green">Prüfungsfristen </li> 
-					 <li class="red">Noteneintragung durch Prüfer</li> 
+					 <li class="green">Noteneintragung durch Prüfer</li> 
 					 <li class="red">Dokumentierte Anwendungsarchitektur</li> 
 					 <li class="red">Datenmodell</li>
 					 </ul>
-               		 </td>
+               		 </td>-->
                	</tr>
-               </table>
+               </table> 
                <h1>Behalten Sie die Übersicht!</h1>
                
                <div class="line"></div>
@@ -74,6 +69,8 @@
 					<ui:remove><f:validator validatorId="loginValidator" /></ui:remove>
 
 
+					
+
 					</h:inputText>
 					<div class="formfield_right"></div>
 					</div>
@@ -88,6 +85,8 @@
 					
 					<!-- Validator deaktiviert -->
 					<ui:remove><f:validator validatorId="passwordValidator"/></ui:remove>
+  
+					
 
 					
 					</h:inputSecret>

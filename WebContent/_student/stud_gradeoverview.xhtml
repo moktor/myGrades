@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="stud_template.xhtml">
+	<ui:define name="content">
+
+          <h1>Prüfungsübersicht</h1>
+           <div class="line"></div>
+           <p>Nachfolgend sehen sie eine Liste der erbrachten Studienleistungen. Hier werden nur Kurse aufgeführt, die schon bewertet wurden.</p>
+                
+                <h:form>
+                <h:dataTable value="#{courseCtrl.getGradedCourses(loginCtrl.id)}" var="enrollment"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
+                    <h:column>
+                        <f:facet name="header"><h:commandLink value="ID" action="#{courseCtrl.sortCoursesById}"/></f:facet>
+                        #{enrollment.parentCourse.id}
+                    </h:column>
+                    <h:column>
+              			<f:facet name="header"><h:commandLink value="Name" action="#{courseCtrl.sortCoursesByName}"/></f:facet>
+                        #{enrollment.parentCourse.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"><h:commandLink value="Fach" action="#{courseCtrl.sortCoursesByFieldOfStudy}"/></f:facet>
+                        #{enrollment.parentCourse.fieldOfStudy}
+                    </h:column>
+                    <h:column style="text-align:center;">
+                        <f:facet name="header">Note</f:facet>
+                        #{courseCtrl.convertGrade(enrollment.grade)}
+                    </h:column>
+                </h:dataTable>
+                <div class="line"></div>
+                <div style="text-align: right; margin-right:40px"><strong>#{courseCtrl.getAverage(loginCtrl.id)}</strong></div>
+                </h:form>
+    
+	</ui:define>
+	
+</ui:composition>
+</html>

@@ -20,6 +20,9 @@ public class Course implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 8647744441303798605L;
+	
+	@Transient
+	private boolean selected;
 
 	// ------------------ attributes of the Entity ----------------	
 	@Id
@@ -32,6 +35,7 @@ public class Course implements Serializable {
 	
 	@OneToMany(mappedBy = "parentCourse", cascade=CascadeType.ALL, orphanRemoval=true)
     private List<Enrollment> items = new LinkedList<Enrollment>();
+	
 	
 	
 	// ------------------------ ctors -----------------------------------
@@ -90,6 +94,22 @@ public class Course implements Serializable {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
+	}
+
+	public void setItems(List<Enrollment> items) {
+		this.items = items;
+	}
+
+	public List<Enrollment> getItems() {
+		return items;
 	}
 	
 	

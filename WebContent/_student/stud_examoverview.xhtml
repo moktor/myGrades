@@ -9,15 +9,15 @@
 <ui:composition template="stud_template.xhtml">
 	<ui:define name="content">
 	   <!--This is where the magic happens!!!-->
-	   <div class="scrollbox">
+	   
           <h1>Prüfungsübersicht</h1>
            <div class="line"></div>
-           <p>Nachfolgend sehen sie eine Liste der Prüfungen, zu denen sie sich gegenwärtig anmelden können. Wählen sie die betreffenden Prüfungen aus, geben sie eine gültige TAN an und bestätigen sie mit Anmelden.</p>
+           <p>Hier sehen sie eine Liste aller Kurse, zu denen sie sich bereits angemeldet haben, und die noch nicht geschrieben wurden. Wählen sie die betreffenden Prüfungen aus, geben sie eine gültige TAN an und bestätigen sie mit Abmelden, um sich von Prüfungen abzumelden.</p>
                 
                 <h:form>
-                <h:dataTable value="#{courseCtrl.allEnrollments}" var="enrollment"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
+                <h:dataTable value="#{courseCtrl.allEnrollments(loginCtrl.id)}" var="enrollment"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
                     <h:column>
-                        <f:facet name="header"><h:commandLink value="Prüfungs ID" action="#{courseCtrl.sortCoursesById}"/></f:facet>
+                        <f:facet name="header"><h:commandLink value="ID" action="#{courseCtrl.sortCoursesById}"/></f:facet>
                         #{enrollment.parentCourse.id}
                     </h:column>
                     <h:column>
@@ -34,22 +34,17 @@
                     </h:column>
                     <h:column>
                     <f:facet name="header">Abmelden</f:facet>
-                       <h:selectBooleanCheckbox value="stud_enroll" style="margin-left:15px;"/>
+                       <h:selectBooleanCheckbox value="#{enrollment.selected}" style="margin-left:23px;"/>
                     </h:column>
                 </h:dataTable>
-                <div class="bottom">
+                
                 <div class="line"></div>
                 
-                <h2 class="formlabel">TAN</h2>
-                 <td><div class="formfield">
-                     <div class="formfield_left"></div>
-                   <h:inputText value="#{courseCtrl.tan}" required="true" class="formfield_center"/>
-                   <div class="formfield_right"></div>
-               </div></td>
-                <h:commandButton value="Anmelden" action="stud_enroll" class="blue_button"  style="float:right;"/>
-                </div>
+                
+                <h:commandButton value="Abmelden" action="#{courseCtrl.signOffSelected(loginCtrl.id)}" class="blue_button"  style="float:right;"/>
+                
                 </h:form>
-    </div>       
+           
 	</ui:define>
 	
 </ui:composition>

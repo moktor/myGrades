@@ -8,14 +8,13 @@
 
 <ui:composition template="stud_template.xhtml">
 	<ui:define name="content">
-	   <!--This is where the magic happens!!!-->
-	   <div class="scrollbox">
-          <h1>Prüfungsübersicht</h1>
+	   
+          <h1>Zu Prüfungen anmelden</h1>
            <div class="line"></div>
            <p>Nachfolgend sehen sie eine Liste der Prüfungen, zu denen sie sich gegenwärtig anmelden können. Wählen sie die betreffenden Prüfungen aus, geben sie eine gültige TAN ein und bestätigen sie mit 'Anmelden'.</p>
                 
                 <h:form>
-                <h:dataTable value="#{courseCtrl.coursesToEnroll}" var="course"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
+                <h:dataTable value="#{courseCtrl.coursesToEnroll(loginCtrl.id)}" var="course"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
                     <h:column>
                         <f:facet name="header"><h:commandLink value="Prüfungs ID" action="#{courseCtrl.sortCoursesById}"/></f:facet>
                         #{course.id}
@@ -29,27 +28,21 @@
                         #{course.fieldOfStudy}
                     </h:column>
                     <h:column>
-                        <f:facet name="header"><h:commandLink value="Termin" action="#{courseCtrl.sortCoursesByDate}"/></f:facet>
-                        #{course.date}
+                        <f:facet name="header">Status</f:facet>
+                        <div class="#{courseCtrl.checkDate(course)}"></div>
                     </h:column>
                     <h:column>
                     <f:facet name="header">Anmelden</f:facet>
-                       <h:selectBooleanCheckbox value="stud_enroll" style="margin-left:15px;"/>
+                       <h:selectBooleanCheckbox value="#{course.selected}" style="margin-left:22px;"/>
                     </h:column>
                 </h:dataTable>
-                <div class="bottom">
                 <div class="line"></div>
                 
-                <h2 class="formlabel">TAN</h2>
-                <div class="formfield">
-                    <div class="formfield_left"></div>
-                   <h:inputText value="#{courseCtrl.tan}" required="true" class="formfield_center"/>
-                   <div class="formfield_right"></div>
-               </div></td>
-                <h:commandButton value="Anmelden" action="stud_enroll" class="blue_button"  style="float:right;"/>
-                </div>
+                
+                <h:commandButton value="Anmelden" action="#{courseCtrl.enrollToSelected(loginCtrl.id)}" class="blue_button"  style="float:right;"/>
+                
                 </h:form>
-    </div>       
+       
 	</ui:define>
 	
 </ui:composition>

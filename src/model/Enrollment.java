@@ -15,6 +15,10 @@ public class Enrollment implements Serializable {
 	 */
 	private static final long serialVersionUID = 5743572355634097500L;
 
+	
+	@Transient
+	private boolean selected;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -67,6 +71,14 @@ public class Enrollment implements Serializable {
 
 	public Course getParentCourse() {
 		return parentCourse;
+	}
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
 	}
    
 }

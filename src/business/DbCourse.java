@@ -3,6 +3,7 @@ package business;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -10,6 +11,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import controller.courseCtrl;
@@ -21,6 +23,7 @@ import model.*;
 public class DbCourse {
 	
 	Course course = null;
+	DbPerson dbP = new DbPerson();
 	
 	@PersistenceContext
 	private EntityManager em;
@@ -37,6 +40,29 @@ public class DbCourse {
     	
 		    	em.persist(c);
 		}
+	
+	public void createEnrollments(){
+		    		
+		TypedQuery<Student> studentQuery = em.createQuery("select s from Student s", Student.class);
+        List<Student> studentList = studentQuery.getResultList();
+        
+        TypedQuery<Course> courseQuery = em.createQuery("select c from Course c", Course.class);
+        List<Course> courseList = courseQuery.getResultList();
+		
+        
+		for (Student student: studentList) {
+			for (Course course: courseList) {
+				Random random = new Random();
+				boolean doIt = random.nextBoolean(); // random boolean
+				if (doIt) {
+					//int grade = (int) Math.random() * 14; //generate random grade
+					int grade = 0; // all Students ungraded;
+					Enrollment enrollment = new Enrollment(student, course, grade);
+					em.persist(enrollment);
+				}
+			}
+		}
+	}
 
 	public List<Course> getAllCourses() {
 		TypedQuery<Course> query = em.createQuery("select c from Course c", Course.class);
@@ -88,12 +114,10 @@ public class DbCourse {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	//Methoden für die Enrollment Klasse
 
-	public Enrollment joinTest() {
-		TypedQuery<Enrollment> query = em.createQuery("select e from Enrollment e where e.id = 53", Enrollment.class);
-        return query.getSingleResult();
-	}
-
+	//Alle Studenten, die zu einem bestimmten Kurs eingeschrieben sind
 	public List<Enrollment> getStudentsByCourseId(int courseId) {
 		TypedQuery<Enrollment> query = em.createQuery("select e from Enrollment e where e.parentCourse.id = :courseId", Enrollment.class);
 		query.setParameter("courseId", courseId);
@@ -108,20 +132,55 @@ public class DbCourse {
         }
 	}
 
-	public boolean editEnrollment(List<Enrollment> enrollmentList) {
-		if(enrollmentList != null)  {
-	    	em.merge(enrollmentList);
-	    	return true;
-	    } else {
-	    return false;	
-	    }
+	// Anmelden/Abmelden/Benoten
+	public boolean updateGrades(List<Enrollment> enrollmentList) {
+		
+		for(Enrollment e: enrollmentList){
+    			em.merge(e);
+    	}
+		
+		return true;
 	}
 
+	// Alle Kurse, zu denen der Student noch nicht eingeschrieben ist, also kein Enrollment hat
 	public List<Course> coursesToEnroll(int id) {
-		TypedQuery<Course> query = em.createQuery("select distinct c from Course c, NOT IN (select e from Enrollment e where e.parentStudent.id = :id)", Course.class);
-        return query.getResultList();
+		TypedQuery<Course> query = em.createQuery("select c from Course c where c.id NOT IN (select e.parentCourse.id from Enrollment e where e.parentStudent.id = :id)", Course.class);
+		query.setParameter("id", id);
+		List<Course> enrollment = null;
+		try{
+        	enrollment = query.getResultList();
+        	Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "return object");
+        return enrollment;
+        } catch(NoResultException e){
+        	Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "return null");
+        	return enrollment;        	
+        }
 	}
-
+	
+	// Zu ausgewählten Kursen einschreiben
+	public void enrollToSelected(List<Course> list, int id){
+		Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "Übergebene Kurse " + list);
+		
+		Student student = null;
+		Query query = em.createQuery("select s from Student s where s.id = :id", Student.class);
+        query.setParameter("id", id);
+        try {
+        	student = (Student)query.getSingleResult();
+        } catch(NoResultException e) {}
+		
+		Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "Student gefunden " + id + " " + student);
+		
+    	for(Course course: list){
+    		if(course.isSelected()){
+    			Enrollment enrollment = new Enrollment(student, course, 0);
+    			em.persist(enrollment);
+    			course.setSelected(false);
+    		}
+    	}
+    }
+	
+	
+	// Alle Kurse eines betimmten Studenten, die noch nicht bewertet wurden!
 	public List<Enrollment> allEnrollments(int id) {
 		TypedQuery<Enrollment> query = em.createQuery("select e from Enrollment e where e.parentStudent.id = :id AND e.grade = 0", Enrollment.class);
 		query.setParameter("id", id);
@@ -135,6 +194,83 @@ public class DbCourse {
         	return enrollment;        	
         }
 	}
+	
+	//Von ausgewählten Kursen abmelden
+	public void signOffSelected(List<Enrollment> list, int studentId){
+		Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "Liste: " + list);
+		
+		for(Enrollment enrollment: list){
+			
+    		
+			if(enrollment.isSelected()){
+    			//Suche alle Enrollments zum jeweiligen Kurs
+    			Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "checkpoint 3");
+    			int enrollmentId = enrollment.getId();
+    			List<Enrollment> enrollmentList = null;
+    			
+    			TypedQuery<Enrollment> query = em.createQuery("select e from Enrollment e where e.parentStudent.id = :studentId AND e.id = :enrollmentId", Enrollment.class);
+    			query.setParameter("studentId", studentId);
+    			query.setParameter("enrollmentId", enrollmentId);
+    			
+    			Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "checkpoint 4");
+    			enrollmentList = query.getResultList();
+    			
+    			//Iteriere durch die gefundene Liste, und lösche alle Enrollment-Einträge aus der DB
+    			for(Enrollment e: enrollmentList){
+    				Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "checkpoint 5");
+    				e = (Enrollment)em.merge(e);
+        			em.remove(e);
+    			}
+    			
+    			Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "checkpoint 6");
+    			//Setze den Selected State des Kurses wieder auf falsch
+				enrollment.setSelected(false);
+    		}
+    	}
+    }
+	
+	// Die Kurse eines Studenten, die schon bewertet wurden, Note 0 steht dabei für unbewertet
+	public List<Enrollment> getGradedCourses(int id) {
+		TypedQuery<Enrollment> query = em.createQuery("select e from Enrollment e where e.parentStudent.id = :id AND e.grade <> 0", Enrollment.class);
+		query.setParameter("id", id);
+		List<Enrollment> enrollment = null;
+		try{
+        	enrollment = query.getResultList();
+        	Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "return object");
+        return enrollment;
+        } catch(NoResultException e){
+        	Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "return null");
+        	return enrollment;        	
+        }
+	}
+
+	// Durchschnittsnote berechnen
+	public double getAverage(int id) {
+		TypedQuery<Enrollment> query = em.createQuery("select e from Enrollment e where e.parentStudent.id = :id AND e.grade <> 0", Enrollment.class);
+		query.setParameter("id", id);
+		List<Enrollment> enrollment = null;
+		
+		double sum = 0;
+		int count = 0;
+		courseCtrl courseCtrl = new courseCtrl();
+		
+		try{
+        	enrollment = query.getResultList();
+        	
+        	for(Enrollment e: enrollment) {
+    			sum = sum + courseCtrl.convertGrade(e.getGrade());
+    			count++;
+    		}
+        	
+        	return sum/count;
+        	
+        } catch(NoResultException e){
+        	
+        	return 0;        	
+        }
+	}
+	
+	
 	
 }
 

@@ -61,13 +61,11 @@ public class adminCtrl implements Serializable {
 	// Creates a new Admin using all db col params
 	
 	public String createAdmin(){
-
 		dbP.createAdmin( nds, gender, firstname, lastname, adresse, email, phone, mobil, keyword, salt);		
 		return "auth_examinerdata.xhtml";
-
 	}
 	
-	public String addAdminHelper(){
+	public String addAdminAuthHelper(){
 		  nds = "";
 		  gender= "";
 		  firstname= "";

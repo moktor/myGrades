@@ -14,18 +14,11 @@
           	<h1>Studentendaten</h1>
             <div class="line"></div>
             <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Studenten.</p>
-                <h4>Filters</h4>
+                	
                 <h:form>
-                NDS: <h:inputText value="#{studentCtrl.criteriaNds}" size="10"/>
-                Name: <h:inputText value="#{studentCtrl.criteria}" size="10"/>
                 
-                <h:commandLink value="filter" action="auth_studentdata"/>
-                </h:form>
-                
-                <h:form>
-                <h:commandLink value="#{studentCtrl.marked}" action="#{studentCtrl.markIt}" style="float:right; margin-right:30px;"/>
-                <h:dataTable value="#{studentCtrl.allStudents}" var="student"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
-					
+                <h:dataTable value="#{studentCtrl.getAllStudents()}" var="student"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
+
 
                     <h:column>
                         <f:facet name="header"><h:commandLink value="Nds" action="#{studentCtrl.sortStudentsByNds}"/></f:facet>
@@ -39,16 +32,11 @@
                         <f:facet name="header"><h:commandLink value="Vorname" action="#{studentCtrl.sortStudentsByFirst}"/></f:facet>
                         #{student.firstname}
                     </h:column>
-                    <!-- <h:column>
-                        <f:facet name="header"><h:commandLink value="Adresse" action="#{studentCtrl.sortStudentsByAdress}"/></f:facet>
-                        #{student.adresse}
-                    </h:column> -->
                  	<h:column>
         			<f:facet name="header">Ändern</f:facet>
                         <h:commandLink value="" action="#{studentCtrl.edit(student)}" class="edit_button" immediate="true"/>
                     </h:column>
                     <h:column>
-                    
                     <f:facet name="header">Löschen</f:facet>
                        <h:selectBooleanCheckbox value="#{student.deleteInc}" style="margin-left:17px;"/>
                     </h:column>
@@ -59,7 +47,6 @@
                 <h:commandButton value="Erstellen" action="#{studentCtrl.addStudentHelper}" class="blue_button" style="float:left;"/>
                 </div>
                 </h:form>
-                
          </div> 
 	</ui:define>
 	

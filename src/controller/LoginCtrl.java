@@ -30,7 +30,7 @@ public class LoginCtrl implements Serializable {
   */
  private static final long serialVersionUID = 5186306447159703311L;
  private String nds, password, firstname, lastname, email;
-
+private int id;
  
 
 
@@ -39,8 +39,9 @@ private boolean loggedInadmin = false;
 private boolean loggedInauth = false;
  
  
- private Person loggedinstudent;
-
+ private Student loggedinstudent;
+ private ExamAuth loggedinperson;
+ private Admin loggedinadmin;
  @EJB
  DbAccount dba;
  
@@ -68,13 +69,14 @@ private boolean loggedInauth = false;
   this.password = password;
  }
 
-
+ //TODO JL Exam. Auth. dba.validate() == 2
 public String login() {
 	List<Student> results = dba.loginQuery(nds, password);
         if ( !results.isEmpty() ) {
         	loggedinstudent = results.get(0);
-        	firstname = ((Student) loggedinstudent).getFirstname();
-        	lastname = ((Student) loggedinstudent).getName();
+        	firstname = loggedinstudent.getFirstname();
+        	lastname = loggedinstudent.getName();
+        	id = loggedinstudent.getId();
          
          		if (loggedinstudent instanceof Student){
             
@@ -86,13 +88,18 @@ public String login() {
          }
          
          List<ExamAuth> authresults = dba.loginauthQuery(nds, password);
-         if ( !authresults.isEmpty() ){
-        	 loggedinstudent = authresults.get(0);
-         	 firstname = ((ExamAuth) loggedinstudent).getFirstname();
-         	 lastname = ((ExamAuth) loggedinstudent).getName();
          
-         		if (loggedinstudent instanceof ExamAuth){
+         if ( !authresults.isEmpty() ){
+         loggedinperson = authresults.get(0);
+         firstname = loggedinperson.getFirstname();
+         lastname = loggedinperson.getName();
+         
+         		if (loggedinperson instanceof ExamAuth){
+
          			setLoggedInauth();
+
+         			setLoggedIn();
+
          			return "_authority/auth_welcome";
         
          		}
@@ -100,16 +107,6 @@ public String login() {
          
          List<Admin> adminresults = dba.loginadminQuery(nds, password);
          
-         if ( !adminresults.isEmpty() ){
-        	 loggedinstudent = adminresults.get(0);
-         	firstname = ((Admin) loggedinstudent).getFirstname();
-         	lastname = ((Admin) loggedinstudent).getLastname();
-        	 
-        	 	if(loggedinstudent instanceof Admin){
-        	 		setLoggedInadmin();
-        	 		return "_admin/admin_welcome";
-        	 	}
-        }
         
         return "index";
 		
@@ -121,6 +118,7 @@ public void setLoggedIn(){
     "studentctrl Liste:");
  loggedIn = true;
 }
+
 public void setLoggedInauth(){
 	Logger.getLogger(LoginCtrl.class.getName())
     .log(Level.INFO, 
@@ -134,16 +132,15 @@ public void setLoggedInadmin(){
  loggedInadmin = true;
 }
 
-
 public String logout() {
     loggedIn = false;
     loggedInadmin = false;
     loggedInauth = false;
     loggedinstudent = null;
-    FacesContext.getCurrentInstance().getCurrentInstance().getExternalContext().invalidateSession();
     return "/succ_logout.xhtml?faces-redirect=true";
 
 }
+
 public boolean isLoggedIn() {
 	if(loggedIn == true)
 		return true;
@@ -163,13 +160,21 @@ public boolean isLoggedInauth() {
 		return true;
 	else
 		return false;
+}
 
- }
-@Produces @LoggedIn Object getCurrentUser() {
+@Produces @LoggedIn Student getCurrentUser() {
 
-        return loggedinstudent;
+        return getLoggedinstudent();
 
     }
+
+
+
+
+
+public void setEmail(String email) {
+	this.email = email;
+}
 
 
 public String getFirstname() {
@@ -193,14 +198,29 @@ public String getLastname() {
 public void setLastname(String lastname) {
 	this.lastname = lastname;
 }
-public String getEmail() {
-	return email;
+
+
+
+public void setLoggedinstudent(Student loggedinstudent) {
+	this.loggedinstudent = loggedinstudent;
 }
 
 
 
-public void setEmail(String email) {
-	this.email = email;
+public Student getLoggedinstudent() {
+	return loggedinstudent;
+}
+
+
+
+public int getId() {
+	return id;
+}
+
+
+
+public void setId(int id) {
+	this.id = id;
 }
 
  

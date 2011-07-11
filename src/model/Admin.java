@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 
-public class Admin extends Person implements Serializable {
+public class Admin implements Serializable {
 
 	
 	/**
@@ -49,7 +49,7 @@ public class Admin extends Person implements Serializable {
 		this.nds = nds;
 		this.gender = gender;
 		this.firstname = firstname;
-		this.lastname = name;
+		this.lastname = lastname;
 		this.adresse = adresse;
 		this.email = email;
 		this.phone = phone;

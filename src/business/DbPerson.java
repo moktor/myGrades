@@ -2,7 +2,6 @@ package business;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,8 +15,6 @@ import javax.persistence.TypedQuery;
 
 import model.*;
 import comparators.*;
-import controller.dummy;
-
 
 @Stateless
 public class DbPerson {
@@ -52,6 +49,20 @@ public class DbPerson {
         
     	Query query = em.createQuery("select c from Student c where c.nds = :nds");
         query.setParameter("nds", nds);
+        try{
+        student = (Student)query.getSingleResult();
+        return student;
+        }catch(NoResultException e){
+        	return student;        	
+        }
+    }
+    
+ // ------------------------------------------ MH -------------------------findStudentById---------------
+    // find a student by nds
+    public Student findStudentById(int id){
+        
+    	Query query = em.createQuery("select c from Student c where c.id = :id");
+        query.setParameter("id", id);
         try{
         student = (Student)query.getSingleResult();
         return student;
@@ -138,25 +149,23 @@ public class DbPerson {
 
     	List<Student> temp = new ArrayList<Student>();
     	
-    	String a = "";
-    	if(filter != null){
-    		a = filter;
-    	}else{
-    		return list;
-    	}
+    	Logger.getLogger(DbPerson.class.getName())
+	    .log(Level.INFO, 
+	    "LOGGERtest"); 		
     	
     	
-    	for (Iterator iter = list.iterator(); iter.hasNext();)
-    	{
-    	    Student o = (Student) iter.next();
-    	    if (!a.equals(o.getName()) && filter != "") // hier die gewünschte Bedingung einfügen
-    	    {
-    	    	if(list.contains(o)){
-    	        iter.remove();
-    	    	}
-    	    }
-    	}
-    			
+		for (Student student : list) {
+
+			if(filter == student.getName()){
+				Logger.getLogger(DbPerson.class.getName())
+			    .log(Level.INFO, 
+			    "filtertest:  "+student.getName()); 	
+			}
+			
+			
+			
+		
+		}
     	return list;
     	
 	}
@@ -196,20 +205,6 @@ public class DbPerson {
        	
          } 
 
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
    
        
     // ====================================== ExamAuth =====================================================

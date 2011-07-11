@@ -14,9 +14,13 @@
           	<h1>Studentendaten</h1>
             <div class="line"></div>
             <p>Nachfolgend sehen sie eine Übersicht über alle im System vorhandenen Studenten. Klicken sie auf Anlegen, um neue Studenten einzutragen, markieren sie einen oder mehrere Studenten und bestätigen sie mit Löschen, um die betreffenden Studenten aus dem System zu löschen. Ein Klick auf 'Edit' lässt sie die Benutzerdaten des jeweiligen Studenten bearbeiten.</p>
-                	
+               
+               
                 <h:form>
-                <h:dataTable value="#{studentCtrl.getAllStudents()}" var="student"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
+                
+                <h:commandLink value="#{studentCtrl.marked}" action="#{studentCtrl.markIt}" style="float:right; margin-right:30px;"/>
+                               
+                <h:dataTable value="#{studentCtrl.allStudents}" var="student"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
 
 
                     <h:column>
@@ -41,11 +45,44 @@
                     </h:column>
                 </h:dataTable>
 
-                <div class="line"></div>
+               
                 <h:commandButton value="Löschen" action="#{studentCtrl.deleteSelected}" class="blue_button"  style="float:right;"/>
                 <h:commandButton value="Erstellen" action="#{studentCtrl.addStudentHelper}" class="blue_button" style="float:left;"/>
                 
-                </h:form> 
+                <!-- Searchfield -->
+               
+               <table>
+               <tr><td colspan="2"><div class="line"></div></td></tr>
+               <tr>
+               <td colspan="2"><p>Geben sie in die nachfolgenden Suchfelder nds-Kürzel oder Nachname desjenigen Studenten an, den sie anzeigen lassen wollen, und klicken sie auf 'Suchen'.</p></td>
+               </tr>
+               <tr>
+               <td>
+               <h2 class="formlabel">NDS: </h2></td>
+                  <td><div class="formfield">
+                     <div class="formfield_left"></div>
+                   <h:inputText value="#{studentCtrl.criteriaNds}" required="false" class="formfield_center"/>
+                   <div class="formfield_right"></div>
+                 </div></td>
+                 </tr>
+                 
+                 <tr>
+                  <td><h2 class="formlabel">Name: </h2></td>
+                  <td><div class="formfield">
+                     <div class="formfield_left"></div>
+                   <h:inputText value="#{studentCtrl.criteria}" required="false" class="formfield_center"/>
+                   <div class="formfield_right"></div>
+                 </div></td>
+                 </tr>
+                 
+               <tr>
+               <td colspan="2">  
+               <h:commandButton value="Suchen" action="auth_studentdata" class="blue_button" style="float:left;"/>
+               </td>
+               </tr>
+               </table>
+               
+               </h:form>
 	</ui:define>
 	
 </ui:composition>

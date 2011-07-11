@@ -48,7 +48,7 @@ public class studentCtrl implements Serializable {
 	// ------------ FM ------------ checkBox marker ----
 
 	private boolean mark = false;
-	private String marked = "Alles markieren";
+	private String marked = "Alles auswählen";
 	
 	// ----------------- FM ---------------- filter attribute
 	private String criteria;
@@ -273,25 +273,35 @@ public class studentCtrl implements Serializable {
 	
    // --------------------- FM ----------- mark all Checkboxes -----
     
+  //------------ edits the list of students
     private List<Student> checkAll(List<Student> list){
-    	
-    	if(markAll){
-    	for (Student student : list) {
-			student.setDeleteInc(true);
-		}
-    	markAll = false;
-    	marked = "unmark all";
-    	}else{
-    		for (Student student : list) {
-    			student.setDeleteInc(false);
-    		}	
-    		markAll = true;
-    		marked = "mark all";
-    	}
-    	
-    	return list;
+        
+     if(mark){
+     for (Student student : list) {
+   student.setDeleteInc(true);
+  }
+     }else{
+      for (Student student : list) {
+       student.setDeleteInc(false);
+      } 
+     }     
+     return list;
     }
-
+    
+ // --------------------- FM ----------- mark all Checkboxes ----- 
+  //sets the mark state
+  public String markIt(){ 
+     
+   if (mark){
+    mark = false;
+    setMarked("Alles auswählen");
+   }else{
+    mark = true;
+       
+       setMarked("Alles abwählen");
+   } 
+   return "auth_studentdata";
+  }
 	
 	//----------------- Getter / Setter ------------------------------------
 
@@ -383,6 +393,50 @@ public class studentCtrl implements Serializable {
 	}
 	public void setFachsemester(int fachsemester) {
 		this.fachsemester = fachsemester;
+	}
+
+	public String getCriteria() {
+		return criteria;
+	}
+
+	public void setCriteria(String criteria) {
+		this.criteria = criteria;
+	}
+
+	public String getCriteriaNds() {
+		return criteriaNds;
+	}
+
+	public void setCriteriaNds(String criteriaNds) {
+		this.criteriaNds = criteriaNds;
+	}
+
+	public boolean isMark() {
+		return mark;
+	}
+
+	public void setMark(boolean mark) {
+		this.mark = mark;
+	}
+
+	public String getMarked() {
+		return marked;
+	}
+
+	public void setMarked(String marked) {
+		this.marked = marked;
+	}
+
+	public List<Student> getStudentList() {
+		return studentList;
+	}
+
+	public void setStudentList(List<Student> studentList) {
+		this.studentList = studentList;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
 	}
 	
 	

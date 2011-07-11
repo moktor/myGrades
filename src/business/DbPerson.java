@@ -203,6 +203,8 @@ public class DbPerson {
     	}
     	
     	
+    	
+    	// ------------ Both Filters --------------------
     	if(!name.equals("") && !nds.equals("")){
         	Logger.getLogger(dummy.class.getName())
     	    .log(Level.INFO, 

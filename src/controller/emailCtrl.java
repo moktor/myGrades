@@ -67,7 +67,14 @@ public String sendEmail(String email, String courseName) {
   message.setRecipients(Message.RecipientType.TO,
     InternetAddress.parse(email));
   message.setSubject("Der Kurs " + courseName + " wurde bewertet.");
-  message.setText("Ergebnisse in Prüfungsfach " + courseName + ", Studienabschnittsversion PO vom 08.10.2007, Prüfungsfachversion Standard sind ab sofort einsehbar. Diese automatisch versandte Email informiert Sie über die Verbuchung des Ergebnisses der oben genannten Prüfung. Bitte antworten Sie NICHT auf diese Email. Bitte haben Sie Verständnis dafür, dass wegen Datenschutz Prüfungsergebnisse nicht per Email bekannt gegeben werden dürfen. Auch eine telefonische Auskunft ist nicht erlaubt. http://www.myGrades.de");
+  message.setText("Ergebnisse in Prüfungsfach " + courseName + ", " +
+  		"\nStudienabschnittsversion PO vom 08.10.2007, " +
+  		"\nPrüfungsfachversion Standard sind ab sofort einsehbar. " +
+  		"\n\n Diese automatisch versandte Email informiert Sie über die Verbuchung des Ergebnisses der oben genannten Prüfung. " +
+  		"\nBitte antworten Sie NICHT auf diese Email. " +
+  		"\nBitte haben Sie Verständnis dafür, dass wegen Datenschutz Prüfungsergebnisse nicht per Email bekannt gegeben werden dürfen. " +
+  		"\nAuch eine telefonische Auskunft ist nicht erlaubt. " +
+  		"\n\n\nhttp://www.myGrades.de");
 
   Transport.send(message);
 

@@ -79,6 +79,17 @@ public class DbCourse {
 	    }
 	}
 	
+	public boolean isValidTan(String tan) {
+		TypedQuery<Tan> query = em.createQuery("select t from Tan t where t.tan = :tan", Tan.class);
+		query.setParameter("tan", tan);
+        
+		try {
+			if (query.getSingleResult() != null);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
     
     
 	public List<Course> sortById(List<Course> list) {
@@ -180,8 +191,14 @@ public class DbCourse {
 	}
 	
 	// Zu ausgewählten Kursen einschreiben
-	public void enrollToSelected(List<Course> list, int id){
+	public void enrollToSelected(List<Course> list, int id, String tan){
 		Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "Übergebene Kurse " + list);
+		
+		Query tanQuery = em.createQuery("select t from Tan t where t.tan = :tan", Tan.class);
+		tanQuery.setParameter("tan", tan);
+		Tan tanObject = (Tan)tanQuery.getSingleResult();
+		tanObject = (Tan)em.merge(tanObject);
+		em.remove(tanObject);
 		
 		Student student = null;
 		Query query = em.createQuery("select s from Student s where s.id = :id", Student.class);
@@ -218,8 +235,14 @@ public class DbCourse {
 	}
 	
 	//Von ausgewählten Kursen abmelden
-	public void signOffSelected(List<Enrollment> list, int studentId){
+	public void signOffSelected(List<Enrollment> list, int studentId, String tan){
 		Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "Liste: " + list);
+		
+		Query tanQuery = em.createQuery("select t from Tan t where t.tan = :tan", Tan.class);
+		tanQuery.setParameter("tan", tan);
+		Tan tanObject = (Tan)tanQuery.getSingleResult();
+		tanObject = (Tan)em.merge(tanObject);
+		em.remove(tanObject);
 		
 		for(Enrollment enrollment: list){
 			
@@ -267,7 +290,7 @@ public class DbCourse {
 	}
 
 	// Durchschnittsnote berechnen
-	public double getAverage(int id) {
+	public String getAverage(int id) {
 		TypedQuery<Enrollment> query = em.createQuery("select e from Enrollment e where e.parentStudent.id = :id AND e.grade <> 0", Enrollment.class);
 		query.setParameter("id", id);
 		List<Enrollment> enrollment = null;
@@ -284,11 +307,14 @@ public class DbCourse {
     			count++;
     		}
         	
-        	return sum/count;
+        	if (count == 0)
+        		return "Durchschnittsnote: Kein Eintrag gefunden";        
         	
-        } catch(NoResultException e){
+        	return "Durchschnittsnote: " + sum/count;
         	
-        	return 0;        	
+        } catch(Exception e){
+        	
+        	return "Kein Eintrag gefunden";        	
         }
 	}
 	

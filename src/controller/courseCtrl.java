@@ -35,6 +35,7 @@ public class courseCtrl implements Serializable {
 	private String day;
 	private String month;
 	private String year;
+	private String tan;
 
 	//---------------- MH ------------- sorting variables ---------------------------
 	private boolean sortId;
@@ -321,18 +322,25 @@ public class courseCtrl implements Serializable {
     //------------------------------------- Zu ausgewählten Kursen anmelden
     
     public String enrollToSelected(int id){
-    	Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "checkpoint 1");
-		dbC.enrollToSelected(courseList, id);
-		Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "checkpoint 7");
+    	
+    	if (dbC.isValidTan(tan)) {
+			dbC.enrollToSelected(courseList, id, tan);
+    	}
+		
+    	tan = "";
 		return "stud_enroll";
+		
 	}
     
      //------------------------------------- Zu ausgewählten Kursen abmelden
     
     public String signOffSelected(int id){
-    	Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "checkpoint 1");
-		dbC.signOffSelected(enrollmentList, id);
-		Logger.getLogger(courseCtrl.class.getName()).log(Level.INFO, "checkpoint 7");
+    	
+    	if (dbC.isValidTan(tan)) {
+    		dbC.signOffSelected(enrollmentList, id, tan);
+    	}
+    	
+    	tan = "";
 		return "stud_examoverview";
 	} 
     
@@ -355,8 +363,9 @@ public class courseCtrl implements Serializable {
     //--------------------------------------  Durchschnittsnote berechnen
     
     public String getAverage(int id) {
-    	double avg = dbC.getAverage(id);
-    	return "Durchschnittsnote: " + avg;
+    	String avg = dbC.getAverage(id);
+    	
+    	return avg;
     }
     
     //--------------------------------------  Note umrechnen
@@ -381,6 +390,13 @@ public class courseCtrl implements Serializable {
 		}
     	return convertedGrade;
     }
+    
+    
+    //----------ceck for valid tan
+    public boolean validTan() {
+    	return dbC.isValidTan(tan);
+    }
+    
 	//----------------- Getter / Setter ------------------------------------
     
 	public int getId() {
@@ -494,5 +510,14 @@ public class courseCtrl implements Serializable {
 	public void setEnrollmentList(List<Enrollment> enrollmentList) {
 		this.enrollmentList = enrollmentList;
 	}
+
+	public String getTan() {
+		return tan;
+	}
+
+	public void setTan(String tan) {
+		this.tan = tan;
+	}
+
 	
 }

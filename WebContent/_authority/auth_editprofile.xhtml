@@ -23,29 +23,25 @@
                
                <tr>
                <td><h2>Name</h2></td>
-               <td>#{studentCtrl.currentStudent.firstname}</td>
-               </tr>
-               
-               <tr>
-               <td><h2>Vorname</h2></td>
                <td>#{studentCtrl.currentStudent.name}</td>
                </tr>
                
                <tr>
-               <td><h2>Passwort</h2></td>
+               <td><h2>Vorname</h2></td>
+               <td>#{studentCtrl.currentStudent.lastname}</td>
+               </tr>
+               
+               <tr>
+               <td><h2>Passwortr</h2></td>
                <td>#{studentCtrl.currentStudent.keyword}</td>
                </tr>
                
                <tr>
                <td><h2>Email</h2></td>
-               <td>#{studentCtrl.currentStudent.email}</td>
+               <td>#{studentCtrl.currentStudent.password}</td>
                </tr>
                
-               <h:form>
-               <tr>
-               <td colspan="2"><h:commandButton value="Ändern" action="auth_editprofile" class="blue_button" style="margin-top:10px;"/></td>
-               </tr>
-               </h:form>
+               <h:commandLink value="Bearbeiten" action="auth_editprofile" class="blue_button" style="margin-top:10px;"/>
                
                </table>
               

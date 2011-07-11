@@ -18,6 +18,7 @@ public class Tan implements Serializable {
 
 	@Id
 	private int id;
+	private String tan;
 
 	public void setId(int id) {
 		this.id = id;
@@ -25,6 +26,14 @@ public class Tan implements Serializable {
 
 	public int getId() {
 		return id;
+	}
+
+	public String getTan() {
+		return tan;
+	}
+
+	public void setTan(String tan) {
+		this.tan = tan;
 	}
    
 }

@@ -38,10 +38,15 @@
                 </h:dataTable>
                 <div class="line"></div>
                 
-                
-                <h:commandButton value="Anmelden" action="#{courseCtrl.enrollToSelected(loginCtrl.id)}" class="blue_button"  style="float:right;"/>
-                
-                </h:form>
+               <div>
+               		<h2 style="float:left; margin-right:10px; margin-top:0px;">TAN</h2>
+               		<div class="searchfield_left"></div>
+                    <h:inputText value="#{courseCtrl.tan}" required="true" class="searchfield_center"/>
+                    <div class="searchfield_right"></div>
+                    <h:commandButton value="Anmelden" action="#{courseCtrl.enrollToSelected(loginCtrl.id)}" class="blue_button"  style="float:right; margin-top:-5px;"/>
+                    
+               </div>   
+            </h:form>
        
 	</ui:define>
 	

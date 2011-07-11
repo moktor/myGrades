@@ -12,7 +12,7 @@
 	   
           <h1>Prüfungsübersicht</h1>
            <div class="line"></div>
-           <p>Hier sehen sie eine Liste aller Kurse, zu denen sie sich bereits angemeldet haben, und die noch nicht geschrieben wurden. Wählen sie die betreffenden Prüfungen aus, geben sie eine gültige TAN an und bestätigen sie mit Abmelden, um sich von Prüfungen abzumelden. <p class="red">Achtung! Sie können sich nur von Kursen abmelden, die noch nicht geschrieben wurden!</p></p>
+           <p>Hier sehen sie eine Liste aller Kurse, zu denen sie sich bereits angemeldet haben, und die <strong>noch nicht geschrieben wurden</strong> oder deren <strong>Benotung noch aussteht</strong>. Wählen sie die betreffenden Prüfungen aus, geben sie eine gültige TAN an und bestätigen sie mit Abmelden, um sich von Prüfungen abzumelden. <p class="red">Achtung! Sie können sich nur von Kursen abmelden, die noch nicht geschrieben wurden!</p></p>
                 
                 <h:form>
                 <h:dataTable value="#{courseCtrl.allEnrollments(loginCtrl.id)}" var="enrollment"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
@@ -40,8 +40,14 @@
                 
                 <div class="line"></div>
                 
+                <div>
+               		<h2 style="float:left; margin-right:10px; margin-top:0px;">TAN</h2>
+               		<div class="searchfield_left"></div>
+                    <h:inputText value="#{courseCtrl.tan}" required="true" class="searchfield_center"/>
+                    <div class="searchfield_right"></div>
+                    <h:commandButton value="Abmelden" action="#{courseCtrl.signOffSelected(loginCtrl.id)}" class="blue_button"  style="float:right; margin-top:-5px;"/>
+               </div>  
                 
-                <h:commandButton value="Abmelden" action="#{courseCtrl.signOffSelected(loginCtrl.id)}" class="blue_button"  style="float:right;"/>
                 
                 </h:form>
            

@@ -17,9 +17,9 @@
                
                
                 <h:form>
-                
-                <table>
-               <tr><td colspan="6"><div class="line"></div></td></tr>
+   
+                <table class="table_reset">
+               
                <tr>
                <td colspan="6"><p>Geben sie in die nachfolgenden Suchfelder nds-Kürzel oder Nachname desjenigen Studenten an, den sie anzeigen lassen wollen, und klicken sie auf 'Suchen'.</p></td>
                </tr>
@@ -39,27 +39,46 @@
                  </div></td>
                  
                <td>  
-               <h:commandButton value="" action="auth_studentdata" class="search" style="float:left;"/>
+               		<h:commandButton value="" action="auth_studentdata" class="search" style="float:left;">
+               		<f:ajax render="@form" execute="@form"/>
+               		</h:commandButton>
                </td>
-               <td><h:commandButton value="" action="#{studentCtrl.markIt}" class="#{studentCtrl.markClass}" style="float:right; margin-right:30px;"/>
+               <td>
+               		<h:commandButton value="" action="#{studentCtrl.markIt}" class="#{studentCtrl.markClass}" style="float:right; margin-right:30px;">
+               		<f:ajax render="@form" execute="@form"/>
+               		</h:commandButton>
                 </td>
                </tr>
+               <tr><td colspan="6"><div class="line"></div></td></tr>
                </table>
                
+
                                
-                <h:dataTable value="#{studentCtrl.allStudents}" var="student"  styleClass="" headerClass="" rowClasses="" cellspacing="0" cellpadding="0" border="0">
+                <h:dataTable value="#{studentCtrl.allStudents}" var="student"  styleClass="" headerClass="data_table_header" rowClasses="" cellspacing="0" cellpadding="0" border="0">
 
 
                     <h:column>
-                        <f:facet name="header"><h:commandButton value="Nds" action="#{studentCtrl.sortStudentsByNds}"/></f:facet>
+						<f:facet name="header">
+                        	<h:commandButton value="Nds" action="#{studentCtrl.sortStudentsByNds}" class="clear_button">
+                        		<f:ajax render="@form" execute="@form"/>
+                        	</h:commandButton>
+                        </f:facet>
                         #{student.nds}
                     </h:column>
                     <h:column>
-              			<f:facet name="header"><h:commandLink value="Name" action="#{studentCtrl.sortStudentsByName}"/></f:facet>
+              			<f:facet name="header">
+              				<h:commandButton value="Name" action="#{studentCtrl.sortStudentsByName}" class="clear_button">
+              				<f:ajax render="@form" execute="@form"/>
+              				</h:commandButton>
+              			</f:facet>
                         #{student.name}
                     </h:column>
                     <h:column>
-                        <f:facet name="header"><h:commandLink value="Vorname" action="#{studentCtrl.sortStudentsByFirst}"/></f:facet>
+                        <f:facet name="header">
+                        	<h:commandButton value="Vorname" action="#{studentCtrl.sortStudentsByFirst}" class="clear_button">
+                        	<f:ajax render="@form" execute="@form"/>
+                        	</h:commandButton>
+                        </f:facet>
                         #{student.firstname}
                     </h:column>
                  	<h:column>
@@ -73,11 +92,11 @@
                 </h:dataTable>
 
                
-                <h:commandButton value="Löschen" action="#{studentCtrl.deleteSelected}" class="blue_button"  style="float:right;"/>
+                <h:commandButton value="Löschen" action="#{studentCtrl.deleteSelected}" class="blue_button"  style="float:right;">
+                <f:ajax render="@form" execute="@form"/>
+                </h:commandButton>
                 <h:commandButton value="Erstellen" action="#{studentCtrl.addStudentHelper}" class="blue_button" style="float:left;"/>
-                
-                
-               
+
                </h:form>
 	</ui:define>
 	

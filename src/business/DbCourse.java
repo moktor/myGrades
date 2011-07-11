@@ -2,6 +2,7 @@
 package business;
 
 import java.sql.Date;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
@@ -13,6 +14,11 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+
+import comparators.CourseDate;
+import comparators.CourseField;
+import comparators.CourseId;
+import comparators.CourseName;
 
 import controller.courseCtrl;
 import controller.emailCtrl;
@@ -93,28 +99,27 @@ public class DbCourse {
     
     
 	public List<Course> sortById(List<Course> list) {
-		// TODO Auto-generated method stub
-		return null;
+		Collections.sort(list, new CourseId());
+		return list;
 	}
 
 	public List<Course> sortByStudentCount(List<Course> list) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public List<Course> sortByName(List<Course> list) {
-		// TODO Auto-generated method stub
-		return null;
+		Collections.sort(list, new CourseName());
+		return list;
 	}
 
 	public List<Course> sortByFieldOfStudy(List<Course> list) {
-		// TODO Auto-generated method stub
-		return null;
+		Collections.sort(list, new CourseField());
+		return list;
 	}
 
 	public List<Course> sortByDate(List<Course> list) {
-		// TODO Auto-generated method stub
-		return null;
+		Collections.sort(list, new CourseDate());
+		return list;
 	}
 
 	public boolean deleteStudentById(int id) {
@@ -317,8 +322,45 @@ public class DbCourse {
         	return "Kein Eintrag gefunden";        	
         }
 	}
+
+	public void generateTans() {
+		
+		for (int i = 0; i < 8; i++)
+			generateRandomTan();
+		
+		em.persist(new Tan("123456789"));
+		em.persist(new Tan("987654321"));
+	}
 	
+	//___________________ TAN METHODS _________________
 	
+	public List<Tan> getAllTans() {
+		TypedQuery<Tan> query = em.createQuery("select t from Tan t", Tan.class);
+        return query.getResultList();
+	}
+
+	public void deleteSelectedTans(List<Tan> tanList) {
+		for(Tan tan: tanList){
+    		if(tan.isSelected()){
+    			tan = (Tan)em.merge(tan);
+    			em.remove(tan);
+    			course.setSelected(false);
+    		}
+    	}
+	}
+
+	public void generateRandomTan() {
+		String tan = "";
+		int random = 0;
+		
+		for (int i = 0; i < 9; i++) {
+			random = (int)((Math.random()) * 9 + 1);
+			tan = tan + "" + random;
+		}
+		Tan tanObject = new Tan(tan);
+		em.persist(tanObject);
+		
+	}
 	
 }
 

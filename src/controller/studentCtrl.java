@@ -35,6 +35,8 @@ public class studentCtrl implements Serializable {
 	private String mobil;
 	private String keyword;
 	private int fachsemester;
+	private String salt;
+
 
 	//---------------- FM ------------- sorting variables ---------------------------
 	private boolean sortId;
@@ -80,7 +82,7 @@ public class studentCtrl implements Serializable {
 	// Creates a new student using all db col params
 	public String createStudent(){
 		
-		dbP.createStudent( nds, gender, firstname, lastname, adresse, email, phone, mobil, keyword, fachsemester);		
+ 		dbP.createStudent( nds, gender, firstname, lastname, adresse, email, phone, mobil, keyword, fachsemester, salt);		
 		return "auth_studentdata";
 	}
 	
@@ -95,6 +97,7 @@ public class studentCtrl implements Serializable {
 		  mobil= "";
 		  keyword= "";
 		  fachsemester= 0;
+		  salt = "";
 		return "addStudent";
 	}
 	
@@ -241,7 +244,7 @@ public class studentCtrl implements Serializable {
 	
 		dbP.deleteMultipleStudents(studentList);
 		
-		return "auth_studentdata";
+		return "auth_delStudSuccess";
 	}
 	
 	
@@ -449,7 +452,14 @@ public class studentCtrl implements Serializable {
 		return markClass;
 	}
 	
-	
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
 	
 
 

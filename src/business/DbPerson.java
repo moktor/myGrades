@@ -38,9 +38,9 @@ public class DbPerson {
 
     public void createStudent( String nds, 
     String gender, String firstname, String lastname, String adresse,
-    String email, String phone, String mobil, String keyword, int fachsemester){
+    String email, String phone, String mobil, String keyword, int fachsemester, String salt){
     		
-    	Student s = new Student(nds,  gender, firstname, lastname, adresse, email, phone, mobil, keyword, fachsemester);
+    	Student s = new Student(nds,  gender, firstname, lastname, adresse, email, phone, mobil, keyword, fachsemester, salt);
     	em.persist(s);
     }
     
@@ -281,139 +281,6 @@ public class DbPerson {
        	return list;
        	
          } 
-
-   
-       
-    // ====================================== ExamAuth =====================================================
-
- // ------------------------------------------ LS -----------------------------createExamAuth-------------
-    // Adds a new ExamAuth to db, with all parameters
-    
-    public void createExamAuth( String nds, 
-    	    String gender,String titel, String firstname, String lastname, String adresse,
-    	    String email, String phone, String fieldOfStudy, String mobil, String keyword, String salt){
-    	    		
-    	ExamAuth ea = new ExamAuth(nds, gender,titel, firstname, lastname, adresse, email, phone, fieldOfStudy, mobil, keyword, salt);
-    	    	em.persist(ea);
-    	    }
-    	    
-    
-    // ------------------------------------------ LS -------------------------findExamAuthByNds---------------
-    // find a ExamAuth by nds
-    public ExamAuth findExamAuthByNds(String nds){
-        
-    	Query query = em.createQuery("select c from ExamAuth c where c.nds = :nds");
-        query.setParameter("nds", nds);
-        try{
-        examAuth = (ExamAuth)query.getSingleResult();
-        return examAuth;
-        }catch(NoResultException e){
-        	return examAuth;        	
-        }
-    }
-       
-    
-    // ------------------------------------------ LS ------------------------findExamAuthByName---------------
-    // find a ExamAuth by lastname 
-    public ExamAuth findExamAuthByName(String name){
-        Query query = em.createQuery("select c from ExamAuth c where c.name = :name");
-        query.setParameter("name", name);
-        try{
-        examAuth = (ExamAuth)query.getSingleResult();
-        return examAuth;
-        }catch(NoResultException e){
-        return examAuth;	
-        }   
-    }
-       
-    
-    // ------------------------------------------ LS ---------------------getAllExamAuths----------------------
-    // Returns a List of all ExamAuths in the db
-    public List<ExamAuth> getAllExamAuths() {
-        TypedQuery<ExamAuth> query = em.createQuery("select c from ExamAuth c", ExamAuth.class);
-        return query.getResultList();
-    }
-    
-    
-    //--------------------------------------------LS----------------------deleteExamAuthByNds--------------------
-    // deletes ExamAuth from db using nds
-    public boolean deleteExamAuthByNds(String nds){
-        Query query = em.createQuery("select c from ExamAuth c where c.nds = :ndsquery");
-        query.setParameter("ndsquery", nds);
-        try {
-            
-        	ExamAuth examAuth = (ExamAuth)query.getSingleResult();
-        	em.remove(examAuth);
-        	return true;
-        } catch (NoResultException e) {
-          return false;  
-        }
-  
-        
-    }
-    
-     
-    // ------------------------------------------ LS ---------------------editExamAuth-------------------------
-    // edits some parameter of given ExamAuth
-    
-    public boolean editExamAuth(ExamAuth examAuth){
-    	
-    	if(examAuth != null){
-    	em.merge(examAuth);	
-    	return true;
-    	}else{
-    	return false;	
-    	}
-   	}
-    
-    
- // ------------------------------------------ LS ---------------------deleteMultipleExamAuths-------------------------
-    // deletes selected objects of a list
-    
-    public boolean deleteMultipleExamAuths(List<ExamAuth> list){
-
-    	for(ExamAuth examAuth: list){
-    		if(examAuth.isDeleteInc()){
-    			examAuth = (ExamAuth)em.merge(examAuth);
-    			em.remove(examAuth);
-    		}
-    	}	
-    	return true;
-    }
-
-   	
-    // ----------------- LS ---------------------- sorting Methods -------------------
-       
-       public List<ExamAuth> sortByIdExamAuth(List<ExamAuth> list){
-       	Collections.sort(list, new ExamAuthId());
-       	return list;
-         } 
-       
-      
-       
-       public List<ExamAuth> sortByNdsExamAuth(List<ExamAuth> list){
-       	Collections.sort(list, new ExamAuthNds());
-       	return list;
-         } 
-
-       
-       public List<ExamAuth> sortByNameExamAuth(List<ExamAuth> list){
-       	Collections.sort(list, new ExamAuthName());
-       	return list;
-       	
-         } 
-       
-       
-       public List<ExamAuth> sortByFirstExamAuth(List<ExamAuth> list){
-       	Collections.sort(list, new ExamAuthFirst());
-       	return list;
-         } 
-       public List<ExamAuth> sortByFieldOfStudyExamAuth(List<ExamAuth> list){
-       	Collections.sort(list, new ExamAuthFieldOfStudy());
-       	return list;
-         } 
-       
-    
 
     
 // ====================================== Admin ======================================================

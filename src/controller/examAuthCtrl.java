@@ -32,7 +32,7 @@ public class examAuthCtrl implements Serializable {
 	private String gender;
 	private String titel;
 	private String firstname;
-	private String lastname;
+	private String name;
 	private String adresse;
 	private String email;
 	private String phone;
@@ -47,6 +47,18 @@ public class examAuthCtrl implements Serializable {
 	private boolean sortFirst;
 	private boolean sortAdress;
 	
+	// ------------ FM ------------ checkBox marker ----
+
+	private boolean mark = false;
+	private String marked = "Alles auswählen";
+	private String markClass = "select_all";
+	
+	// ----------------- FM ---------------- filter attribute
+	private String criteria;
+	private String criteriaNds;
+	
+	
+	
 	
 	private ExamAuth currentExamAuth;
 	
@@ -59,7 +71,7 @@ public class examAuthCtrl implements Serializable {
 	
 
 	@EJB
-	DbPerson dbP;
+	DbExamAuth dbE;
 	
 
 	
@@ -67,8 +79,8 @@ public class examAuthCtrl implements Serializable {
 	// Creates a new ExamAuth using all db col params
 	
 	public String createExamAuth(){
-		dbP.createExamAuth( nds, gender, titel, firstname, lastname, adresse, email, phone, mobil, keyword, adresse, salt);		
-		return "addExamAuth";
+		dbE.createExamAuth( nds, gender, titel, firstname, name, adresse, email, phone, mobil, keyword, adresse, salt);		
+		return "auth_examinerdata";
 	}
 	
 	public String addExamAuthHelper(){
@@ -76,7 +88,7 @@ public class examAuthCtrl implements Serializable {
 		  gender= "";
 		  titel="";
 		  firstname= "";
-		  lastname= "";
+		  name= "";
 		  adresse= "";
 		  email= "";
 		  phone= "";
@@ -89,29 +101,17 @@ public class examAuthCtrl implements Serializable {
 	// ------------------------------ LS --------------------getExamAuth--------------------------
 	// Finds a single ExamAuth from db, searchparam: lastname
 	//additional test logger and ExamAuth object / TODO
-	public void getExamAuth(){
-		
-		ExamAuth a = dbP.findExamAuthByName("lastname");
-		ExamAuth b = dbP.findExamAuthByNds("24");
-			
-		if(b !=null){
-			String nds = b.getFirstname();			
-		}else{
-			//no object
-		}
-		String lastname = a.getFirstname();
-		
-
-	}
-
+	
 
 	// --------------------- LS ------------------------ExamAuths----------------------
 	// Returns a list of all ExamAuths
 	//additional test logger for view of all ExamAuths
 	public List getAllExamAuths(){
-		List<ExamAuth> list = dbP.getAllExamAuths();
+		List<ExamAuth> list = dbE.getAllExamAuths();
 		
 		examAuthList = sortListExamAuth(list);
+		
+		examAuthList = dbE.filter(examAuthList, criteria, criteriaNds);		// filter
 		
 		return list;
 	}
@@ -121,19 +121,19 @@ public class examAuthCtrl implements Serializable {
 	public List<ExamAuth> sortListExamAuth(List<ExamAuth> list){
 		
 		if(sortId){
-			list = dbP.sortByIdExamAuth(list);
+			list = dbE.sortByIdExamAuth(list);
 		}
 		if(sortNds){
-			list = dbP.sortByNdsExamAuth(list);
+			list = dbE.sortByNdsExamAuth(list);
 		}
 		
 		
 		if (sortName){
-		list = dbP.sortByNameExamAuth(list);
+		list = dbE.sortByNameExamAuth(list);
 		}
 		
 		if(sortFirst){
-		list = dbP.sortByFirstExamAuth(list);
+		list = dbE.sortByFirstExamAuth(list);
 		}
 	
 		return list;
@@ -173,20 +173,14 @@ public class examAuthCtrl implements Serializable {
 		sortAdress = false;
 	}
 	
-	public void sortExamAuthsByFieldOfStudy(){
-		sortId = false;
-		sortNds = false;
-		sortName = false;
-		sortFirst = false;
-		sortAdress = false;
-	}
+
 	
 
 	//-------------------------LS----------------deleteExamAuth-----------------
 	//deletes a ExamAuth from db, using nds (primary key)
 	public String deleteExamAuth(){
 
-		if(dbP.deleteExamAuthByNds(this.nds) == true){
+		if(dbE.deleteExamAuthByNds(this.nds) == true){
 		return "delSuccess";
 		}
 		else
@@ -199,7 +193,7 @@ public class examAuthCtrl implements Serializable {
 	public String deleteSelected(){
 
 		
-		dbP.deleteMultipleExamAuths(examAuthList);
+		dbE.deleteMultipleExamAuths(examAuthList);
 		
 		return "auth_delSuccess";
 	}
@@ -223,7 +217,7 @@ public class examAuthCtrl implements Serializable {
     public String updateExamAuth(){
     	
     	
-    if( dbP.editExamAuth(currentExamAuth)){
+    if( dbE.editExamAuth(currentExamAuth)){
     	return "auth_examinerdata";
     }else	
     {
@@ -231,6 +225,41 @@ public class examAuthCtrl implements Serializable {
     }
     	
     }
+    
+    // --------------------- FM ----------- mark all Checkboxes -----
+    
+    //------------ edits the list of students
+      private List<Student> checkAll(List<Student> list){
+          
+       if(mark){
+       for (Student student : list) {
+     student.setDeleteInc(true);
+    }
+       }else{
+        for (Student student : list) {
+         student.setDeleteInc(false);
+        } 
+       }     
+       return list;
+      }
+      
+   // --------------------- FM ----------- mark all Checkboxes ----- 
+    //sets the mark state
+    public String markIt(){ 
+       
+     if (mark){
+      mark = false;
+      setMarked("Alles auswählen");
+      setMarkClass("select_all");
+     }else{
+      mark = true;
+      setMarked("Alles abwählen");
+      setMarkClass("deselect_all");
+     } 
+     return "auth_studentdata";
+    }
+    
+    
 	
 
 	
@@ -245,12 +274,12 @@ public class examAuthCtrl implements Serializable {
 		return firstname;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public String getName() {
+		return name;
 	}
 
 	public void setAdresse(String adresse) {
@@ -325,6 +354,46 @@ public class examAuthCtrl implements Serializable {
 	
 	public ExamAuth getCurrentExamAuth() {
 		return currentExamAuth;
+	}
+
+	public void setMarked(String marked) {
+		this.marked = marked;
+	}
+
+	public String getMarked() {
+		return marked;
+	}
+
+	public void setMarkClass(String markClass) {
+		this.markClass = markClass;
+	}
+
+	public String getMarkClass() {
+		return markClass;
+	}
+
+	public void setCriteria(String criteria) {
+		this.criteria = criteria;
+	}
+
+	public String getCriteria() {
+		return criteria;
+	}
+
+	public void setCriteriaNds(String criteriaNds) {
+		this.criteriaNds = criteriaNds;
+	}
+
+	public String getCriteriaNds() {
+		return criteriaNds;
+	}
+
+	public void setExamAuth(ExamAuth examAuth) {
+		this.examAuth = examAuth;
+	}
+
+	public ExamAuth getExamAuth() {
+		return examAuth;
 	}
 	
 

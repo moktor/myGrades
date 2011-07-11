@@ -17,6 +17,7 @@ import business.*;
 import model.Course;
 import model.Enrollment;
 import model.Student;
+import model.Tan;
 
 @Named
 @SessionScoped
@@ -51,6 +52,7 @@ public class courseCtrl implements Serializable {
 	
 	private Course course; // temp course
 	private List<Course> courseList;
+	private List<Tan> tanList;
 	
 
 	@EJB
@@ -91,6 +93,8 @@ public class courseCtrl implements Serializable {
 	public List<Course> getAllCourses(){
 		List<Course> list = dbC.getAllCourses();
 		setCourseList(list);
+		courseList = sortList(list);
+		
 		return list;
 	}
 	
@@ -165,7 +169,7 @@ public class courseCtrl implements Serializable {
     	
 		dbC.deleteSelectedCourses(courseList);
 		
-		return "auth_examdata";
+		return "auth_delExamSuccess";
 	}
 	
 	
@@ -322,8 +326,17 @@ public class courseCtrl implements Serializable {
     //------------------------------------- Zu ausgewählten Kursen anmelden
     
     public String enrollToSelected(int id){
+    	boolean doIt = false;
     	
-    	if (dbC.isValidTan(tan)) {
+    	for (Course singleCourse : courseList) {
+    		//Mache weiter, wenn mindestens 1 Kurs selektiert ist
+    		if (singleCourse.isSelected()) {
+    			doIt = true;
+    			break;
+    		}
+    	}
+    	
+    	if (dbC.isValidTan(tan) && doIt) {
 			dbC.enrollToSelected(courseList, id, tan);
     	}
 		
@@ -395,6 +408,26 @@ public class courseCtrl implements Serializable {
     //----------ceck for valid tan
     public boolean validTan() {
     	return dbC.isValidTan(tan);
+    }
+    
+    //__________________________________________________________TAN METHODS
+    
+    public List<Tan >getAllTans() {
+    	List<Tan> list = dbC.getAllTans();
+		setTanList(list);
+		
+		return list;
+    }
+    
+    public String deleteSelectedTans() {
+    	dbC.deleteSelectedTans(tanList);
+		
+		return "auth_tan";	
+    }
+    
+    public String generateRandomTan() {
+    	 dbC.generateRandomTan();
+    	 return "auth_tan";
     }
     
 	//----------------- Getter / Setter ------------------------------------
@@ -517,6 +550,14 @@ public class courseCtrl implements Serializable {
 
 	public void setTan(String tan) {
 		this.tan = tan;
+	}
+
+	public void setTanList(List<Tan> tanList) {
+		this.tanList = tanList;
+	}
+
+	public List<Tan> getTanList() {
+		return tanList;
 	}
 
 	

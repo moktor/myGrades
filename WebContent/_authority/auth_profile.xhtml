@@ -12,9 +12,38 @@
 	   <!--This is where the magic happens!!!-->
           <h1>Benutzerprofil</h1>
            <div class="line"></div>
-           <p>Hier erhalten Sie eine Übersicht über ihre Benutzerdaten, und die Möglichkeit, Änderungen vorzunehmen.</p>
+           <p>Hier erhalten Sie eine Übersicht über ihre Benutzerdaten. Um Änderungen vorzunehmen, klicken sie auf 'Ändern'.</p>
                 
-                
+                <h:form>
+               
+               <h2>Matr-Nr</h2>
+               <td>#{studentCtrl.currentStudent.nds}</td>
+               
+               <h2>Name</h2>
+               <div class="formfield">
+               		<div class="formfield_left"></div>
+                    <h:inputText value="#{studentCtrl.currentStudent.name}" id="userName" required="true" class="formfield_center"/><!-- Benutzerpasswort -->
+                    <div class="formfield_right"></div>
+               </div>
+               
+               <h2>Vorname</h2>
+               <div class="formfield">
+               		<div class="formfield_left"></div>
+                    <h:inputText value="#{studentCtrl.currentStudent.firstname}" id="userFirstname" required="true" class="formfield_center"/><!-- Benutzerpasswort -->
+                    <div class="formfield_right"></div>
+               </div>
+               <h2>Studienfach</h2>
+               <div class="formfield">
+               		<div class="formfield_left"></div>
+                    <h:inputText value="#{studentCtrl.currentStudent.adresse}" id="userAddress" required="false" class="formfield_center"/><!-- Benutzerpasswort -->
+                    <div class="formfield_right"></div>
+               </div>
+               
+               <h:commandButton value="Speichern" action="#{studentCtrl.updateStudent}" class="blue_button" style="margin-top:10px;"/>
+              
+              </h:form>
+              
+              
                	<h:panelGrid columns="2">
                		<h2>Matr-Nr</h2>
                		<h5>#{studentCtrl.currentStudent.nds}</h5>

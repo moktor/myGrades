@@ -3,6 +3,7 @@ package controller;
 
 
 import java.io.Serializable;
+import java.security.MessageDigest;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,6 +17,7 @@ import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 import javax.faces.context.FacesContext;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 
 
 import model.*;
@@ -29,21 +31,24 @@ public class LoginCtrl implements Serializable {
   * 
   */
  private static final long serialVersionUID = 5186306447159703311L;
- private String nds, password, firstname, lastname, email;
-private int id;
+ 
+ private String nds, password, firstname, lastname, email, salt, keyword;
+
+
  
 
 
 private boolean loggedIn = false;
 private boolean loggedInadmin = false;
 private boolean loggedInauth = false;
- 
- 
- private Student loggedinstudent;
- private ExamAuth loggedinperson;
- private Admin loggedinadmin;
+
+
+ private Person loggedinstudent;
+
  @EJB
  DbAccount dba;
+ @EJB
+ DbPerson dbP;
  
   
  
@@ -65,18 +70,34 @@ private boolean loggedInauth = false;
 
 
 
- public void setPassword(String password) {
-  this.password = password;
- }
+	//======================================= AS ==========================================
 
- //TODO JL Exam. Auth. dba.validate() == 2
+
+public void setPassword(String password)throws Exception {
+	 MessageDigest md = MessageDigest.getInstance("MD5");
+	 md.update(password.getBytes());
+	 byte byteData[] = md.digest();
+	 StringBuffer sb = new StringBuffer();
+	 
+	 //Method for hashing password Strings
+  for (int i = 0; i < byteData.length; i++) {
+   sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+  }
+this.password = sb.toString();
+}
+
 public String login() {
-	List<Student> results = dba.loginQuery(nds, password);
+	List<Student> results = dba.loginQuery(nds);
         if ( !results.isEmpty() ) {
         	loggedinstudent = results.get(0);
-        	firstname = loggedinstudent.getFirstname();
-        	lastname = loggedinstudent.getName();
-        	id = loggedinstudent.getId();
+        	firstname = ((Student) loggedinstudent).getFirstname();
+        	lastname =  ((Student) loggedinstudent).getName();
+        	email = 	((Student) loggedinstudent).getEmail();
+        	salt = 		((Student) loggedinstudent).getSalt();
+        	keyword = 	((Student) loggedinstudent).getKeyword();
+        	password = password+salt;
+        	
+        	if(password.equals(keyword)){
          
          		if (loggedinstudent instanceof Student){
             
@@ -85,28 +106,43 @@ public String login() {
             
             
          		}
-         }
+         }}
          
-         List<ExamAuth> authresults = dba.loginauthQuery(nds, password);
-         
+         List<ExamAuth> authresults = dba.loginauthQuery(nds);
          if ( !authresults.isEmpty() ){
-         loggedinperson = authresults.get(0);
-         firstname = loggedinperson.getFirstname();
-         lastname = loggedinperson.getName();
-         
-         		if (loggedinperson instanceof ExamAuth){
-
+        	 loggedinstudent = authresults.get(0);
+         	 firstname = ((ExamAuth) loggedinstudent).getFirstname();
+         	 lastname =  ((ExamAuth) loggedinstudent).getName();
+         	 email = 	 ((ExamAuth) loggedinstudent).getEmail();
+         	 salt = 	 ((ExamAuth) loggedinstudent).getSalt();
+         	 keyword =   ((ExamAuth) loggedinstudent).getKeyword();
+         	 password = password+salt;
+         	 
+         	 if(password.equals(keyword)){
+         		if (loggedinstudent instanceof ExamAuth){
          			setLoggedInauth();
-
-         			setLoggedIn();
-
          			return "_authority/auth_welcome";
         
          		}
-         }
+         }}
          
-         List<Admin> adminresults = dba.loginadminQuery(nds, password);
+         List<Admin> adminresults = dba.loginadminQuery(nds);
          
+         if ( !adminresults.isEmpty() ){
+        	loggedinstudent = adminresults.get(0);
+         	firstname = ((Admin) loggedinstudent).getFirstname();
+         	lastname = 	((Admin) loggedinstudent).getLastname();
+         	email = 	((Admin) loggedinstudent).getEmail();
+         	salt = 		((Admin) loggedinstudent).getSalt();
+        	keyword = 	((Admin) loggedinstudent).getKeyword();
+        	password = password+salt;
+        	
+        	if(password.equals(keyword)){
+         	if(loggedinstudent instanceof Admin){
+        	 		setLoggedInadmin();
+        	 		return "_admin/admin_welcome";
+        	 	}
+        }}
         
         return "index";
 		
@@ -118,7 +154,6 @@ public void setLoggedIn(){
     "studentctrl Liste:");
  loggedIn = true;
 }
-
 public void setLoggedInauth(){
 	Logger.getLogger(LoginCtrl.class.getName())
     .log(Level.INFO, 
@@ -132,15 +167,16 @@ public void setLoggedInadmin(){
  loggedInadmin = true;
 }
 
+
 public String logout() {
     loggedIn = false;
     loggedInadmin = false;
     loggedInauth = false;
     loggedinstudent = null;
+    FacesContext.getCurrentInstance().getCurrentInstance().getExternalContext().invalidateSession();
     return "/succ_logout.xhtml?faces-redirect=true";
 
 }
-
 public boolean isLoggedIn() {
 	if(loggedIn == true)
 		return true;
@@ -160,22 +196,15 @@ public boolean isLoggedInauth() {
 		return true;
 	else
 		return false;
+
+ }
+@Produces 
+@LoggedIn
+public Person getCurrentUser() {
+
+        return loggedinstudent;
+
 }
-
-@Produces @LoggedIn Student getCurrentUser() {
-
-        return getLoggedinstudent();
-
-    }
-
-
-
-
-
-public void setEmail(String email) {
-	this.email = email;
-}
-
 
 public String getFirstname() {
 	return firstname;
@@ -198,30 +227,26 @@ public String getLastname() {
 public void setLastname(String lastname) {
 	this.lastname = lastname;
 }
-
-
-
-public void setLoggedinstudent(Student loggedinstudent) {
-	this.loggedinstudent = loggedinstudent;
+public String getEmail() {
+	return email;
 }
 
 
 
-public Student getLoggedinstudent() {
-	return loggedinstudent;
+public void setEmail(String email) {
+	this.email = email;
 }
-
-
-
-public int getId() {
-	return id;
-}
-
-
-
-public void setId(int id) {
-	this.id = id;
-}
-
+public String updateStudent(){
+	
+	
+    if( dbP.editStudent(((Student)loggedinstudent))){
+    	return "stud_welcome";
+    }else
+    {
+    	return "stud_editError";
+    }
+    	
+    }
+	
  
 }

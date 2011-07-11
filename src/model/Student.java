@@ -16,7 +16,7 @@ import javax.persistence.*;
 
 @Entity
 @ManagedBean
-public class Student implements Serializable {
+public class Student extends Person implements Serializable {
 
 		
 	
@@ -56,7 +56,7 @@ public class Student implements Serializable {
 	
 	public Student(String nds, String gender, String firstname, String name,
 			String adresse, String email, String phone, String mobil,
-			String keyword, int fachsemester) {
+			String keyword, int fachsemester, String salt) {
 		this.fachsemester = fachsemester;
 		this.nds = nds;
 		this.gender = gender;
@@ -67,6 +67,7 @@ public class Student implements Serializable {
 		this.phone = phone;
 		this.mobil = mobil;
 		this.keyword = keyword;
+		this.salt = salt;
 	}
 
 

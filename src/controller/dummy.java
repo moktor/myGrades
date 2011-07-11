@@ -34,12 +34,20 @@ public class dummy implements Serializable{
 		generateStudents();
 		generateAdmin();
 		generateExamAuth();
-		generateEnrollments();
+		return "index";
+	}
+	
+	public String tuEs(){
+		String a = "peter";
+		String b = "hans";
+		Logger.getLogger(dummy.class.getName())
+	    .log(Level.INFO, 
+	    "studentctrl Liste:   "+a+ " "+b);
 		return "index";
 	}
 	
 	public void generateAdmin(){
-		String nds = "auth";
+		String nds = "admin";
 		String gender = "male";
 		String firstname = "Herr";
 		String lastname = "Hilz";
@@ -47,8 +55,8 @@ public class dummy implements Serializable{
 		String email = "herrhilz@meckerkasten.de";
 		String phone = "0941-12541858";
 		String mobil = "0176-12541858";
-		String keyword = "dfgbdffgdfgh";
-		String salt = "auth";
+		String keyword = "21232f297a57a5a743894a0e4a801fc335d61feb7f";
+		String salt = "35d61feb7f";
 		
 		dbA.createAdmin(nds, gender, firstname, lastname,adresse,email,phone,mobil,keyword,salt);
 	}
@@ -64,41 +72,25 @@ public class dummy implements Serializable{
 		String email = "herrhilz@meckerkasten.de";
 		String phone = "0941-12541858";
 		String mobil = "0176-12541858";
-		String keyword = "auth";
-		String salt = "sdfsdfsdfsdfk";
+		String keyword = "fa53b91ccc1b78668d5af58e1ed3a485556c203a56";
+		String salt = "556c203a56";
 		
 		dbE.createExamAuth(nds, title,gender, firstname, lastname,fieldofstudy,adresse,email,phone,mobil,keyword,salt);
 	}
 	
-	public void generateEnrollments(){
-		dbC.createEnrollments();
-	}
-	
 	public void generateCourses(){
-		String name = "", fieldofstudy = "";
-		int studentCount = 0;
-		Date date = java.sql.Date.valueOf("2010-05-10");
+		String name = "hans";
+		int studentCount = 12;
 		
-		String [] nameList = {"Praxis des Programmierens","IT-Security I","IT-Finance II","Unternehmensmodellierung","Internettechnologien","IT-Security II","Objektorientierte Programmierung","Buchhaltung","Kosten- und Leistungsrechnung ","Privatrecht"};
-		String [] fieldofstudyList = {"Winfo", "Winfo", "Winfo", "Winfo", "Winfo", "Winfo", "Winfo", "BWL", "BWL", "Recht"};
+		
+		String [] nameList = {"Praxis des Programmierens","IT-Security I","IT-Finance II","Unternehmensmodellierung","Internettechnologien und Network-Computing","IT-Security II","Objektorientierte Programmierung","Buchhaltung","Kosten- und Leistungsrechnung ","Grundzüge des Privatrechts"};
 		int [] studentCountList = {56,45,76,34,65,76,87,98,67,78};
-		Date[] dateList = {	java.sql.Date.valueOf("2011-06-30"), 
-							java.sql.Date.valueOf("2011-06-27"),
-							java.sql.Date.valueOf("2012-02-27"), 
-							java.sql.Date.valueOf("2012-02-17"), 
-							java.sql.Date.valueOf("2010-08-15"), 
-							java.sql.Date.valueOf("2011-07-25"), 
-							java.sql.Date.valueOf("2011-08-30"), 
-							java.sql.Date.valueOf("2011-07-12"), 
-							java.sql.Date.valueOf("2011-07-21"), 
-							java.sql.Date.valueOf("2010-08-12")};
-		
-		for (int i = 0; i < nameList.length; i++){
+		Date date = java.sql.Date.valueOf("2010-01-30");
+		String fieldOfStudy = "Winfo";
+		for (int i = 1; i <nameList.length; i++){
 			name = nameList[i];
-			fieldofstudy = fieldofstudyList[i];
 			studentCount = studentCountList[i];
-			date = dateList[i];
-			dbC.createCourse(studentCount, name, fieldofstudy, date);	
+			dbC.createCourse(studentCount, name, fieldOfStudy, date);	
 			
 			Logger.getLogger(dummy.class.getName())
 		    .log(Level.INFO, 
@@ -117,29 +109,34 @@ public class dummy implements Serializable{
 		String mobil;
 		String keyword;		
 		int fachsemester;
+		String salt;
 		
 		
 		Logger.getLogger(dummy.class.getName())
 	    .log(Level.INFO, 
 	    "studentctrl Liste:   "+nds+ " "+gender);
-		
-		String [] ndsList = {"student", "sca55117", "poi85742", "her74645","hju87448","kdf90873","urt45627","uru94858","lko87474","hdg35462","jhg74645","wes65710","scg64642"};
-		String [] genderList = {"student", "male","female","male","female","male","female","male","female","male","female","male","female"};
-		String [] firstnameList = {"student", "Hans", "Berta", "Alexander","Manuela","Peter","Barbara","Richard","Nicola","Mike","Jane","Ludwich","Sandra"};
-		String [] lastnameList = {"student", "Huber", "Walter", "Mayer","Schšnfeld","Brunner","Bauer","Goldmann","Fischer","Gold","Schuhmacher","Spielmann","MŸller"};
-		String [] adresseList = {"student", "Kleinestraße 14", "Großestraße 34", "Schönfließ Dorfstraße 35","Bernau Saturnring16","Bernau Rollenhagenstr.29","Werneuchen Löhmerdorfstr","Zühlsdorf Wandlitzer Chaussee 14","Panketal Bernauerstraße 41","Werneuchen Marxstraße 32","Zühlsdorf Basdorferstr.50","Lindenberg Karl-Marx-Str.20","Werneuchen Löhmerdorfstr. 50a"};
-		String [] emailListe = {"info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com"};
-		String [] phoneList =  {"student", "015464654", "0654654605465", "033056/82400","03338/766528","03476/854111","03338/38531","033398/76478","033397/72709","033398/87522","030/4744614","033397/61285","0178/4909813"};
-		String [] keywordList = {"student", "hurenfink", "trhtrhrthtrh", "rthrthtrhtrh","ösdkkfjg","södgh","uiouior","diordigh","kjdfgss","pweornb","mdflkgdf","dfgdfg","ödkfgjsdäflg"};
-		String [] mobilList = {"student", "01762584545", "032154875454", "033056/82400","03338/766528","03476/854111","03338/38531","033398/76478","033397/72709","033398/87522","030/4744614","033397/61285","0178/4909813"};
-		int [] fachsemesterList = {6,3,3,2,3,5,1,6,3,4,4,5,6};
-		
+		//auth=fa53b91ccc1b78668d5af58e1ed3a485 + 556c203a56
+		//student = cd73502828457d15655bbd7a63fb0bc8 + a1e43b5335
+		//admin = 21232f297a57a5a743894a0e4a801fc3 + 35d61feb7f
+		//lej55128 = c64662bb019696c945bf641da015cfe4 + e48e132073
+		//hom59678 = 4a04676a8c18ef5baad45cd5e5e78d63 + 41b6bffb7f
+		String [] ndsList = {"jhg83745", "student", "hwe95867","lej55128","hom59678","urt45627","uru94858","lko87474","hdg35462","jhg74645","wes65710","scg64642"};
+		String [] genderList = {"male","female","male","male","male","female","male","female","male","female","male","female"};
+		String [] firstnameList = {"Hans", "Manuela", "Alexander","Jonas","Mathias","Barbara","Hans","Nicola","Mike","Jane","Ludwich","Sandra"};
+		String [] lastnameList = {"Goldmannen", "Jungens", "Mayer","Lehmann","Hofer","Tannenbaum","Goldmann","Fischermann","Silbermann","Schuhmacher","Holzmann","Wassermann"};
+		String [] adresseList = {"Kleinestraße 14", "Großestraße 34", "Schönfließ Dorfstraße 35","Hemauerstra&szlig;e 20","Stra&szlig;e der Freiheit","Werneuchen Löhmerdorfstr","Zühlsdorf Wandlitzer Chaussee 14","Panketal Bernauerstraße 41","Werneuchen Marxstraße 32","Zühlsdorf Basdorferstr.50","Lindenberg Karl-Marx-Str.20","Werneuchen Löhmerdorfstr. 50a"};
+		String [] emailListe = {"ertzdf@gmx.net", "sdfsdfsdf@gmx.net", "hbork4@aol.com","j.lehmann@bondis.de","werbegestalter@web.de","wilhelm0804@web.de","moniwill@t-online.de","holger.Lusche@t-online.de","ronnyundute@t-online.de","jg.rauchhaus@freenet.de","RoszkiewiczW@aol.com","R.Santer@t-online.de"};
+		String [] phoneList =  {"015464654", "0654654605465", "033056/82400","0176988521444","03476/854111","03338/38531","033398/76478","033397/72709","033398/87522","030/4744614","033397/61285","0178/4909813"};
+		String [] keywordList = {"fa53b91ccc1b78668d5af58e1ed3a485556c203a56", "cd73502828457d15655bbd7a63fb0bc8a1e43b5335", "21232f297a57a5a743894a0e4a801fc335d61feb7f","c64662bb019696c945bf641da015cfe4e48e132073","4a04676a8c18ef5baad45cd5e5e78d6341b6bffb7f","uiouior","diordigh","kjdfgss","pweornb","mdflkgdf","dfgdfg","ödkfgjsdäflg"};
+		String [] mobilList = {"01762584545", "032154875454", "033056/82400","0176988521444","03476/854111","03338/38531","033398/76478","033397/72709","033398/87522","030/4744614","033397/61285","0178/4909813"};
+		int [] fachsemesterList = {3,3,2,6,5,1,6,3,4,4,5,6};
+		String [] saltList = {"556c203a56","a1e43b5335","35d61feb7f","e48e132073","41b6bffb7f","b162228224","ea122a1357","471e84ecca","d7e1f3102e","ea122a1357","471e84ecca","d7e1f3102e"};
 		
 		Logger.getLogger(dummy.class.getName())
 	    .log(Level.INFO, 
 	    "studentctrl Liste: 2   "+nds+ " "+gender);
-		
-		for (int i = 0; i < 7; i++){
+		 
+		for (int i = 0; i <ndsList.length; i++){
 			nds = ndsList[i];
 			gender = genderList[i];
 			firstname = firstnameList[i];
@@ -150,13 +147,13 @@ public class dummy implements Serializable{
 			mobil = mobilList[i];
 			keyword = keywordList[i];
 			fachsemester = fachsemesterList[i];
-			
+			salt = saltList [i];
 			
 			Logger.getLogger(dummy.class.getName())
 		    .log(Level.INFO, 
 		    "studentctrl Liste: 3 "+nds+ " "+gender);
 			
-			dbP.createStudent( nds, gender, firstname, lastname, adresse, email, phone,mobil , keyword,fachsemester);
+			dbP.createStudent( nds, gender, firstname, lastname, adresse, email, phone,mobil , keyword, fachsemester,salt);
 			
 			Logger.getLogger(dummy.class.getName())
 		    .log(Level.INFO, 

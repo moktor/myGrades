@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 
-public class Admin implements Serializable {
+public class Admin extends Person implements Serializable {
 
 	
 	/**

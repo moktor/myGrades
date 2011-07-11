@@ -38,9 +38,9 @@ public class DbPerson {
 
     public void createStudent( String nds, 
     String gender, String firstname, String lastname, String adresse,
-    String email, String phone, String mobil, String keyword, int fachsemester){
+    String email, String phone, String mobil, String keyword, int fachsemester, String salt){
     		
-    	Student s = new Student(nds,  gender, firstname, lastname, adresse, email, phone, mobil, keyword, fachsemester);
+    	Student s = new Student(nds,  gender, firstname, lastname, adresse, email, phone, mobil, keyword, fachsemester, salt);
     	em.persist(s);
     }
     

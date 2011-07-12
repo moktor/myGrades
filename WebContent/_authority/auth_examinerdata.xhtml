@@ -81,7 +81,9 @@
                    
                  	<h:column>
         			<f:facet name="header">Ändern</f:facet>
-                        <h:commandLink value="" action="#{examAuthCtrl.edit(examAuth)}" class="edit_button" immediate="true"/>
+                        <h:commandButton value="" action="#{examAuthCtrl.edit(examAuth)}" class="edit_button" immediate="true">
+                        	<f:ajax render="@form" execute="@form"/>
+                        </h:commandButton>
                     </h:column>
                     <h:column>
                     <f:facet name="header">Löschen</f:facet>

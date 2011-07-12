@@ -315,7 +315,11 @@ public class DbCourse {
         	if (count == 0)
         		return "Durchschnittsnote: Kein Eintrag gefunden";        
         	
-        	return "Durchschnittsnote: " + sum/count;
+        	double a = sum/count;
+        	String s = a + "";
+        	if (s.length() > 4)
+        		s = s.substring(0, 4);
+        	return "Durchschnittsnote: " + s;
         	
         } catch(Exception e){
         	

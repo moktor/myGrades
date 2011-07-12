@@ -83,7 +83,9 @@
                     </h:column>
                  	<h:column>
         			<f:facet name="header">Ändern</f:facet>
-                        <h:commandLink value="" action="#{studentCtrl.edit(student)}" class="edit_button" immediate="true"/>
+                        <h:commandButton value="" action="#{studentCtrl.edit(student)}" class="edit_button" immediate="true">
+                        	<f:ajax render="@form" execute="@form"/>
+                        </h:commandButton>
                     </h:column>
                     <h:column>
                     <f:facet name="header">Löschen</f:facet>

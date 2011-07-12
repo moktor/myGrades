@@ -14,7 +14,7 @@ import javax.faces.validator.ValidatorException;
 public class PasswordValidator implements Validator{
  
 	// ------------------------- Sonderzeichen should be added ;) -------------------JL------------------------------
-	private static final String PW_PATTERN = "^[0-9a-zA-Z]{3,10}$";
+	private static final String PW_PATTERN = "^[0-9a-zA-Z]{3,99}$";
 	
 	
 	private Pattern pw_pattern;

@@ -120,7 +120,7 @@ public class dummy implements Serializable{
 							java.sql.Date.valueOf("2010-08-15"), 
 							java.sql.Date.valueOf("2011-07-25"), 
 							java.sql.Date.valueOf("2011-08-30"), 
-							java.sql.Date.valueOf("2011-07-12"), 
+							java.sql.Date.valueOf("2011-07-11"), 
 							java.sql.Date.valueOf("2011-07-21"), 
 							java.sql.Date.valueOf("2010-08-12")};
 		
@@ -160,17 +160,17 @@ public class dummy implements Serializable{
 		//admin = 21232f297a57a5a743894a0e4a801fc3 + 35d61feb7f
 		//lej55128 = c64662bb019696c945bf641da015cfe4 + e48e132073
 		//hom59678 = 4a04676a8c18ef5baad45cd5e5e78d63 + 41b6bffb7f
-		String [] ndsList = {"jhg83745", "student", "hwe95867","lej55128","hom59678","urt45627","uru94858","lko87474","hdg35462","jhg74645","wes65710","scg64642"};
-		String [] genderList = {"male","female","male","male","male","female","male","female","male","female","male","female"};
-		String [] firstnameList = {"Hans", "Manuela", "Alexander","Jonas","Mathias","Barbara","Hans","Nicola","Mike","Jane","Ludwich","Sandra"};
-		String [] lastnameList = {"Meier", "Huber", "Walter", "Mayer","Schšnfeld","Brunner","Bauer","Goldmann","Fischer","Gold","Schuhmacher","Spielmann","MŸller"};
-		String [] adresseList = {"Kleinestraße 14", "Großestraße 34", "Schönfließ Dorfstraße 35","Hemauerstra&szlig;e 20","Stra&szlig;e der Freiheit","Werneuchen Löhmerdorfstr","Zühlsdorf Wandlitzer Chaussee 14","Panketal Bernauerstraße 41","Werneuchen Marxstraße 32","Zühlsdorf Basdorferstr.50","Lindenberg Karl-Marx-Str.20","Werneuchen Löhmerdorfstr. 50a"};
-		String [] emailListe = {"info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com"};
-		String [] phoneList =  {"015464654", "0654654605465", "033056/82400","0176988521444","03476/854111","03338/38531","033398/76478","033397/72709","033398/87522","030/4744614","033397/61285","0178/4909813"};
-		String [] keywordList = {"fa53b91ccc1b78668d5af58e1ed3a485556c203a56", "cd73502828457d15655bbd7a63fb0bc8a1e43b5335", "21232f297a57a5a743894a0e4a801fc335d61feb7f","c64662bb019696c945bf641da015cfe4e48e132073","4a04676a8c18ef5baad45cd5e5e78d6341b6bffb7f","uiouior","diordigh","kjdfgss","pweornb","mdflkgdf","dfgdfg","ödkfgjsdäflg"};
-		String [] mobilList = {"01762584545", "032154875454", "033056/82400","0176988521444","03476/854111","03338/38531","033398/76478","033397/72709","033398/87522","030/4744614","033397/61285","0178/4909813"};
-		int [] fachsemesterList = {3,3,2,6,5,1,6,3,4,4,5,6};
-		String [] saltList = {"556c203a56","a1e43b5335","35d61feb7f","e48e132073","41b6bffb7f","b162228224","ea122a1357","471e84ecca","d7e1f3102e","ea122a1357","471e84ecca","d7e1f3102e"};
+		String [] ndsList = {"jhg83745", "jhg83745", "student", "hwe95867","lej55128","hom59678","urt45627","uru94858","lko87474","hdg35462","jhg74645","wes65710","scg64642"};
+		String [] genderList = {"male", "male","female","male","male","male","female","male","female","male","female","male","female"};
+		String [] firstnameList = {"Hans", "Hans", "Manuela", "Alexander","Jonas","Mathias","Barbara","Hans","Nicola","Mike","Jane","Ludwich","Sandra"};
+		String [] lastnameList = {"Meier", "Meier", "Huber", "Walter", "Lehmann","Schšnfeld","Brunner","Bauer","Goldmann","Fischer","Gold","Schuhmacher","Spielmann","MŸller"};
+		String [] adresseList = {"Kleinestraße 14", "Kleinestraße 14", "Großestraße 34", "Schönfließ Dorfstraße 35","Hemauerstra&szlig;e 20","Stra&szlig;e der Freiheit","Werneuchen Löhmerdorfstr","Zühlsdorf Wandlitzer Chaussee 14","Panketal Bernauerstraße 41","Werneuchen Marxstraße 32","Zühlsdorf Basdorferstr.50","Lindenberg Karl-Marx-Str.20","Werneuchen Löhmerdorfstr. 50a"};
+		String [] emailListe = {"info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com", "info.myGrades@googlemail.com"};
+		String [] phoneList =  {"015464654", "015464654", "0654654605465", "033056/82400","0176988521444","03476/854111","03338/38531","033398/76478","033397/72709","033398/87522","030/4744614","033397/61285","0178/4909813"};
+		String [] keywordList = {"fa53b91ccc1b78668d5af58e1ed3a485556c203a56", "fa53b91ccc1b78668d5af58e1ed3a485556c203a56", "cd73502828457d15655bbd7a63fb0bc8a1e43b5335", "21232f297a57a5a743894a0e4a801fc335d61feb7f","c64662bb019696c945bf641da015cfe4e48e132073","4a04676a8c18ef5baad45cd5e5e78d6341b6bffb7f","uiouior","diordigh","kjdfgss","pweornb","mdflkgdf","dfgdfg","ödkfgjsdäflg"};
+		String [] mobilList = {"01762584545", "01762584545", "032154875454", "033056/82400","0176988521444","03476/854111","03338/38531","033398/76478","033397/72709","033398/87522","030/4744614","033397/61285","0178/4909813"};
+		int [] fachsemesterList = {3,3,3,2,6,5,1,6,3,4,4,5,6};
+		String [] saltList = {"556c203a56","556c203a56","a1e43b5335","35d61feb7f","e48e132073","41b6bffb7f","b162228224","ea122a1357","471e84ecca","d7e1f3102e","ea122a1357","471e84ecca","d7e1f3102e"};
 		
 		
 		Logger.getLogger(dummy.class.getName())
